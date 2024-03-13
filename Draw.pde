@@ -1,8 +1,8 @@
-class Draw {
+//class Draw {
 
-  Draw(int xpos; int ypos; int page)
-  {
+//  Draw(int xpos; int ypos; int page)
+//  {
     
-  }
+//  }
 
-}
+//}

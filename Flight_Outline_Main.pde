@@ -1,3 +1,4 @@
+String[] lines;
 void setup()
 {
   size(400, 400); 
@@ -5,6 +6,11 @@ void setup()
   // Read in file 
   // reseult  = default query
   // current query = user query
+
+  lines = loadStrings("flights2k.csv");
+  for(int i = 0; i < lines.length; i++){
+    println(lines[i]);
+  }
 }
 
 void draw()
