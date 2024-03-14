@@ -1,5 +1,5 @@
 
-String[] lines;
+
 Button button1, button2, button3;
 
 import java.util.ArrayList;
@@ -52,19 +52,14 @@ void draw()
 
 
 
-  if(mouseX>x && mouseX <x+w && mouseY>y && mouseY <y+h){
-   println("The mouse is over the button");
-   rect(x,y,w,h);
-   fill(200);
-   if(mousePressed){
-     for(int i = 0; i < lines.length; i++){
-      println(flights.get(i));
-  }
-   }
+  
+   
 
    
    //do stuff 
-  }
+  
+}
+
   
   
   // render controls
