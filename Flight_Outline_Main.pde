@@ -5,6 +5,7 @@ float y = 50;
 float w = 150;
 float h = 80;
 ArrayList<String> flights = new ArrayList<>();
+Read_Data newStorage = new Read_Data();
 
 String[] lines;
 Read_Data readDataObj;
@@ -19,17 +20,10 @@ void setup()
   // reseult  = default query
   // current query = user query
 
-  readData();
+    newStorage.readData();
   
 }
 
-void readData(){
-  lines = loadStrings("flights2k.csv");
-  for(int i = 0; i < lines.length; i++){
-    
-    flights.add(lines[i]);
-  }
-}
 void draw()
 {
   background(100);
