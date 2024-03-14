@@ -1,7 +1,9 @@
+import java.util.ArrayList;
 float x = 150;
 float y = 50;
 float w = 150;
 float h = 80;
+ArrayList<String> flights = new ArrayList<>();
 
 String[] lines;
 Read_Data readDataObj;
@@ -23,10 +25,7 @@ void readData(){
   lines = loadStrings("flights2k.csv");
   for(int i = 0; i < lines.length; i++){
     
-    readDataObj = new Read_Data(lines[i]);
-    oneLine[i] = readDataObj;
-  
-    println(lines[i]);
+    flights.add(lines[i]);
   }
 }
 void draw()
@@ -34,6 +33,8 @@ void draw()
   background(100);
   rect(x,y,w,h);
   fill(255);
+  
+  println(flights.get(4));
   
   // switch (current query)
   // case query1
