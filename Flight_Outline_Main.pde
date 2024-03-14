@@ -4,6 +4,8 @@ float w = 150;
 float h = 80;
 
 String[] lines;
+Read_Data readDataObj;
+Read_Data[] oneLine;
 void setup()
 {
   size(400, 400); 
@@ -14,10 +16,19 @@ void setup()
   // reseult  = default query
   // current query = user query
 
-  lines = loadStrings("flights2k.csv");
+  readData();
   
 }
-
+void readData(){
+  lines = loadStrings("flights2k.csv");
+  for(int i = 0; i < lines.length; i++){
+    
+    readDataObj = new Read_Data(lines[i]);
+    oneLine[i] = readDataObj;
+  
+    println(lines[i]);
+  }
+}
 void draw()
 {
   background(100);
