@@ -1,6 +1,6 @@
 float x = 125;
 float y = 50;
-float w = 150;
+float w = 140;
 float h = 80;
 
 String[] lines;
