@@ -1,7 +1,7 @@
 String[] lines;
 void setup()
 {
-  size(400, 400); 
+  size(500, 500); 
   
   // Read in file 
   // reseult  = default query
