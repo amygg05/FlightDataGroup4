@@ -1,4 +1,4 @@
-float x = 150;
+float x = 125;
 float y = 50;
 float w = 150;
 float h = 80;
