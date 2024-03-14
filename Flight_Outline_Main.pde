@@ -21,6 +21,7 @@ void setup()
   readData();
   
 }
+
 void readData(){
   lines = loadStrings("flights2k.csv");
   for(int i = 0; i < lines.length; i++){
@@ -34,7 +35,6 @@ void draw()
   rect(x,y,w,h);
   fill(255);
   
-  println(flights.get(4));
   
   // switch (current query)
   // case query1
@@ -49,7 +49,7 @@ void draw()
    fill(200);
    if(mousePressed){
      for(int i = 0; i < lines.length; i++){
-      println(lines[i]);
+      println(flights.get(i));
   }
    }
    
