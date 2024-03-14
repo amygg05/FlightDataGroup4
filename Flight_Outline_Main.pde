@@ -1,9 +1,14 @@
-float x = 100;
+
+import java.util.ArrayList;
+float x = 150;
 float y = 50;
 float w = 150;
 float h = 80;
+ArrayList<String> flights = new ArrayList<>();
 
 String[] lines;
+Read_Data readDataObj;
+Read_Data[] oneLine;
 void setup()
 {
   size(400, 400); 
@@ -14,15 +19,23 @@ void setup()
   // reseult  = default query
   // current query = user query
 
-  lines = loadStrings("flights2k.csv");
+  readData();
   
 }
 
+void readData(){
+  lines = loadStrings("flights2k.csv");
+  for(int i = 0; i < lines.length; i++){
+    
+    flights.add(lines[i]);
+  }
+}
 void draw()
 {
   background(100);
   rect(x,y,w,h);
   fill(255);
+  
   
   // switch (current query)
   // case query1
@@ -37,7 +50,7 @@ void draw()
    fill(200);
    if(mousePressed){
      for(int i = 0; i < lines.length; i++){
-      println(lines[i]);
+      println(flights.get(i));
   }
    }
    
