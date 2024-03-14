@@ -1,7 +1,0 @@
-class Read_Data{
-  String list;
-  Read_Data(String input){
-    this.list = input;
-  }
-
-}
