@@ -1,19 +1,22 @@
 class Button{
   float x, y, w, h;
-  
+  int colour;
   Button(float xpos, float ypos, float wid, float hig){
     x = xpos; y = ypos; w = wid; h = hig;
   }
    
    void draw()
    {
+     colour = 255;
      rect(x,y,w,h);
-     fill(255);
+     fill(colour);
      if(mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
      {
+       colour = 200;
        println("The mouse is over the button");
-       rect(x,y,w,h);
-       fill(200);
+       fill(colour);
+       //rect(x,y,w,h);
+       
        if(mousePressed)
        {
          for(int i = 0; i < lines.length; i++)
