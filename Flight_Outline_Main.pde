@@ -1,5 +1,15 @@
+
 String[] lines;
 Button button1, button2, button3;
+
+import java.util.ArrayList;
+ArrayList<String> flights = new ArrayList<>();
+Read_Data newStorage = new Read_Data();
+
+String[] lines;
+Read_Data readDataObj;
+Read_Data[] oneLine;
+
 void setup()
 {
   size(400, 400); 
@@ -10,19 +20,28 @@ void setup()
   // reseult  = default query
   // current query = user query
 
+
   lines = loadStrings("flights2k.csv");
   button1 = new Button(50, 100, 150, 50);
   button2 = new Button(50, 225, 150, 50);
   button3 = new Button(50, 350, 150, 50);
+
+    newStorage.readData();
+  
+
 }
 
 void draw()
 {
   background(100);
   
+
   button1.draw();
   button2.draw();
   button3.draw();
+
+  
+
   // switch (current query)
   // case query1
   //   render query 
@@ -30,6 +49,18 @@ void draw()
   // case query2
   //    ertc.
   
+
+
+
+  if(mouseX>x && mouseX <x+w && mouseY>y && mouseY <y+h){
+   println("The mouse is over the button");
+   rect(x,y,w,h);
+   fill(200);
+   if(mousePressed){
+     for(int i = 0; i < lines.length; i++){
+      println(flights.get(i));
+  }
+   }
 
    
    //do stuff 
