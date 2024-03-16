@@ -17,11 +17,13 @@ void setup()
   button2 = new Button(50, 225, 150, 50);
   button3 = new Button(50, 350, 150, 50);
   
+ 
   
   // Read in file 
   data = loadTable("flights2k.csv", "header");
   Read_Data readingData = new Read_Data(data);
   readingData.readData();
+  println(readingData.arrivalLateness(37)); // this tests arrivalLateness --> 37 is just a random row index to test
 
 }
 
