@@ -29,6 +29,7 @@ class Read_Data {
         data.setInt(i, colIndex, intVal);  // Set the converted value back into the table
       }
     }
+
   }
 
 
@@ -43,29 +44,36 @@ class Read_Data {
       int arrMins = arrTime % 100;
       int arrHours = arrTime - arrMins;
       arrMins += (arrHours / 100) * MIN_IN_HR;
-      
-      
+
+
       int schMins = schArrTime % 100;
       int schHours = schArrTime - schMins;
       schMins += (schHours / 100) * MIN_IN_HR;
-      
-      
+
+
       int arrivalDiff = arrMins - schMins;
-      
-      
+
+
       if (arrivalDiff < 0 && arrivalDiff > MAX_TIME_DIFF)
       {
         arrLateness = arrivalDiff;
-      } 
-      else if (arrivalDiff < 0 && arrivalDiff < MAX_TIME_DIFF)
+      } else if (arrivalDiff < 0 && arrivalDiff < MAX_TIME_DIFF)
       {
         arrLateness += (MILITARY_CLOCK_MIN - schMins) + arrMins;
-      } 
-      else 
+      } else
       {
         arrLateness += arrivalDiff;
       }
     }
     return arrLateness;
   }
+  
+  LocalDate getDate(int rowIndex)
+  {
+    String dateString = data.getString(rowIndex, 0);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/DD/YYYY HH:mm");
+    LocalDate dateTime = LocalDate.parse(dateString, formatter);
+    return dateTime;
+  }
+  
 }
