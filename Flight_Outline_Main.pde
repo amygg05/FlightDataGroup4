@@ -1,3 +1,4 @@
+
 boolean page1 = true;
 boolean page2 = false;
 boolean page3 = false;
@@ -16,6 +17,7 @@ Read_Data readingData;
 PImage cartoonCloudImage;
 PFont stdFont;
 
+
 void setup()
 {
   PFont font;
@@ -27,7 +29,9 @@ void setup()
   background(255);
   stroke(10);
   noFill();
+
   stdFont = loadFont("ACaslonPro-Bold-48.vlw");textFont(stdFont);
+
   // reseult  = default query
   // current query = user query
   
@@ -38,9 +42,7 @@ void setup()
   button3 = new Button(50, 300, 150, 70, cartoonCloudImage, "test", stdFont);
   
 
-  
- 
-  
+
   // Read in file 
   data = loadTable("flights2k.csv", "header");
   Read_Data readingData = new Read_Data(data);
@@ -73,8 +75,7 @@ void draw()
     button3.draw();
   }
 
-  
-
+ 
   // switch (current query)
   // case query1
   //   render query 
