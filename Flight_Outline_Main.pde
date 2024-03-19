@@ -69,7 +69,6 @@ void draw()
      }
   }
   else if (page2){
-
     button1.draw();
     button2.draw();
     button3.draw();
