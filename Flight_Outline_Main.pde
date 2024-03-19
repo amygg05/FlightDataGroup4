@@ -1,29 +1,47 @@
-float x = 100;
-float y = 50;
-float w = 150;
-float h = 80;
+int SCREENX = 400;
+int SCREENY = 400;
+Button button1, button2, button3;
+Read_Data readingData;
+PImage cartoonCloudImage;
 
-String[] lines;
 void setup()
 {
   size(400, 400); 
   background(100);
   stroke(10);
   noFill();
-  // Read in file 
   // reseult  = default query
   // current query = user query
-
-  lines = loadStrings("flights2k.csv");
   
+  cartoonCloudImage = loadImage("cartooncloud.png");
+
+  button1 = new Button(50, 100, 150, 70, cartoonCloudImage);
+  button2 = new Button(50, 200, 150, 70, cartoonCloudImage);
+  button3 = new Button(50, 300, 150, 70, cartoonCloudImage);
+  
+
+  
+ 
+  
+  // Read in file 
+  data = loadTable("flights2k.csv", "header");
+  Read_Data readingData = new Read_Data(data);
+  readingData.readData();
+  println(readingData.arrivalLateness(37)); // this tests arrivalLateness --> 37 is just a random row index to test
+
 }
 
 void draw()
 {
   background(100);
-  rect(x,y,w,h);
-  fill(255);
   
+
+  button1.draw();
+  button2.draw();
+  button3.draw();
+
+  
+
   // switch (current query)
   // case query1
   //   render query 
@@ -31,20 +49,18 @@ void draw()
   // case query2
   //    ertc.
   
-  if(mouseX>x && mouseX <x+w && mouseY>y && mouseY <y+h){
-   println("The mouse is over the button");
-   rect(x,y,w,h);
-   fill(200);
-   if(mousePressed){
-     for(int i = 0; i < lines.length; i++){
-      println(lines[i]);
-  }
-   }
+
+
+
+  
+   
+
    
    //do stuff 
-  }
+  
+}
+
   
   
   // render controls
   
-}
