@@ -14,6 +14,7 @@ int SCREENY = 400;
 Button button1, button2, button3;
 Read_Data readingData;
 PImage cartoonCloudImage;
+PFont stdFont;
 
 void setup()
 {
@@ -26,14 +27,15 @@ void setup()
   background(255);
   stroke(10);
   noFill();
+  stdFont = loadFont("ACaslonPro-Bold-48.vlw");textFont(stdFont);
   // reseult  = default query
   // current query = user query
   
   cartoonCloudImage = loadImage("cartooncloud.png");
 
-  button1 = new Button(50, 100, 150, 70, cartoonCloudImage);
-  button2 = new Button(50, 200, 150, 70, cartoonCloudImage);
-  button3 = new Button(50, 300, 150, 70, cartoonCloudImage);
+  button1 = new Button(50, 100, 150, 70, cartoonCloudImage, "test", stdFont);
+  button2 = new Button(50, 200, 150, 70, cartoonCloudImage, "test", stdFont);
+  button3 = new Button(50, 300, 150, 70, cartoonCloudImage, "test", stdFont);
   
 
   
