@@ -14,7 +14,7 @@ int SCREENY = 400;
 
 Button button1, button2, button3;
 Read_Data readingData;
-PImage cartoonCloudImage;
+PImage cartoonCloudImage, cartoonCloudImageSelected;
 PFont stdFont;
 
 
@@ -36,10 +36,11 @@ void setup()
   // current query = user query
   
   cartoonCloudImage = loadImage("cartooncloud.png");
+  cartoonCloudImageSelected = loadImage("cartooncloudselected.png");
 
-  button1 = new Button(50, 100, 150, 70, cartoonCloudImage, "test", stdFont);
-  button2 = new Button(50, 200, 150, 70, cartoonCloudImage, "test", stdFont);
-  button3 = new Button(50, 300, 150, 70, cartoonCloudImage, "test", stdFont);
+  button1 = new Button(50, 100, 150, 70, cartoonCloudImage, cartoonCloudImageSelected, "test");
+  button2 = new Button(50, 200, 150, 70, cartoonCloudImage, cartoonCloudImageSelected, "test");
+  button3 = new Button(50, 300, 150, 70, cartoonCloudImage, cartoonCloudImageSelected, "test");
   
 
 
