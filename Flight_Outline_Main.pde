@@ -7,6 +7,7 @@ float x = 120;
 float y = 150;
 float w = 300;
 float h = 300;
+Chart chart;
 
 int SCREENX = 400;
 int SCREENY = 400;
@@ -26,6 +27,8 @@ void setup()
   background(255);
   stroke(10);
   noFill();
+  Table csv = loadTable("flights2k.csv", "header"); // Table for chart
+  chart = new Chart(csv);
   // reseult  = default query
   // current query = user query
   
@@ -61,6 +64,7 @@ void draw()
        background(255);
        page1=false;
        page2=true;
+       
   }
      }
   }
@@ -69,6 +73,17 @@ void draw()
     button1.draw();
     button2.draw();
     button3.draw();
+    if(mousePressed)
+    {
+      background(255);
+       page2=false;
+       page3=true;
+    }
+    
+  }
+  else if(page3)
+  {
+    chart.draw();
   }
 
   
