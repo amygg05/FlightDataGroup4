@@ -2,32 +2,36 @@ class Button {
   float x, y, w, h;
   String label;
   PFont widgetFont;
-  PImage image;
+  PImage image, image2;
   int colour;
   boolean isMoving = false;
-  float   movementSpeed = 1;
-  Button(float xpos, float ypos, float wid, float hig, PImage img, String lab, PFont font) {
+  float   movementSpeed = 2;
+  Button(float xpos, float ypos, float wid, float hig, PImage img, PImage img2, String lab) 
+  {
     x = xpos;
     y = ypos;
     w = wid;
     h = hig;
     image = img;
-    widgetFont = font;
+    image2 = img2;
     label = lab;
   }
 
   void draw()
   {
-    colour = 255;
-    image(image,x, y, w, h);
     fill(colour);
+    colour = 255;
+    image(image, x, y, w, h);
+    fill(0);
+    textSize(30);
     text(label, x+10, y+height-10);
+    
+
     if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
     {
-      colour = 200;
+      image(image2, x, y, w, h);
       println("The mouse is over the button");
       fill(colour);
-      //rect(x,y,w,h);
 
       if (mousePressed)
       {
