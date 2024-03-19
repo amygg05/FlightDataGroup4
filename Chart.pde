@@ -16,6 +16,7 @@ Table data;
   Chart(Table passedTable)
   {
       data = passedTable;  
+
   }
     
   
@@ -57,4 +58,3 @@ public float getMaxVal(){
   }
   return (float)finalVal;
   }
-}

@@ -1,3 +1,9 @@
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
+
 boolean page1 = true;
 boolean page2 = false;
 boolean page3 = false;
@@ -9,12 +15,15 @@ float w = 300;
 float h = 300;
 Chart chart;
 
+
 int SCREENX = 400;
 int SCREENY = 400;
 
 Button button1, button2, button3;
 Read_Data readingData;
-PImage cartoonCloudImage;
+PImage cartoonCloudImage, cartoonCloudImageSelected;
+PFont stdFont;
+
 
 void setup()
 {
@@ -29,19 +38,23 @@ void setup()
   noFill();
   Table csv = loadTable("flights2k.csv", "header"); // Table for chart
   chart = new Chart(csv);
+
+
+  stdFont = loadFont("ACaslonPro-Bold-48.vlw");textFont(stdFont);
+
+
   // reseult  = default query
   // current query = user query
   
   cartoonCloudImage = loadImage("cartooncloud.png");
+  cartoonCloudImageSelected = loadImage("cartooncloudselected.png");
 
-  button1 = new Button(50, 100, 150, 70, cartoonCloudImage);
-  button2 = new Button(50, 200, 150, 70, cartoonCloudImage);
-  button3 = new Button(50, 300, 150, 70, cartoonCloudImage);
+  button1 = new Button(50, 100, 150, 70, cartoonCloudImage, cartoonCloudImageSelected, "test");
+  button2 = new Button(50, 200, 150, 70, cartoonCloudImage, cartoonCloudImageSelected, "test");
+  button3 = new Button(50, 300, 150, 70, cartoonCloudImage, cartoonCloudImageSelected, "test");
   
 
-  
- 
-  
+
   // Read in file 
   data = loadTable("flights2k.csv", "header");
   Read_Data readingData = new Read_Data(data);
@@ -69,7 +82,6 @@ void draw()
      }
   }
   else if (page2){
-
     button1.draw();
     button2.draw();
     button3.draw();
@@ -86,8 +98,7 @@ void draw()
     chart.draw();
   }
 
-  
-
+ 
   // switch (current query)
   // case query1
   //   render query 
