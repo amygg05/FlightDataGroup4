@@ -37,10 +37,6 @@ void setup()
   button2 = new Button(50, 200, 150, 70, cartoonCloudImage, "test", stdFont);
   button3 = new Button(50, 300, 150, 70, cartoonCloudImage, "test", stdFont);
   
-
-  
- 
-  
   // Read in file 
   data = loadTable("flights2k.csv", "header");
   Read_Data readingData = new Read_Data(data);
@@ -67,7 +63,6 @@ void draw()
      }
   }
   else if (page2){
-
     button1.draw();
     button2.draw();
     button3.draw();
