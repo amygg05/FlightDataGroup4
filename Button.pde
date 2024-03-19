@@ -1,3 +1,4 @@
+
 class Button {
   float x, y, w, h;
   String label;
@@ -16,7 +17,7 @@ class Button {
     image2 = img2;
     label = lab;
   }
-
+  
   void draw()
   {
     fill(colour);
@@ -25,7 +26,6 @@ class Button {
     fill(0);
     textSize(30);
     text(label, x+10, y+height-10);
-    
 
     if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
     {
@@ -57,6 +57,7 @@ class Button {
       
       
     }
+
     if(isMoving)
       {
         x += movementSpeed;
