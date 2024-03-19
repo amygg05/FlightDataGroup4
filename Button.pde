@@ -1,19 +1,25 @@
+
 class Button {
   float x, y, w, h;
   String label;
   PFont widgetFont;
+
   PImage image;
   int colour;
   boolean isMoving = false;
   float   movementSpeed = 1;
+
   Button(float xpos, float ypos, float wid, float hig, PImage img, String lab, PFont font) {
+
     x = xpos;
     y = ypos;
     w = wid;
     h = hig;
     image = img;
+
     widgetFont = font;
     label = lab;
+
   }
 
   void draw()
@@ -21,7 +27,9 @@ class Button {
     colour = 255;
     image(image,x, y, w, h);
     fill(colour);
+
     text(label, x+10, y+height-10);
+
     if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
     {
       colour = 200;
@@ -53,6 +61,7 @@ class Button {
       
       
     }
+
     if(isMoving)
       {
         x += movementSpeed;
