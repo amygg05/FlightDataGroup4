@@ -70,10 +70,9 @@ class Read_Data {
   
   LocalDate getDate(int rowIndex)
   {
-    String dateString = data.getString(rowIndex, 0);
+    String dateString = data.getString(rowIndex, "FL_DATE");
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/DD/YYYY HH:mm");
     LocalDate dateTime = LocalDate.parse(dateString, formatter);
     return dateTime;
   }
-  
 }
