@@ -42,7 +42,7 @@ Table data;
       println("Bar Sucess");
       
       
-      // problem ==> graph shapped in the wrong area @ 0,0 (i think?)
+      // problem ==> graph shapped in the wrong area @ 0,0 (i think?) -> main issue is y, x is also off 
   }
 }
 public float getMaxVal(){
