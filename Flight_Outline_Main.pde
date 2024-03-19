@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-
-=======
 boolean page1 = true;
 boolean page2 = false;
 boolean page3 = false;
@@ -10,11 +7,13 @@ float x = 120;
 float y = 150;
 float w = 300;
 float h = 300;
->>>>>>> Stashed changes
+
+int SCREENX = 400;
+int SCREENY = 400;
+
 Button button1, button2, button3;
-
-
 Read_Data readingData;
+PImage cartoonCloudImage;
 
 void setup()
 {
@@ -29,10 +28,14 @@ void setup()
   noFill();
   // reseult  = default query
   // current query = user query
+  
+  cartoonCloudImage = loadImage("cartooncloud.png");
 
-  button1 = new Button(50, 100, 150, 50);
-  button2 = new Button(50, 225, 150, 50);
-  button3 = new Button(50, 350, 150, 50);
+  button1 = new Button(50, 100, 150, 70, cartoonCloudImage);
+  button2 = new Button(50, 200, 150, 70, cartoonCloudImage);
+  button3 = new Button(50, 300, 150, 70, cartoonCloudImage);
+  
+
   
  
   
