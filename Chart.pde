@@ -27,7 +27,7 @@ float Data[];
     {
       float xpos = 50 + i*xSpacing;
       float ypos = (height - 50 - Data[i] ) * (ySpacing);
-      size = (value/max_value) * max_size;
+    //  size = (value/max_value) * max_size;
       
       
     
