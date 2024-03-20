@@ -58,3 +58,4 @@ public float getMaxVal(){
   }
   return (float)finalVal;
   }
+}
