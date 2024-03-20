@@ -85,12 +85,12 @@ void draw()
     button1.draw();
     button2.draw();
     button3.draw();
-    if(mousePressed)
-    {
-      background(255);
-       page2=false;
-       page3=true;
-    }
+    //if(mousePressed)
+    //{
+    //  background(255);
+    //   page2=false;
+    //   page3=true;
+    //}
     
   }
   else if(page3)
