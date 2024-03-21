@@ -1,3 +1,10 @@
+
+
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 boolean page1 = true;
 boolean page2 = false;
 boolean page3 = false;
@@ -9,8 +16,17 @@ float w = 300;
 float h = 300;
 int movedCloud = 0;
 
-int SCREENX = 400;
-int SCREENY = 400;
+
+BarChart1 airlineFlights;
+BarChart2 datesTime;
+
+FlightAirportChart airport;
+
+
+boolean boohooo = true;
+
+int SCREENX = 500;
+int SCREENY = 500;
 
 Button button1, button2, button3;
 Read_Data readingData;
@@ -25,13 +41,24 @@ void setup()
   plane = loadImage("plane3.jpg");
   font = loadFont("Verdana-Bold-40.vlw");
   textFont(font);
-  size(400, 400); 
-  background(255);
+  size(800, 800); 
+  background(225);
   stroke(10);
   noFill();
+  Table csv = loadTable("flights2k.csv", "header"); // Table for chart
+  chart = new Chart(csv);
 
   stdFont = loadFont("ACaslonPro-Bold-48.vlw");textFont(stdFont);
 
+  dateArray = new ArrayList<String>();
+  dayArray = new ArrayList<Integer>();
+  monthArray = new ArrayList<Integer>();
+  yearArray = new ArrayList<Integer>();
+  
+  airportArray = new ArrayList<String>();
+  
+  datesTime = new BarChart2(dayArray, monthArray, yearArray, dateArray, csv);
+  airport = new FlightAirportChart(csv, airportArray);
   // reseult  = default query
   // current query = user query
   
@@ -46,13 +73,17 @@ void setup()
   button2 = new Button(50, 150, 170, 120, cartoonCloudImage, cartoonCloudImageSelected, text2);
   button3 = new Button(50, 300, 170, 120, cartoonCloudImage, cartoonCloudImageSelected, text3);
   
-
+  
 
   // Read in file 
   data = loadTable("flights2k.csv", "header");
   Read_Data readingData = new Read_Data(data);
   readingData.readData();
   println(readingData.arrivalLateness(37)); // this tests arrivalLateness --> 37 is just a random row index to test
+  readingData.getDate(1);
+  int[] test = readingData.getDate(1);
+  println(test[1]);
+  
 
 }
 
@@ -62,7 +93,7 @@ void draw()
     background(255);
     fill(128,126,250);
     text("     Click Here \n   For Flight Data",0,50);
-    image(plane,120,150,300,300);
+    image(plane,150,200,350,350);
     image(arrow,50,200,100,100);
      if(mouseX>x && mouseX <x+w && mouseY>y && mouseY <y+h){
      println("The mouse is over the button");
@@ -70,6 +101,7 @@ void draw()
        background(255);
        page1=false;
        page2=true;
+       
   }
      }
   }
@@ -112,6 +144,33 @@ void draw()
       case 3:
       button3.drawCloud();
     }
+    
+    if(mousePressed)
+    {
+      background(255);
+       page2=false;
+       page3=true;
+    }
+    
+  }
+  else if(page3)  // Needs changing to display just temp
+  {
+    //chart.draw();
+    
+    while(boohooo)
+    {
+      
+      airport.loadAirport();
+      airport.printing();
+      airport.draw();
+      
+      //datesTime.tableNew();
+      //datesTime.printing();
+      //datesTime.draw();
+      boohooo = false;
+    }
+    
+   
   }
     
 
@@ -133,6 +192,7 @@ void draw()
    //do stuff 
   
 }
+
 
   
   

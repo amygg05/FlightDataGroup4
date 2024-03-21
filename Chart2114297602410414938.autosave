@@ -17,12 +17,9 @@ Table data;
   {
       data = passedTable;  
   }
-    
-  
 
   void draw()
   {
-
     stroke(0);
     line(padding, boarderSize-padding, boarderSize-padding, boarderSize-padding); // X-axis
     line(padding, boarderSize-padding, padding, padding); // Y-axis
@@ -31,7 +28,6 @@ Table data;
     
     for (int i=0; i< data.getRowCount(); i++)
     {
-
       int val = data.getInt(i, "DISTANCE");
       
       float xpos = padding + (i);  // + (barWidth + spacing)
@@ -59,5 +55,4 @@ public float getMaxVal(){
   }
   return (float)finalVal;
   }
-
 }
