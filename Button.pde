@@ -6,6 +6,7 @@ class Button {
   PImage image, image2;
   int colour;
   boolean isMoving = false;
+  boolean isSelected = false;
   float   movementSpeed = 2;
   Button(float xpos, float ypos, float wid, float hig, PImage img, PImage img2, String lab) 
   {
@@ -25,16 +26,18 @@ class Button {
     image(image, x, y, w, h);
     fill(0);
     textSize(30);
-    text(label, x+10, y+height-10);
+    text(label, x+30, y+70);
 
     if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
     {
       image(image2, x, y, w, h);
+      text(label, x+30, y+70);
       println("The mouse is over the button");
       fill(colour);
 
       if (mousePressed)
       {
+        isSelected = true;
         num_row = data.getRowCount();
         for (int i = 0; i < NUM_COLS; i++) {
           String colName = data.getColumnTitle(i);
@@ -67,5 +70,34 @@ class Button {
         }
       }
     
+  }
+  
+   int xPage3 = -90;
+   int yPage3 = 0;
+   boolean isMovingPage3 = false;
+  
+  void drawCloud()
+  {
+    image(cartoonCloudImage, xPage3, yPage3, 170, 120);
+    textSize(30);
+    fill(0);
+    text(label, xPage3+30, yPage3+70);
+    if(xPage3<=3)
+    {
+      isMovingPage3 = true;
+    }
+    if(isMovingPage3 == true)
+    {
+      xPage3+=movementSpeed;
+    }
+    if(xPage3>= 3)
+    {
+      isMovingPage3 = false;
+    }
+  }
+  
+  float getX()
+  {
+    return this.x;
   }
 }

@@ -1,8 +1,9 @@
 
+
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-
 
 boolean page1 = true;
 boolean page2 = false;
@@ -13,6 +14,7 @@ float x = 120;
 float y = 150;
 float w = 300;
 float h = 300;
+int movedCloud = 0;
 
 
 BarChart1 airlineFlights;
@@ -62,10 +64,14 @@ void setup()
   
   cartoonCloudImage = loadImage("cartooncloud.png");
   cartoonCloudImageSelected = loadImage("cartooncloudselected.png");
+  
+  String text1 = "flights";
+  String text2 = "schedule";
+  String text3 = "arrivals";
 
-  button1 = new Button(50, 100, 150, 70, cartoonCloudImage, cartoonCloudImageSelected, "test");
-  button2 = new Button(50, 200, 150, 70, cartoonCloudImage, cartoonCloudImageSelected, "test");
-  button3 = new Button(50, 300, 150, 70, cartoonCloudImage, cartoonCloudImageSelected, "test");
+  button1 = new Button(50, 0, 170, 120, cartoonCloudImage, cartoonCloudImageSelected, text1);
+  button2 = new Button(50, 150, 170, 120, cartoonCloudImage, cartoonCloudImageSelected, text2);
+  button3 = new Button(50, 300, 170, 120, cartoonCloudImage, cartoonCloudImageSelected, text3);
   
   
 
@@ -100,9 +106,45 @@ void draw()
      }
   }
   else if (page2){
+    background(255);
     button1.draw();
     button2.draw();
     button3.draw();
+    float x1 = button1.getX();
+    float x2 = button2.getX();
+    float x3 = button3.getX();
+    if(x1>50)
+    {
+      movedCloud = 1;
+    }
+    else if(x2>50)
+    {
+      movedCloud = 2;
+    }
+    else
+    {
+      movedCloud = 3;
+    } 
+    if(x1>=400 || x2>=400 || x3>=400)
+    {
+      page2=false;
+      page3=true;
+    }
+  }
+  else if (page3){
+    background(255);
+    switch(movedCloud)
+    {
+      case 1:
+      button1.drawCloud();
+      break;
+      case 2:
+      button2.drawCloud();
+      break;
+      case 3:
+      button3.drawCloud();
+    }
+    
     if(mousePressed)
     {
       background(255);
@@ -128,8 +170,9 @@ void draw()
       boohooo = false;
     }
     
-    
+   
   }
+    
 
  
   // switch (current query)
