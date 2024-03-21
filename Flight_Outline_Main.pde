@@ -43,12 +43,12 @@ void setup()
 
   stdFont = loadFont("ACaslonPro-Bold-48.vlw");textFont(stdFont);
 
-  dateList = new ArrayList<String>();
-  dayList = new ArrayList<Integer>();
-  monthList = new ArrayList<Integer>();
-  yearList = new ArrayList<Integer>();
+  dateArray = new ArrayList<String>();
+  dayArray = new ArrayList<Integer>();
+  monthArray = new ArrayList<Integer>();
+  yearArray = new ArrayList<Integer>();
   
-  datesTime = new BarChart2(dayList, monthList, yearList, dateList, csv);
+  datesTime = new BarChart2(dayArray, monthArray, yearArray, dateArray, csv);
   // reseult  = default query
   // current query = user query
   
