@@ -14,7 +14,8 @@ float y = 150;
 float w = 300;
 float h = 300;
 
-BarChart1 datesTime;
+BarChart1 airlineFlights;
+BarChart2 datesTime;
 
 boolean boohooo = true;
 
