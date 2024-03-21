@@ -35,8 +35,7 @@ class Button {
       colour = 200;
       println("The mouse is over the button");
       fill(colour);
-      //rect(x,y,w,h);
-
+      
       if (mousePressed)
       {
         num_row = data.getRowCount();
@@ -55,11 +54,8 @@ class Button {
           }
           println();  // Move to next line after each row
         }
-        
-       
+
       }
-      
-      
     }
 
     if(isMoving)
@@ -69,7 +65,6 @@ class Button {
         {
           isMoving = false;
         }
-      }
-    
+      } 
   }
 }
