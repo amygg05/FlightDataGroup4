@@ -1,16 +1,16 @@
 Table table ;
-ArrayList<Integer> dayList, monthList, yearList;
-ArrayList<String> dateList;
+ArrayList<Integer> dayArray, monthArray, yearArray;
+ArrayList<String> dateArray;
 int[] dayCount = new int[7];
 
 class BarChart2{
   
   BarChart2(ArrayList<Integer> listDay, ArrayList<Integer> listMonth,ArrayList<Integer> listYear,ArrayList<String> listDate, Table passedTable)
   {
-    dayList =listDay ;
-    monthList= listMonth;
-    yearList =listYear;
-    dateList =listDate;
+    dayArray =listDay ;
+    monthArray= listMonth;
+    yearArray =listYear;
+    dateArray =listDate;
     table = passedTable;
   }
 
@@ -20,16 +20,16 @@ class BarChart2{
       String dateTimeString = row.getString("FL_DATE");
       String[] dateParts = dateTimeString.split(" ");
     
-      dateList.add(dateParts[0]);
+      dateArray.add(dateParts[0]);
       String[] dateComponents = dateParts[0].split("/");
     
       int month = Integer.parseInt(dateComponents[2]);
       int day = Integer.parseInt(dateComponents[1]);
       int year = Integer.parseInt(dateComponents[0]);
     
-      dayList.add(day);
-      monthList.add(month);
-      yearList.add(year);
+      dayArray.add(day);
+      monthArray.add(month);
+      yearArray.add(year);
     
       dayCount[day] ++;
     }
@@ -61,7 +61,7 @@ class BarChart2{
     textAlign(CENTER, BOTTOM);
     text(dayCount[i], x+ barWidth /2, height -28);
     textAlign(CENTER, TOP);
-    text("01/0" + i + "/2022", x+ barWidth /2, height -28);
+    text( i , x+ barWidth /2, height -28);
     
   }
   textSize(15);

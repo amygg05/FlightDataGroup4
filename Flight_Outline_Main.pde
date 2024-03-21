@@ -42,12 +42,16 @@ void setup()
 
   stdFont = loadFont("ACaslonPro-Bold-48.vlw");textFont(stdFont);
 
-  dateList = new ArrayList<String>();
-  dayList = new ArrayList<Integer>();
-  monthList = new ArrayList<Integer>();
-  yearList = new ArrayList<Integer>();
+  dateArray = new ArrayList<String>();
+  dayArray = new ArrayList<Integer>();
+  monthArray = new ArrayList<Integer>();
+  yearArray = new ArrayList<Integer>();
   
-  datesTime = new BarChart1(csv);
+
+  airlineFlights = new BarChart1(csv);
+
+  datesTime = new BarChart2(dayArray, monthArray, yearArray, dateArray, csv);
+
   // reseult  = default query
   // current query = user query
   
@@ -65,6 +69,10 @@ void setup()
   Read_Data readingData = new Read_Data(data);
   readingData.readData();
   println(readingData.arrivalLateness(37)); // this tests arrivalLateness --> 37 is just a random row index to test
+  readingData.getDate(1);
+  int[] test = readingData.getDate(1);
+  println(test[1]);
+  
 
 }
 
@@ -104,9 +112,9 @@ void draw()
     
     while(boohooo)
     {
-      datesTime.tableNew();
-      datesTime.printing();
-      datesTime.draw();
+      airlineFlights.tableNew();
+      airlineFlights.printing();
+      airlineFlights.draw();
       boohooo = false;
     }
   }
