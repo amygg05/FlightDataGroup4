@@ -13,13 +13,13 @@ float x = 120;
 float y = 150;
 float w = 300;
 float h = 300;
-Chart chart;
-BarChart2 datesTime;
+
+BarChart1 datesTime;
 
 boolean boohooo = true;
 
-int SCREENX = 500;
-int SCREENY = 500;
+int SCREENX = 800;
+int SCREENY = 800;
 
 Button button1, button2, button3;
 Read_Data readingData;
@@ -34,12 +34,11 @@ void setup()
   plane = loadImage("plane3.jpg");
   font = loadFont("Verdana-Bold-40.vlw");
   textFont(font);
-  size(500, 500); 
+  size(800, 800); 
   background(225);
   stroke(10);
   noFill();
   Table csv = loadTable("flights2k.csv", "header"); // Table for chart
-  chart = new Chart(csv);
 
   stdFont = loadFont("ACaslonPro-Bold-48.vlw");textFont(stdFont);
 
@@ -48,7 +47,11 @@ void setup()
   monthArray = new ArrayList<Integer>();
   yearArray = new ArrayList<Integer>();
   
+
+  airlineFlights = new BarChart1(csv);
+
   datesTime = new BarChart2(dayArray, monthArray, yearArray, dateArray, csv);
+
   // reseult  = default query
   // current query = user query
   
@@ -109,9 +112,9 @@ void draw()
     
     while(boohooo)
     {
-      datesTime.tableNew();
-      datesTime.printing();
-      datesTime.draw();
+      airlineFlights.tableNew();
+      airlineFlights.printing();
+      airlineFlights.draw();
       boohooo = false;
     }
   }
