@@ -8,9 +8,7 @@ final int DATE_COLUMN = 0;
 int num_row;
 String colName;
 Table data;
-int num_row;
-String colName;
-Table data;
+
 
 
 class Read_Data {
@@ -33,7 +31,6 @@ class Read_Data {
         data.setInt(i, colIndex, intVal);  // Set the converted value back into the table
       }
     }
-
   }
 
 
@@ -71,8 +68,8 @@ class Read_Data {
     }
     return arrLateness;
   }
-  
-  int[] getDate(int rowIndex){
+
+  int[] getDate(int rowIndex) {
     String dateTimeString = data.getString(rowIndex, DATE_COLUMN);
     String[] dateParts = dateTimeString.split(" ");
     String[] parts = dateParts[0].split("/");
@@ -81,12 +78,11 @@ class Read_Data {
     int month = int(parts[0]);
     int day = int(parts[1]);
     int year = int(parts[2]);
-    
+
     int[] date = new int[3];
     date[0] = month;
     date[1] = day;
     date[2] = year;
     return date;
   }
-  
 }
