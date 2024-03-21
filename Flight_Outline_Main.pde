@@ -15,6 +15,7 @@ float w = 300;
 float h = 300;
 Chart chart;
 BarChart2 datesTime;
+FlightAirportChart airport;
 
 boolean boohooo = true;
 
@@ -34,7 +35,7 @@ void setup()
   plane = loadImage("plane3.jpg");
   font = loadFont("Verdana-Bold-40.vlw");
   textFont(font);
-  size(500, 500); 
+  size(800, 800); 
   background(225);
   stroke(10);
   noFill();
@@ -48,7 +49,10 @@ void setup()
   monthArray = new ArrayList<Integer>();
   yearArray = new ArrayList<Integer>();
   
+  airportArray = new ArrayList<String>();
+  
   datesTime = new BarChart2(dayArray, monthArray, yearArray, dateArray, csv);
+  airport = new FlightAirportChart(csv, airportArray);
   // reseult  = default query
   // current query = user query
   
@@ -105,11 +109,18 @@ void draw()
     
     while(boohooo)
     {
+      
+      //airport.loadAirport();
+      //airport.printing();
+      //airport.draw();
+      
       datesTime.tableNew();
       datesTime.printing();
       datesTime.draw();
       boohooo = false;
     }
+    
+    
   }
 
  
@@ -130,6 +141,7 @@ void draw()
    //do stuff 
   
 }
+
 
   
   
