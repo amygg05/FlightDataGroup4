@@ -39,12 +39,12 @@ class BarChart1{
   }
  }
   void draw(){
-  line(60, 470, 60, 45);
-  line(60, 470, 60, 370);
+  line(60, 770, 60, 45);
+  line(60, 770, 770, 770);
   
   float barWidth = width / (flightsCount.length +1);
   float maxDataValue = (max(flightsCount) -1);
-  
+  String[] airlineNames = {"SPIRIT", "AMERICAN", "ALASKAN", "JETBLUE", "OTHER"};
   for(int i =0; i< flightsCount.length; i++)
   {
     float x = (i +1 )* barWidth;
@@ -52,23 +52,20 @@ class BarChart1{
     float barHeight = height- y;
     
     
-    textSize(12);
+    textSize(20);
     fill(#3e9e89);
     rect(x, y, barWidth - 10, barHeight -30);
     fill(#3e549e);
     textAlign(CENTER, BOTTOM);
     text(flightsCount[i], x+ barWidth /2, height -28);
     textAlign(CENTER, TOP);
-    text("Airline " + (i + 1), x+ barWidth /2, height -28);
+    text(airlineNames[i], x+ barWidth /2, height -20);
     
   }
-  textSize(12);
-  textAlign(CENTER, BOTTOM);
-  text("                                                                                                             Airlines : [1 = SPIRIT NK, 2 = AMERICAN AIRLINES AA, 3 = ALASKAN AIRLINES AS, 4 = JETBLUE B6, 5 = OTHER AIRLINE]", 230, height -2);
   textAlign(RIGHT, BOTTOM);
-  translate(30, height /2);
+  translate(60, height /3);
   rotate(-HALF_PI);
-  textSize(17);
+  textSize(30);
   text("Amount of Flights", 0, 0);
   }
   }
