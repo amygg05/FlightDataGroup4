@@ -107,20 +107,20 @@ void draw()
     }
     
   }
-  else if(page3)
+  else if(page3)  // Needs changing to display just temp
   {
     //chart.draw();
     
     while(boohooo)
     {
       
-      //airport.loadAirport();
-      //airport.printing();
-      //airport.draw();
+      airport.loadAirport();
+      airport.printing();
+      airport.draw();
       
-      datesTime.tableNew();
-      datesTime.printing();
-      datesTime.draw();
+      //datesTime.tableNew();
+      //datesTime.printing();
+      //datesTime.draw();
       boohooo = false;
     }
     

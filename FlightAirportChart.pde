@@ -56,7 +56,7 @@ class FlightAirportChart {
     float barHeight = height- y;
     
     
-    textSize(25);
+    textSize(15);
     fill(#E82A2A);
     rect(x, y, barWidth - 10, barHeight -30);
     fill(#A51111);
