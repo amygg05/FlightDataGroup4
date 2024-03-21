@@ -13,9 +13,13 @@ float x = 120;
 float y = 150;
 float w = 300;
 float h = 300;
-Chart chart;
+
+
+BarChart1 airlineFlights;
 BarChart2 datesTime;
+
 FlightAirportChart airport;
+
 
 boolean boohooo = true;
 
