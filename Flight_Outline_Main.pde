@@ -66,6 +66,10 @@ void setup()
   Read_Data readingData = new Read_Data(data);
   readingData.readData();
   println(readingData.arrivalLateness(37)); // this tests arrivalLateness --> 37 is just a random row index to test
+  readingData.getDate(1);
+  int[] test = readingData.getDate(1);
+  println(test[1]);
+  
 
 }
 
