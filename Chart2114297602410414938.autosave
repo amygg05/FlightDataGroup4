@@ -17,12 +17,9 @@ Table data;
   {
       data = passedTable;  
   }
-    
-  
 
   void draw()
   {
-
     stroke(0);
     line(padding, boarderSize-padding, boarderSize-padding, boarderSize-padding); // X-axis
     line(padding, boarderSize-padding, padding, padding); // Y-axis
@@ -58,5 +55,4 @@ public float getMaxVal(){
   }
   return (float)finalVal;
   }
-
 }

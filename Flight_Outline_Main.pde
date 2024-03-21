@@ -13,10 +13,13 @@ float x = 120;
 float y = 150;
 float w = 300;
 float h = 300;
+Chart chart;
+BarChart2 datesTime;
 
+boolean boohooo = true;
 
-int SCREENX = 400;
-int SCREENY = 400;
+int SCREENX = 500;
+int SCREENY = 500;
 
 Button button1, button2, button3;
 Read_Data readingData;
@@ -31,13 +34,21 @@ void setup()
   plane = loadImage("plane3.jpg");
   font = loadFont("Verdana-Bold-40.vlw");
   textFont(font);
-  size(400, 400); 
-  background(255);
+  size(500, 500); 
+  background(225);
   stroke(10);
   noFill();
+  Table csv = loadTable("flights2k.csv", "header"); // Table for chart
+  chart = new Chart(csv);
 
   stdFont = loadFont("ACaslonPro-Bold-48.vlw");textFont(stdFont);
 
+  dateArray = new ArrayList<String>();
+  dayArray = new ArrayList<Integer>();
+  monthArray = new ArrayList<Integer>();
+  yearArray = new ArrayList<Integer>();
+  
+  datesTime = new BarChart2(dayArray, monthArray, yearArray, dateArray, csv);
   // reseult  = default query
   // current query = user query
   
@@ -48,7 +59,7 @@ void setup()
   button2 = new Button(50, 200, 150, 70, cartoonCloudImage, cartoonCloudImageSelected, "test");
   button3 = new Button(50, 300, 150, 70, cartoonCloudImage, cartoonCloudImageSelected, "test");
   
-
+  
 
   // Read in file 
   data = loadTable("flights2k.csv", "header");
@@ -68,7 +79,7 @@ void draw()
     background(255);
     fill(128,126,250);
     text("     Click Here \n   For Flight Data",0,50);
-    image(plane,120,150,300,300);
+    image(plane,150,200,350,350);
     image(arrow,50,200,100,100);
      if(mouseX>x && mouseX <x+w && mouseY>y && mouseY <y+h){
      println("The mouse is over the button");
@@ -76,6 +87,7 @@ void draw()
        background(255);
        page1=false;
        page2=true;
+       
   }
      }
   }
@@ -83,6 +95,25 @@ void draw()
     button1.draw();
     button2.draw();
     button3.draw();
+    if(mousePressed)
+    {
+      background(255);
+       page2=false;
+       page3=true;
+    }
+    
+  }
+  else if(page3)
+  {
+    //chart.draw();
+    
+    while(boohooo)
+    {
+      datesTime.tableNew();
+      datesTime.printing();
+      datesTime.draw();
+      boohooo = false;
+    }
   }
 
  
