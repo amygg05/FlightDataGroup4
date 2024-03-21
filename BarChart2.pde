@@ -1,7 +1,7 @@
 Table table ;
 ArrayList<Integer> dayArray, monthArray, yearArray;
 ArrayList<String> dateArray;
-int[] dayCount = new int[7];
+int[] dayCount = new int[7]; // note: index 0 doesn't count 
 
 class BarChart2{
   
@@ -41,8 +41,8 @@ class BarChart2{
   }
  }
   void draw(){
-  line(60, 470, 60, 45);
-  line(60, 470, 60, 370);
+    line(60, 750, 60, 45);
+    line(60, 750, 750, 750);
   
   float barWidth = width / (dayCount.length +1);
   float maxDataValue = (max(dayCount) -1);
@@ -51,22 +51,22 @@ class BarChart2{
   {
     float x = i* barWidth;
     float y = map(dayCount[i], 0, maxDataValue, height, 50);
-    float barHeight = height- y;
+    float barHeight = (height-20)- y;
     
     
-    textSize(10);
+    textSize(20);
     fill(#D428E8);
     rect(x, y, barWidth - 10, barHeight -30);
     fill(#C7A4CB);
     textAlign(CENTER, BOTTOM);
-    text(dayCount[i], x+ barWidth /2, height -28);
+    text(dayCount[i], x+ barWidth /2, height -48);
     textAlign(CENTER, TOP);
-    text( i , x+ barWidth /2, height -28);
+    text( i , x+ barWidth /2, height -48);
     
   }
-  textSize(15);
+  textSize(20);
   textAlign(CENTER, BOTTOM);
-  text("Dates planes flew", 230, height -5);
+  text("Dates planes flew", 400, height -5);
   textAlign(RIGHT, BOTTOM);
   translate(30, height /2);
   rotate(-HALF_PI);

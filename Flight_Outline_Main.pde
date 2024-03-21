@@ -14,13 +14,17 @@ float y = 150;
 float w = 300;
 float h = 300;
 
+
 BarChart1 airlineFlights;
 BarChart2 datesTime;
 
+FlightAirportChart airport;
+
+
 boolean boohooo = true;
 
-int SCREENX = 800;
-int SCREENY = 800;
+int SCREENX = 500;
+int SCREENY = 500;
 
 Button button1, button2, button3;
 Read_Data readingData;
@@ -40,6 +44,7 @@ void setup()
   stroke(10);
   noFill();
   Table csv = loadTable("flights2k.csv", "header"); // Table for chart
+  chart = new Chart(csv);
 
   stdFont = loadFont("ACaslonPro-Bold-48.vlw");textFont(stdFont);
 
@@ -48,11 +53,10 @@ void setup()
   monthArray = new ArrayList<Integer>();
   yearArray = new ArrayList<Integer>();
   
-
-  airlineFlights = new BarChart1(csv);
-
+  airportArray = new ArrayList<String>();
+  
   datesTime = new BarChart2(dayArray, monthArray, yearArray, dateArray, csv);
-
+  airport = new FlightAirportChart(csv, airportArray);
   // reseult  = default query
   // current query = user query
   
@@ -113,11 +117,18 @@ void draw()
     
     while(boohooo)
     {
-      airlineFlights.tableNew();
-      airlineFlights.printing();
-      airlineFlights.draw();
+      
+      //airport.loadAirport();
+      //airport.printing();
+      //airport.draw();
+      
+      datesTime.tableNew();
+      datesTime.printing();
+      datesTime.draw();
       boohooo = false;
     }
+    
+    
   }
 
  
@@ -138,6 +149,7 @@ void draw()
    //do stuff 
   
 }
+
 
   
   
