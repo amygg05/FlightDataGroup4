@@ -9,7 +9,17 @@ boolean page1 = true;
 boolean page2 = false;
 boolean page3 = false;
 PImage plane;
+PImage plane2;
+PImage planeHighlighted;
 PImage arrow;
+PImage arrow2;
+float xPlane = 500;
+float yPlane = 400;
+float wPlane = 230;
+float hPlane = 230;
+
+int SCREENX = 800;
+int SCREENY = 800;
 float x = 120;
 float y = 150;
 float w = 300;
@@ -25,21 +35,28 @@ FlightAirportChart airport;
 
 boolean boohooo = true;
 
-int SCREENX = 500;
-int SCREENY = 500;
+
 
 Button button1, button2, button3;
+ImageButton planeImage;
+ImageButton planeImage2;
 Read_Data readingData;
+
 PImage cartoonCloudImage, cartoonCloudImageSelected;
-PFont stdFont;
 
 
 void setup()
 {
-  PFont font;
+  PFont stdFont;
   arrow = loadImage("arrow1.png");
   plane = loadImage("plane3.jpg");
-  font = loadFont("Verdana-Bold-40.vlw");
+  plane2 = loadImage("plane3.jpg");
+  arrow2 = loadImage("arrow2.jpg");
+  planeHighlighted = loadImage("planeHighlighted.jpg");
+  size(800,800); 
+  background(255);
+  stroke(10);
+  noFill();
   textFont(font);
   size(800, 800); 
   background(225);
@@ -61,7 +78,6 @@ void setup()
   airport = new FlightAirportChart(csv, airportArray);
   // reseult  = default query
   // current query = user query
-  
   cartoonCloudImage = loadImage("cartooncloud.png");
   cartoonCloudImageSelected = loadImage("cartooncloudselected.png");
   
@@ -75,38 +91,36 @@ void setup()
   
   
 
+  planeImage = new ImageButton(x,y,plane,arrow2,planeHighlighted,w,h);
+  planeImage2 = new ImageButton(0,400,plane,arrow2,planeHighlighted,w,h);
+  
   // Read in file 
   data = loadTable("flights2k.csv", "header");
   Read_Data readingData = new Read_Data(data);
   readingData.readData();
   println(readingData.arrivalLateness(37)); // this tests arrivalLateness --> 37 is just a random row index to test
+
   readingData.getDate(1);
   int[] test = readingData.getDate(1);
   println(test[1]);
   
 
 }
-
 void draw()
 {
   if(page1){
-    background(255);
+    planeImage.draw();
+    planeImage.move();
     fill(128,126,250);
-    text("     Click Here \n   For Flight Data",0,50);
-    image(plane,150,200,350,350);
-    image(arrow,50,200,100,100);
-     if(mouseX>x && mouseX <x+w && mouseY>y && mouseY <y+h){
-     println("The mouse is over the button");
-     if(mousePressed){
-       background(255);
-       page1=false;
-       page2=true;
-       
+    text("       Click Here \n   For Flight Data",100,150);
+    image(arrow,xPlane-400,yPlane,wPlane,hPlane);
   }
-     }
-  }
+  
   else if (page2){
     background(255);
+    planeImage2.draw();
+    planeImage2.movePage2();
+
     button1.draw();
     button2.draw();
     button3.draw();

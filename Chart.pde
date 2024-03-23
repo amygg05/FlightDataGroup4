@@ -32,6 +32,7 @@ Table data;
     for (int i=0; i< data.getRowCount(); i++)
     {
 
+
       int val = data.getInt(i, "DISTANCE");
       
       float xpos = padding + (i);  // + (barWidth + spacing)
@@ -40,6 +41,7 @@ Table data;
       println(xpos, ypos);
       fill(50);
       
+
       rect(xpos, ypos/120, barWidth, size);
       println("Bar Sucess");
       
