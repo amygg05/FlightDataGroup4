@@ -75,7 +75,7 @@ void setup()
   button1 = new Button(50, -10, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text1);
   button2 = new Button(50, 290, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text2);
   button3 = new Button(50, 590, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text3);
-  movingPlane1 = new MovingPlane(passivePlane, -30, 170, 2, 300, 160);
+  movingPlane1 = new MovingPlane(passivePlane, -200, 170, 3, 300, 160);
   
   
 
