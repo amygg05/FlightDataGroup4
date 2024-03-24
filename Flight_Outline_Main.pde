@@ -63,7 +63,7 @@ void setup()
   stroke(10);
   noFill();
   Table csv = loadTable("flights2k.csv", "header"); // Table for chart
-  //chart = new Chart(csv);
+  chart = new Chart(csv);
 
   stdFont = loadFont("ACaslonPro-Bold-48.vlw");textFont(stdFont);
 
