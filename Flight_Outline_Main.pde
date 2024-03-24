@@ -22,6 +22,8 @@ BarChart2 datesTime;
 
 FlightAirportChart airport;
 
+MovingPlane movingPlane1;
+
 
 boolean boohooo = true;
 
@@ -40,6 +42,7 @@ void setup()
   arrow = loadImage("arrow1.png");
   plane = loadImage("plane3.jpg");
   font = loadFont("Verdana-Bold-40.vlw");
+  PImage passivePlane = loadImage("planeFromRight.png");
   textFont(font);
   size(800, 800); 
   background(225);
@@ -72,6 +75,7 @@ void setup()
   button1 = new Button(50, -10, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text1);
   button2 = new Button(50, 290, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text2);
   button3 = new Button(50, 590, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text3);
+  movingPlane1 = new MovingPlane(passivePlane, -30, 170, 2, 300, 160);
   
   
 
@@ -130,6 +134,9 @@ void draw()
       page2=false;
       page3=true;
     }
+    
+    movingPlane1.update();
+    movingPlane1.display();
   }
   else if (page3){
     background(255);
@@ -172,6 +179,8 @@ void draw()
     
    
   }
+  
+  
     
 
  
