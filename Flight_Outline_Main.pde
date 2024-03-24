@@ -46,7 +46,7 @@ void setup()
   stroke(10);
   noFill();
   Table csv = loadTable("flights2k.csv", "header"); // Table for chart
-  chart = new Chart(csv);
+  //chart = new Chart(csv);
 
   stdFont = loadFont("ACaslonPro-Bold-48.vlw");textFont(stdFont);
 
@@ -69,9 +69,9 @@ void setup()
   String text2 = "schedule";
   String text3 = "arrivals";
 
-  button1 = new Button(50, 0, 170, 120, cartoonCloudImage, cartoonCloudImageSelected, text1);
-  button2 = new Button(50, 150, 170, 120, cartoonCloudImage, cartoonCloudImageSelected, text2);
-  button3 = new Button(50, 300, 170, 120, cartoonCloudImage, cartoonCloudImageSelected, text3);
+  button1 = new Button(50, -10, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text1);
+  button2 = new Button(50, 290, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text2);
+  button3 = new Button(50, 590, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text3);
   
   
 
@@ -125,7 +125,7 @@ void draw()
     {
       movedCloud = 3;
     } 
-    if(x1>=400 || x2>=400 || x3>=400)
+    if(x1>=700 || x2>=700 || x3>=700)
     {
       page2=false;
       page3=true;

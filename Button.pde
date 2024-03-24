@@ -7,7 +7,7 @@ class Button {
   int colour;
   boolean isMoving = false;
   boolean isSelected = false;
-  float   movementSpeed = 2;
+  float   movementSpeed = 4;
   Button(float xpos, float ypos, float wid, float hig, PImage img, PImage img2, String lab) 
   {
     x = xpos;
@@ -26,12 +26,12 @@ class Button {
     image(image, x, y, w, h);
     fill(0);
     textSize(30);
-    text(label, x+30, y+70);
+    text(label, x+80, y+125);
 
     if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
     {
       image(image2, x, y, w, h);
-      text(label, x+30, y+70);
+      text(label, x+80, y+125);
       println("The mouse is over the button");
       fill(colour);
 
@@ -64,7 +64,7 @@ class Button {
     if(isMoving)
       {
         x += movementSpeed;
-        if(x>= 400)
+        if(x>= 800)
         {
           isMoving = false;
         }
@@ -78,10 +78,10 @@ class Button {
   
   void drawCloud()
   {
-    image(cartoonCloudImage, xPage3, yPage3, 170, 120);
+    image(cartoonCloudImage, xPage3, yPage3, 250, 250);
     textSize(30);
     fill(0);
-    text(label, xPage3+30, yPage3+70);
+    text(label, xPage3+80, yPage3+125);
     if(xPage3<=3)
     {
       isMovingPage3 = true;
