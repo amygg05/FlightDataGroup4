@@ -54,11 +54,8 @@ class Button {
           }
           println();  // Move to next line after each row
         }
-        
-       
+
       }
-      
-      
     }
 
     if(isMoving)
@@ -68,8 +65,7 @@ class Button {
         {
           isMoving = false;
         }
-      }
-    
+      } 
   }
   
    int xPage3 = -90;
