@@ -52,7 +52,7 @@ void setup()
   PFont stdFont;
   arrow = loadImage("arrow1.png");
   plane = loadImage("plane3.jpg");
-  font = loadFont("Verdana-Bold-40.vlw");
+  stdFont = loadFont("Verdana-Bold-40.vlw");
   PImage passivePlane = loadImage("planeFromRight.png");
   plane2 = loadImage("plane3.jpg");
   arrow2 = loadImage("arrow2.jpg");
@@ -61,7 +61,7 @@ void setup()
   background(255);
   stroke(10);
   noFill();
-  textFont(font);
+  //textFont(font);
   size(800, 800); 
   background(225);
   stroke(10);
