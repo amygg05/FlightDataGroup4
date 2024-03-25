@@ -80,6 +80,9 @@ void setup()
   
   datesTime = new BarChart2(dayArray, monthArray, yearArray, dateArray, csv);
   airport = new FlightAirportChart(csv, airportArray);
+  airlineFlights = new BarChart1(csv);
+  airlineFlights.tableNew();
+  datesTime.tableNew();
   // reseult  = default query
   // current query = user query
   cartoonCloudImage = loadImage("cartooncloud.png");
@@ -96,8 +99,8 @@ void setup()
   
   
 
-  planeImage = new ImageButton(x,y,plane,arrow2,planeHighlighted,w,h);
-  planeImage2 = new ImageButton(0,400,plane,arrow2,planeHighlighted,w,h);
+  planeImage = new ImageButton(x,y,plane,arrow,planeHighlighted,w,h);
+  planeImage2 = new ImageButton(0,400,plane,arrow,planeHighlighted,w,h);
   
   // Read in file 
   data = loadTable("flights2k.csv", "header");
@@ -109,11 +112,14 @@ void setup()
   int[] test = readingData.getDate(1);
   println(test[1]);
   
+  airport.loadAirport();
+  
 
 }
 void draw()
 {
   if(page1){
+    background(255);
     planeImage.draw();
     planeImage.move();
     fill(128,126,250);
@@ -159,12 +165,19 @@ void draw()
     {
       case 1:
       button1.drawCloud();
+      airlineFlights.printing();
+      airlineFlights.draw();
       break;
       case 2:
       button2.drawCloud();
+      airport.printing();
+      airport.draw();
       break;
       case 3:
       button3.drawCloud();
+      datesTime.printing();
+      datesTime.draw();
+      break;
     }
     
     if(mousePressed)
@@ -182,9 +195,7 @@ void draw()
     while(boohooo)
     {
       
-      airport.loadAirport();
-      airport.printing();
-      airport.draw();
+      
       
       //datesTime.tableNew();
       //datesTime.printing();
