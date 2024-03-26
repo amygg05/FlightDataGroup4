@@ -12,7 +12,8 @@ class searchButton{
     if(mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y+h){
       image(image, x - 12, y - 12, w + 25, h + 25);
       if(mousePressed){
-        box.popup();
+        String query = box.popup();
+        System.out.println(query);
       }
     }
     else{
