@@ -14,11 +14,18 @@ class MovingPlane {
     
     
   }
-
+  
   void update() {
     x += speed;
     if (x > width) {
       x = -image.width;
+    }
+  }
+  
+  void updateNegative(){
+    x -= speed;
+    if (x  < -300) {
+      x = width+200;
     }
   }
 
