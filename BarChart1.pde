@@ -1,5 +1,4 @@
 // NK = SPIRIT [0], AA = AMERICAN AIRLINES [1], AS = ALASKAN AIRLINES [2], B6 = JETBLUE [3], OTHER [4]
-
 int[] flightsCount = new int[5];
 class BarChart1{
   

@@ -1,4 +1,3 @@
-
 class Button {
   float x, y, w, h;
   String label;
@@ -32,7 +31,6 @@ class Button {
     {
       image(image2, x, y, w, h);
       text(label, x+80, y+125);
-      println("The mouse is over the button");
       fill(colour);
 
       if (mousePressed)
