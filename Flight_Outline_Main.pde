@@ -46,9 +46,9 @@ void setup()
   PImage passivePlane = loadImage("planeFromRight.png");
   plane2 = loadImage("plane3.jpg");
   backButtonImage = loadImage("backButton.png");
-  planeHighlighted = loadImage("planeHighlighted.jpg");
+  planeHighlighted = loadImage("bluePlaneSelected.png");
   cloudImage = loadImage("cloud.png");
-  backButtonHighlighted=loadImage("backButtonHighlighted.png");
+  backButtonHighlighted=loadImage("backArrowSelected.png");
 
   Table csv = loadTable("flights2k.csv", "header"); // Table for chart
  
@@ -67,9 +67,9 @@ void setup()
 
   cartoonCloudImage = loadImage("cartooncloud.png");
   cartoonCloudImageSelected = loadImage("cartooncloudselected.png");
-  String text1 = "flights";
-  String text2 = "schedule";
-  String text3 = "arrivals";
+  String text1 = "Airline";
+  String text2 = "Airport";
+  String text3 = "Date";
 
   button1 = new Button(50, -10, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text1);
   button2 = new Button(50, 290, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text2);

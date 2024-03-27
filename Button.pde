@@ -75,7 +75,7 @@ class Button {
     image(cartoonCloudImage, xPage3, yPage3, 250, 250);
     textSize(30);
     fill(0);
-    text(label, xPage3+80, yPage3+125);
+    text(label, xPage3+185, yPage3+125);
     if(xPage3<=3)
     {
       isMovingPage3 = true;
