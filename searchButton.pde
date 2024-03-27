@@ -18,9 +18,10 @@ class searchButton{
        else{    // if its the dropdown
          String query = box.dropdown();
          System.out.println(query);    // return selection
+         if(query != ""){
          int index = query.indexOf("(");    //get index of airline code
          String substr = query.substring(index + 1, index + 3);
-         System.out.println(substr);   // return airline code
+         System.out.println(substr);  } // return airline code}
        }
        }
       }
