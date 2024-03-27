@@ -42,7 +42,6 @@ void setup()
   
   arrow = loadImage("arrow1.png");
   plane = loadImage("bluePlane.png");
-//  stdFont = loadFont("Verdana-Bold-40.vlw");
   PImage passivePlane = loadImage("planeFromRight.png");
   plane2 = loadImage("plane3.jpg");
   backButtonImage = loadImage("backButton.png");

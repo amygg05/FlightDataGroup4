@@ -2,7 +2,6 @@ class ImageButton{
   float x,y,w,h;
   PImage image;
   PImage imageHighlighted;
-  PImage arrow;
   boolean isMoving=false;
   boolean backBtnMoves=false;
   float speed = 6;
@@ -13,11 +12,10 @@ class ImageButton{
   void draw(){
       image(image,x,y,w,h); 
   }
-
   void movePage1(){
        if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
     {
-        image(imageHighlighted,x,y,w+10,h+10);
+        image(imageHighlighted,x,y,w,h);
       if (mousePressed)
       {
         for (int i = 0; i < 10; i++) {
@@ -29,7 +27,7 @@ class ImageButton{
       {
         x += speed;
         y-=speed;
-        if(x== 800)
+        if(x==760)
         {
           page1 = false;
           page2 = true;
