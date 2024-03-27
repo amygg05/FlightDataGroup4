@@ -18,7 +18,7 @@ BarChart1 airlineFlights;
 BarChart2 datesTime;
 FlightAirportChart airport;
 
-MovingPlane movingPlane1;
+MovingPlane movingPlane1, movingPlane2;
 
 Button button1, button2, button3;
 ImageButton planeBtn1;
@@ -44,6 +44,7 @@ void setup()
   arrow = loadImage("arrow1.png");
   plane = loadImage("bluePlane.png");
   PImage passivePlane = loadImage("planeFromRight.png");
+  PImage passivePlane2 = loadImage("planeFromRightSide.png");
   plane2 = loadImage("plane3.jpg");
   backButtonImage = loadImage("backButton.png");
   planeHighlighted = loadImage("bluePlaneSelected.png");
@@ -75,6 +76,7 @@ void setup()
   button2 = new Button(50, 290, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text2);
   button3 = new Button(50, 590, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text3);
   movingPlane1 = new MovingPlane(passivePlane, -200, 170, 3, 300, 160);
+  movingPlane2 = new MovingPlane(passivePlane2, 900, 470, 3, 300, 160);
 
   planeBtn1 = new ImageButton(x,y,plane,planeHighlighted,w,h);
   planeFliesPage2 = new ImageButton(0,400,plane,planeHighlighted,w,h);
@@ -156,6 +158,10 @@ void draw()
     
     movingPlane1.update();
     movingPlane1.display();
+    
+    movingPlane2.updateNegative();
+
+    movingPlane2.display();
   }
   else if (page3){
     background(255);
