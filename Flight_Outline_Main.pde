@@ -9,8 +9,7 @@ boolean page1 = true;
 boolean page2, page3  = false;
 float cloudX=400;float cloudX2=100;
 PImage plane,plane2,planeHighlighted,arrow,backButtonImage,backButtonHighlighted,cloudImage;
-float xPlane = 400;
-float yPlane = 400;
+float x = 400,y = 400,wPlane=230,hPlane=230; 
 float w = 300;
 float h = 300;
 int movedCloud = 0;
@@ -25,7 +24,7 @@ MovingPlane movingPlane1;
 Button button1, button2, button3;
 ImageButton planeBtn1;
 ImageButton planeFliesPage2;
-
+ImageButton backBtn;
 Read_Data readingData;
 
 PImage cartoonCloudImage, cartoonCloudImageSelected;
@@ -41,11 +40,9 @@ void setup()
   noFill();
   size(800,800); 
   
-  PFont stdFont;
   arrow = loadImage("arrow1.png");
   plane = loadImage("bluePlane.png");
 //  stdFont = loadFont("Verdana-Bold-40.vlw");
-   stdFont = loadFont("Arial-Black-60.vlw");textFont(stdFont);
   PImage passivePlane = loadImage("planeFromRight.png");
   plane2 = loadImage("plane3.jpg");
   backButtonImage = loadImage("backButton.png");
@@ -79,8 +76,9 @@ void setup()
   button3 = new Button(50, 590, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text3);
   movingPlane1 = new MovingPlane(passivePlane, -200, 170, 3, 300, 160);
 
-  planeBtn1 = new ImageButton(xPlane,yPlane,plane,arrow,planeHighlighted,w,h);
-  planeFliesPage2 = new ImageButton(0,400,plane,backButtonImage,backButtonHighlighted,w,h);
+  planeBtn1 = new ImageButton(x,y,plane,planeHighlighted,w,h);
+  planeFliesPage2 = new ImageButton(0,400,plane,planeHighlighted,w,h);
+  backBtn = new ImageButton(570,30,backButtonImage,backButtonHighlighted,90,70);
   
   // Read in file 
   data = loadTable("flights2k.csv", "header");
@@ -103,23 +101,24 @@ void draw()
 {
   if(page1){
     background(255);
-    planeBtn1.draw();
-    planeBtn1.move();
+    PFont stdFont = loadFont("Arial-Black-60.vlw");textFont(stdFont);
+    planeBtn1.draw();    
+    planeBtn1.movePage1();
     fill(128,126,250);
     text("       Click Here \n   For Flight Data",100,150);
-    image(arrow,xPlane-400,yPlane,wPlane,hPlane);
+    image(arrow,x-400,y,wPlane,hPlane);
     image(cloudImage,cloudX,100,300,200);
     image(cloudImage,cloudX2,100,300,200);
     cloudX++;cloudX2--;
     searchButton.draw();
-
-    
   }
   
   else if (page2){
     background(255);
     planeFliesPage2.draw();
     planeFliesPage2.movePage2Plane();
+    backBtn.draw();
+    backBtn.moveBackButton();
     searchButton.draw();
     button1.draw();
     button2.draw();
@@ -144,6 +143,7 @@ void draw()
     {
       page2=false;
       page3=true;
+      // think this is why back button dont work for page 3->2, as coordinates of clouds need to be reset maybe?
     }
     
     movingPlane1.update();
@@ -155,18 +155,24 @@ void draw()
     switch(movedCloud)
     {
       case 1:
+      backBtn.draw();
+      backBtn.moveBackButton();
       searchButton.draw();
       button1.drawCloud();
       airlineFlights.printing();
       airlineFlights.draw();
       break;
       case 2:
+      backBtn.draw();
+      backBtn.moveBackButton();
       searchButton.draw();
       button2.drawCloud();
       airport.printing();
       airport.draw();
       break;
       case 3:
+      backBtn.draw();
+      backBtn.moveBackButton();
       searchButton.draw();
       button3.drawCloud();
       datesTime.printing();
