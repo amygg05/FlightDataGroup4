@@ -1,5 +1,4 @@
 //GUYS FOR THE LOVE OF ALL THINGS HOLY CAN WE PLEASE START CODING CLASSES THAT ARE USEFUL FOR MORE THAN 1 SPECIFIC USECASE
-
 import javax.swing.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -32,7 +31,9 @@ PImage cartoonCloudImage, cartoonCloudImageSelected;
 dialogBox searchBox;
 searchButton searchButton;
 PImage searchIcon;
-
+dialogBox dropdownMenu;
+searchButton dropdownButton;
+PImage hamburgerMenu;
 void setup()
 {
   background(255);
@@ -94,6 +95,12 @@ void setup()
   searchIcon = loadImage("search.png");
   searchBox = new dialogBox("Enter an airport: ");
   searchButton = new searchButton(750, 0, 50, 50, searchIcon, searchBox);
+  hamburgerMenu = loadImage("hamburgerMenu.png");
+  Object[] airlines = {"Alaska Airlines (AS)","American Airlines (AA)","Delta Airlines (DL) ","Frontier Airlines (F9)"
+                      ,"Hawaiian Airlines (HA)","JetBlue Airways (B6)","Southwest Airlines (WN)","Spirit Airlines (NK)",
+                        "United Airlines (UA)","USAirways (US)", "Allegiant Air LLC (G4)"};
+  dropdownMenu = new dialogBox(airlines);
+  dropdownButton = new searchButton(0, 50, 50, 50, hamburgerMenu, dropdownMenu);
 
 }
 void draw()
@@ -110,6 +117,7 @@ void draw()
     image(cloudImage,cloudX2,100,300,200);
     cloudX++;cloudX2--;
     searchButton.draw();
+    dropdownButton.draw();
   }
   
   else if (page2){
@@ -119,6 +127,7 @@ void draw()
     backBtn.draw();
     backBtn.moveBackButton();
     searchButton.draw();
+    dropdownButton.draw();
     button1.draw();
     button2.draw();
     button3.draw();
@@ -178,13 +187,6 @@ void draw()
       datesTime.draw();
       break;
     }
-    
-    //if(mousePressed)
-    //{
-    //  background(255);
-    //   page2=false;
-    //   page3=true;
-    //}
     
   }
 
