@@ -1,3 +1,4 @@
+import processing.sound.*;
 //GUYS FOR THE LOVE OF ALL THINGS HOLY CAN WE PLEASE START CODING CLASSES THAT ARE USEFUL FOR MORE THAN 1 SPECIFIC USECASE
 import javax.swing.*;
 import java.time.LocalDate;
@@ -7,12 +8,14 @@ import java.util.Date;
 boolean page1 = true;
 boolean page2, page3  = false;
 float cloudX=400;float cloudX2=100;
-PImage plane,plane2,planeHighlighted,arrow,backButtonImage,backButtonHighlighted,cloudImage;
+PImage plane,plane2,planeHighlighted,arrow,backButtonImage,backButtonHighlighted,cloudImage, backgroundImage;
 float x = 400,y = 400,wPlane=230,hPlane=230; 
 float w = 300;
 float h = 300;
 int movedCloud = 0;
 int SCREENX, SCREENY = 800;
+SoundFile selectionSound;
+
 
 BarChart1 airlineFlights;
 BarChart2 datesTime;
@@ -34,6 +37,8 @@ PImage searchIcon;
 dialogBox dropdownMenu;
 searchButton dropdownButton;
 PImage hamburgerMenu;
+
+
 void setup()
 {
   background(255);
@@ -41,6 +46,7 @@ void setup()
   noFill();
   size(800,800); 
   
+  selectionSound = new SoundFile(this, "cloudselection.mp3");
   arrow = loadImage("arrow1.png");
   plane = loadImage("bluePlane.png");
   PImage passivePlane = loadImage("planeFromRight.png");
@@ -50,6 +56,7 @@ void setup()
   planeHighlighted = loadImage("bluePlaneSelected.png");
   cloudImage = loadImage("cloud.png");
   backButtonHighlighted=loadImage("backArrowSelected.png");
+  backgroundImage = loadImage("USMAP.jpg");
 
   Table csv = loadTable("flights2k.csv", "header"); // Table for chart
  
@@ -72,9 +79,9 @@ void setup()
   String text2 = "Airport";
   String text3 = "Date";
 
-  button1 = new Button(50, -10, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text1);
-  button2 = new Button(50, 290, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text2);
-  button3 = new Button(50, 590, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text3);
+  button1 = new Button(50, -10, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text1, selectionSound);
+  button2 = new Button(50, 290, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text2, selectionSound);
+  button3 = new Button(50, 590, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text3, selectionSound);
   movingPlane1 = new MovingPlane(passivePlane, -200, 170, 3, 300, 160);
   movingPlane2 = new MovingPlane(passivePlane2, 900, 470, 3, 300, 160);
 
@@ -108,7 +115,7 @@ void setup()
 void draw()
 {
   if(page1){
-    background(255);
+    background(backgroundImage);
     PFont stdFont = loadFont("Arial-Black-60.vlw");textFont(stdFont);
     planeBtn1.draw();    
     planeBtn1.movePage1();
@@ -123,7 +130,7 @@ void draw()
   }
   
   else if (page2){
-    background(255);
+    background(backgroundImage);
     planeFliesPage2.draw();
     planeFliesPage2.movePage2Plane();
     backBtn.draw();
