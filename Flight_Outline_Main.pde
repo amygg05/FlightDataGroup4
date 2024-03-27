@@ -1,74 +1,60 @@
+//GUYS FOR THE LOVE OF ALL THINGS HOLY CAN WE PLEASE START CODING CLASSES THAT ARE USEFUL FOR MORE THAN 1 SPECIFIC USECASE
 
-
-
+import javax.swing.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 boolean page1 = true;
-boolean page2 = false;
-boolean page3 = false;
-PImage plane;
-PImage plane2;
-PImage planeHighlighted;
-PImage arrow;
-PImage backButtonImage;
-PImage cloudImage;
-PImage backButtonHighlighted;
+boolean page2, page3  = false;
+float cloudX=400;float cloudX2=100;
+PImage plane,plane2,planeHighlighted,arrow,backButtonImage,backButtonHighlighted,cloudImage;
 float xPlane = 400;
 float yPlane = 400;
-float wPlane = 230;
-float hPlane = 230;
-float cloudX=400;float cloudX2=100;
-int SCREENX = 800;
-int SCREENY = 800;
-//float x = 120;
-//float y = 150;
 float w = 300;
 float h = 300;
 int movedCloud = 0;
-
+int SCREENX, SCREENY = 800;
 
 BarChart1 airlineFlights;
 BarChart2 datesTime;
-
 FlightAirportChart airport;
 
 MovingPlane movingPlane1;
 
-
-boolean boohooo = true;
-
-
-
 Button button1, button2, button3;
 ImageButton planeBtn1;
 ImageButton planeFliesPage2;
+
 Read_Data readingData;
 
 PImage cartoonCloudImage, cartoonCloudImageSelected;
 
+dialogBox searchBox;
+searchButton searchButton;
+PImage searchIcon;
 
 void setup()
 {
+  background(255);
+  stroke(10);
+  noFill();
+  size(800,800); 
+  
   PFont stdFont;
   arrow = loadImage("arrow1.png");
   plane = loadImage("bluePlane.png");
+//  stdFont = loadFont("Verdana-Bold-40.vlw");
+   stdFont = loadFont("Arial-Black-60.vlw");textFont(stdFont);
   PImage passivePlane = loadImage("planeFromRight.png");
   plane2 = loadImage("plane3.jpg");
   backButtonImage = loadImage("backButton.png");
   planeHighlighted = loadImage("planeHighlighted.jpg");
   cloudImage = loadImage("cloud.png");
   backButtonHighlighted=loadImage("backButtonHighlighted.png");
-  size(800,800); 
-  background(255);
-  stroke(10);
-  noFill();
 
   Table csv = loadTable("flights2k.csv", "header"); // Table for chart
-
-  stdFont = loadFont("Arial-Black-60.vlw");textFont(stdFont);
-
+ 
   dateArray = new ArrayList<String>();
   dayArray = new ArrayList<Integer>();
   monthArray = new ArrayList<Integer>();
@@ -81,8 +67,7 @@ void setup()
   airlineFlights = new BarChart1(csv);
   airlineFlights.tableNew();
   datesTime.tableNew();
-  // reseult  = default query
-  // current query = user query
+
   cartoonCloudImage = loadImage("cartooncloud.png");
   cartoonCloudImageSelected = loadImage("cartooncloudselected.png");
   String text1 = "flights";
@@ -93,8 +78,6 @@ void setup()
   button2 = new Button(50, 290, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text2);
   button3 = new Button(50, 590, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text3);
   movingPlane1 = new MovingPlane(passivePlane, -200, 170, 3, 300, 160);
-  
-  
 
   planeBtn1 = new ImageButton(xPlane,yPlane,plane,arrow,planeHighlighted,w,h);
   planeFliesPage2 = new ImageButton(0,400,plane,backButtonImage,backButtonHighlighted,w,h);
@@ -111,6 +94,9 @@ void setup()
   
   airport.loadAirport();
   
+  searchIcon = loadImage("search.png");
+  searchBox = new dialogBox("Enter an airport: ");
+  searchButton = new searchButton(750, 0, 50, 50, searchIcon, searchBox);
 
 }
 void draw()
@@ -125,6 +111,8 @@ void draw()
     image(cloudImage,cloudX,100,300,200);
     image(cloudImage,cloudX2,100,300,200);
     cloudX++;cloudX2--;
+    searchButton.draw();
+
     
   }
   
@@ -132,9 +120,11 @@ void draw()
     background(255);
     planeFliesPage2.draw();
     planeFliesPage2.movePage2Plane();
+    searchButton.draw();
     button1.draw();
     button2.draw();
     button3.draw();
+    
     float x1 = button1.getX();
     float x2 = button2.getX();
     float x3 = button3.getX();
@@ -165,16 +155,19 @@ void draw()
     switch(movedCloud)
     {
       case 1:
+      searchButton.draw();
       button1.drawCloud();
       airlineFlights.printing();
       airlineFlights.draw();
       break;
       case 2:
+      searchButton.draw();
       button2.drawCloud();
       airport.printing();
       airport.draw();
       break;
       case 3:
+      searchButton.draw();
       button3.drawCloud();
       datesTime.printing();
       datesTime.draw();
@@ -189,48 +182,6 @@ void draw()
     //}
     
   }
-  else if(page3)  // Needs changing to display just temp
-  {
-    //chart.draw();
-    
-    while(boohooo)
-    {
-      
-      
-      
-      //datesTime.tableNew();
-      //datesTime.printing();
-      //datesTime.draw();
-      boohooo = false;
-    }
-    
-   
-  }
-  
-  
-    
 
- 
-  // switch (current query)
-  // case query1
-  //   render query 
-  //   breaker
-  // case query2
-  //    ertc.
-  
-
-
-
-  
-   
-
-   
-   //do stuff 
-  
 }
-
-
-  
-  
-  // render controls
   
