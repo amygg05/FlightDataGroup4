@@ -48,7 +48,7 @@ void setup()
   size(800,800); 
   
   selectionSound = new SoundFile(this, "cloudselection.mp3");
-  arrow = loadImage("arrow1.png");
+  arrow = loadImage("arrow.png");
   plane = loadImage("bluePlane.png");
   PImage passivePlane = loadImage("planeFromRight.png");
   PImage passivePlane2 = loadImage("planeFromRightSide.png");
