@@ -5,8 +5,6 @@ float[] count = new float[4];
 String[] airportName = {"JFK", "LAX", "FLL", "DCA"};
 
 
-  
-
 class FlightAirportChart {
   
   FlightAirportChart(Table loadedTable, ArrayList<String> place)
@@ -68,6 +66,9 @@ class FlightAirportChart {
       fill(128,126,250);
       PFont newFont = loadFont("BellMTItalic-48.vlw");textFont(newFont);
       text(airportName[i], labelX, labelY);
+      
+      textAlign(CENTER, TOP);
+      text("Flights departed by Airport",475, 100);
     }
   } 
   

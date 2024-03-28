@@ -186,7 +186,8 @@ void draw()
       searchButton.draw();
       button1.drawCloud();
       airlineFlights.printing();
-      airlineFlights.draw();
+      //airlineFlights.draw();
+      airlineFlights.drawPieChart();
       break;
       case 2:
       backBtn.draw();
