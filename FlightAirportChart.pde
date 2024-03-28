@@ -1,8 +1,11 @@
 //JFK LAX FLL DCA 
 ArrayList<String> airportArray;
-int[] count = new int[4];
+float[] count = new float[4];
 
 String[] airportName = {"JFK", "LAX", "FLL", "DCA"};
+
+
+  
 
 class FlightAirportChart {
   
@@ -41,6 +44,32 @@ class FlightAirportChart {
   }
   }
   
+  void drawPieChart(){
+    float startAngle =0;
+    float diameter = min(width, height) * 0.8;
+    //float totalAngle =0;
+    
+     float totalCount = 0;
+    for (int i = 0; i < count.length; i++) {
+        totalCount += count[i];
+    }
+    
+    for (int i=0; i< count.length; i++)
+    {
+      float angle = radians(map(count[i], 0, totalCount, 0, 360));
+      fill(colors[i]);
+      arc(width/2, height/2, 300, 300, startAngle, startAngle + angle, PIE);
+      startAngle += angle;
+      
+      float labelAngle = startAngle - angle / 2;
+      float labelX = width/2 + cos(labelAngle) * diameter / 2 * 0.7; // Adjust label position
+      float labelY = height/2 + sin(labelAngle) * diameter / 2 * 0.7; // Adjust label position
+      textAlign(CENTER, CENTER);
+      fill(128,126,250);
+      PFont stdFont = loadFont("BellMTItalic-48.vlw");textFont(stdFont);
+      text(airportName[i], labelX, labelY);
+    }
+  } 
   
   void draw(){
     line(60, 770, 60, 45);
