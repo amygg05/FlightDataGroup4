@@ -17,6 +17,7 @@ int SCREENX, SCREENY = 800;
 BarChart1 airlineFlights;
 BarChart2 datesTime;
 FlightAirportChart airport;
+color[] colors; // Array to store colors for each slice
 
 MovingPlane movingPlane1, movingPlane2;
 
@@ -103,6 +104,10 @@ void setup()
                         "United Airlines (UA)","USAirways (US)", "Allegiant Air LLC (G4)"};
   dropdownMenu = new dialogBox(airlines);
   dropdownButton = new searchButton(0, 50, 50, 50, hamburgerMenu, dropdownMenu);
+  
+  colors = new color[]{color(#CB6363), 
+color(#BD63CB), color(#639DCB), color(#CB9563), 
+color(#8C53C9)};
 
 }
 void draw()
@@ -182,7 +187,7 @@ void draw()
       searchButton.draw();
       button2.drawCloud();
       airport.printing();
-      airport.draw();
+      airport.drawPieChart();
       break;
       case 3:
       backBtn.draw();
