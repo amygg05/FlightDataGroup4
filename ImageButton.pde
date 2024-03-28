@@ -5,9 +5,11 @@ class ImageButton{
   boolean isMoving=false;
   boolean backBtnMoves=false;
   float speed = 6;
+  SoundFile takeoff;
     
-  ImageButton(float x,float y,PImage image,PImage imageHighlighted,float w, float h){
+  ImageButton(float x,float y,PImage image,PImage imageHighlighted,float w, float h, SoundFile takeoff){
     this.x = x; this.y=y; this.w = w; this.h = h;this.image = image;this.imageHighlighted=imageHighlighted;
+    this.takeoff=takeoff;
   }
   void draw(){
       image(image,x,y,w,h); 
@@ -18,6 +20,7 @@ class ImageButton{
         image(imageHighlighted,x,y,w,h);
       if (mousePressed)
       {
+        takeoff.play();
         for (int i = 0; i < 10; i++) {
           isMoving = true;
         }       

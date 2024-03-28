@@ -15,6 +15,7 @@ float h = 300;
 int movedCloud = 0;
 int SCREENX, SCREENY = 800;
 SoundFile selectionSound;
+SoundFile planeFlies;
 
 
 BarChart1 airlineFlights;
@@ -58,6 +59,7 @@ void setup()
   cloudImage = loadImage("cloud.png");
   backButtonHighlighted=loadImage("backArrowSelected.png");
   backgroundImage = loadImage("USMAP.jpg");
+  planeFlies = new SoundFile(this, "planeTakeOff.mp3");
 
   Table csv = loadTable("flights2k.csv", "header"); // Table for chart
  
@@ -86,9 +88,9 @@ void setup()
   movingPlane1 = new MovingPlane(passivePlane, -200, 170, 3, 300, 160);
   movingPlane2 = new MovingPlane(passivePlane2, 900, 470, 3, 300, 160);
 
-  planeBtn1 = new ImageButton(x,y,plane,planeHighlighted,w,h);
-  planeFliesPage2 = new ImageButton(0,400,plane,planeHighlighted,w,h);
-  backBtn = new ImageButton(570,30,backButtonImage,backButtonHighlighted,90,70);
+  planeBtn1 = new ImageButton(x,y,plane,planeHighlighted,w,h, planeFlies);
+  planeFliesPage2 = new ImageButton(0,400,plane,planeHighlighted,w,h, planeFlies);
+  backBtn = new ImageButton(570,30,backButtonImage,backButtonHighlighted,90,70, planeFlies);
   
   // Read in file 
   data = loadTable("flights2k.csv", "header");
@@ -184,7 +186,7 @@ void draw()
       backBtn.draw();
       backBtn.moveBackButton();
       searchButton.draw();
-      button1.drawCloud();
+      //button1.drawCloud();
       airlineFlights.printing();
       airlineFlights.draw();
       break;
@@ -192,7 +194,7 @@ void draw()
       backBtn.draw();
       backBtn.moveBackButton();
       searchButton.draw();
-      button2.drawCloud();
+      //button2.drawCloud();
       airport.printing();
       airport.drawPieChart();
       break;
@@ -200,7 +202,7 @@ void draw()
       backBtn.draw();
       backBtn.moveBackButton();
       searchButton.draw();
-      button3.drawCloud();
+      //button3.drawCloud();
       datesTime.printing();
       datesTime.draw();
       break;
