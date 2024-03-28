@@ -34,7 +34,7 @@ class Read_Data {
   }
 
 
-  int arrivalLateness(int rowIndex)
+  public int arrivalLateness(int rowIndex)
   {
     int arrLateness = 0;
     int arrTime = 0;
