@@ -66,7 +66,7 @@ class FlightAirportChart {
       float labelY = height/2 + sin(labelAngle) * diameter / 2 * 0.7; // Adjust label position
       textAlign(CENTER, CENTER);
       fill(128,126,250);
-      PFont stdFont = loadFont("BellMTItalic-48.vlw");textFont(stdFont);
+      PFont newFont = loadFont("BellMTItalic-48.vlw");textFont(newFont);
       text(airportName[i], labelX, labelY);
     }
   } 
