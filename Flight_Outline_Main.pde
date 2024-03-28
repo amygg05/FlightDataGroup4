@@ -16,6 +16,7 @@ int movedCloud = 0;
 int SCREENX, SCREENY = 800;
 SoundFile selectionSound;
 SoundFile planeFlies;
+SoundFile goBackButton;
 
 
 BarChart1 airlineFlights;
@@ -60,6 +61,7 @@ void setup()
   backButtonHighlighted=loadImage("backArrowSelected.png");
   backgroundImage = loadImage("USMAP.jpg");
   planeFlies = new SoundFile(this, "planeTakeOff.mp3");
+  goBackButton = new SoundFile(this, "backButtonSound.mp3");
 
   Table csv = loadTable("flights2k.csv", "header"); // Table for chart
  
@@ -90,7 +92,7 @@ void setup()
 
   planeBtn1 = new ImageButton(x,y,plane,planeHighlighted,w,h, planeFlies);
   planeFliesPage2 = new ImageButton(0,400,plane,planeHighlighted,w,h, planeFlies);
-  backBtn = new ImageButton(570,30,backButtonImage,backButtonHighlighted,90,70, planeFlies);
+  backBtn = new ImageButton(570,30,backButtonImage,backButtonHighlighted,90,70, goBackButton);
   
   // Read in file 
   data = loadTable("flights2k.csv", "header");
