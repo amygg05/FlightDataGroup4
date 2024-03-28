@@ -1,5 +1,6 @@
 // NK = SPIRIT [0], AA = AMERICAN AIRLINES [1], AS = ALASKAN AIRLINES [2], B6 = JETBLUE [3], OTHER [4]
 int[] flightsCount = new int[5];
+  String[] airlineNames = {"   SPIRIT", "       AMERICAN", "ALASKAN", "JETBLUE       ", "OTHER"};
 class BarChart1{
   
   BarChart1(Table passedTable)
@@ -37,13 +38,45 @@ class BarChart1{
     println("Airline"+ (i + 1) + "count: "+ flightsCount[i]);
   }
  }
+ 
+ void drawPieChart(){
+    float startAngle =0;
+    float diameter = min(width, height) * 0.8;
+    //float totalAngle =0;
+    
+     float totalCount = 0;
+    for (int i = 0; i < flightsCount.length; i++) {
+        totalCount += flightsCount[i];
+    }
+    
+    for (int i=0; i< flightsCount.length; i++)
+    {
+      float angle = radians(map(flightsCount[i], 0, totalCount, 0, 360));
+      fill(colors[i]);
+      arc(width/2, height/2, 300, 300, startAngle, startAngle + angle, PIE);
+      startAngle += angle;
+      
+      float labelAngle = startAngle - angle / 2;
+      float labelX = width/2 + cos(labelAngle) * diameter / 2 * 0.7; // Adjust label position
+      float labelY = height/2 + sin(labelAngle) * diameter / 2 * 0.7; // Adjust label position
+      textAlign(CENTER, CENTER);
+      fill(128,126,250);
+      PFont newFont = loadFont("BellMTItalic-48.vlw");textFont(newFont);
+      text(airlineNames[i], labelX, labelY);
+      
+      
+      textAlign(CENTER, TOP);
+      text("Flight count by airline",475, 100);
+    }
+  } 
+ 
   void draw(){
   line(60, 770, 60, 45);
   line(60, 770, 770, 770);
   
   float barWidth = width / (flightsCount.length +1);
   float maxDataValue = (max(flightsCount) -1);
-  String[] airlineNames = {"SPIRIT", "AMERICAN", "ALASKAN", "JETBLUE", "OTHER"};
+  //String[] airlineNames = {"SPIRIT", "AMERICAN", "ALASKAN", "JETBLUE", "OTHER"};
   for(int i =0; i< flightsCount.length; i++)
   {
     float x = (i +1 )* barWidth;
