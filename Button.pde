@@ -1,3 +1,4 @@
+import processing.sound.*;
 class Button {
   float x, y, w, h;
   String label;
@@ -7,7 +8,9 @@ class Button {
   boolean isMoving = false;
   boolean isSelected = false;
   float   movementSpeed = 4;
-  Button(float xpos, float ypos, float wid, float hig, PImage img, PImage img2, String lab) 
+  SoundFile selected;
+
+  Button(float xpos, float ypos, float wid, float hig, PImage img, PImage img2, String lab, SoundFile selection) 
   {
     x = xpos;
     y = ypos;
@@ -16,6 +19,8 @@ class Button {
     image = img;
     image2 = img2;
     label = lab;
+    selected = selection;
+    
   }
   
   void draw()
@@ -52,7 +57,8 @@ class Button {
           }
           println();  // Move to next line after each row
         }
-
+        
+        selected.play();
       }
     }
 
