@@ -81,7 +81,9 @@ class GroupedData {
         }
       }
       return filteredTable;
+      default:
+      return filteredTable;
     }
-    return filteredTable;
+    //return filteredTable;
   }
 }
