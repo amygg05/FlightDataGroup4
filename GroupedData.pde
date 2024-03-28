@@ -41,6 +41,7 @@ class GroupedData {
             String date = data.getString(rowIndex, 0);
             newRow.setString("FL_DATE", date);
             newRow.setInt("LATENESS", currLateness);
+            print(filteredTable.getInt(rowIndex, 0));   // this prints as expected but in main it still returns a table that apparently has only one row that's empty.
           }
         }
       }
