@@ -21,13 +21,38 @@ class GeneralChart {
       rowIndex++;
       date = readingData.getDate(rowIndex);
       day = date[1];
+      
       //String colfind = row.getString(column);
       switch (choice){    //Each case is for a different button --> date/ lateness/ cancellations 
         
-        case 1:
+        case 1: // Lateness -- Eva
            break;
-        case 2:
+        case 2:// Depature time -- Liv
+        column = "DEP_TIME";
+        int timeDep = row.getInt(column);
+        if (timeDep != 0)
+        {
+         if (day >0 && day < 8)
+        {
+          generalCount[0]++;
+        }
+        else if (day >7 && day < 15)
+        {
+          generalCount[1]++;
+        }
+        else if (day >14 && day < 22)
+        {
+          generalCount[2]++;
+        }
+        else if (day >21 )
+        {
+          generalCount[3]++;
+        }
+        }
+        
+        
            break;
+
         case 3:
           column = "CANCELLED";
           int cancelled = row.getInt(column);
@@ -61,10 +86,11 @@ class GeneralChart {
               generalCount[3] ++;
             }
           }
+
            break;
            
-           
-        
+      
+     
         //case "NK":
         //  flightsCount[0] ++;
         //  break;
