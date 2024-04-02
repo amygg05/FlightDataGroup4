@@ -1,4 +1,5 @@
 int[] countLove = new int[4]; // keep 4 as 4 weeks in a month :D
+int choice;
 
 class GeneralChart {
   String column;
@@ -6,7 +7,7 @@ class GeneralChart {
   GeneralChart(Table loadTable, String airline, int option) 
   {
     data = loadTable;
-    int choice = option;
+    choice = option;
     
   }
   
@@ -15,7 +16,7 @@ class GeneralChart {
     for(TableRow row :  data.rows()){
       
       //String colfind = row.getString(column);
-      switch (choice){
+      switch (choice){    //Each case is for a different button --> date/ lateness/ cancellations 
         
         case 1:
            break;
@@ -42,7 +43,7 @@ class GeneralChart {
         // flightsCount[4] ++;
         //  break;
       }
-  
+    }
   }
   
   
