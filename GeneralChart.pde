@@ -4,15 +4,20 @@ int day;
 int rowIndex;
 int[] date;
 
+
 class GeneralChart {
   String column;
   String query;
   String title;
   String xAxisLabel;
+  String airline;
+  int choice;
+  
   GeneralChart(Table loadTable, String airline, int option) 
   {
     data = loadTable;
-    choice = option;
+    this.airline = airline;
+    this.choice = option;
     rowIndex = 0;
     
   }
@@ -20,98 +25,85 @@ class GeneralChart {
   void dataWant()
   {
     for(TableRow row :  data.rows()){
+      
       rowIndex++;
       date = readingData.getDate(rowIndex);
       day = date[1];
       
       //String colfind = row.getString(column);
-      switch (choice){    //Each case is for a different button --> date/ lateness/ cancellations 
-        
-        case 1: // Lateness -- Eva
-           break;
-        case 2:// Depature time -- Liv
-        column = "DEP_TIME";
-        title= "Depature Time";
-        xAxisLabel = "Time ";
-        int timeDep = row.getInt(column);
-        if (timeDep != 0)
-        {
-         if (day >0 && day < 8)
-        {
-          generalCount[0]++;
-        }
-        else if (day >7 && day < 15)
-        {
-          generalCount[1]++;
-        }
-        else if (day >14 && day < 22)
-        {
-          generalCount[2]++;
-        }
-        else if (day >21 )
-        {
-          generalCount[3]++;
-        }
-        }
-           break;
-
-        case 3:
-          column = "CANCELLED";
-          int cancelled = row.getInt(column);
-          if(cancelled == 1){
-            if(day >0 && day < 8){
-              generalCount[0] ++;
-            }
-            else if(day >= 8 && day < 16){
-              generalCount[1] ++;
-            }
-            else if(day >= 16 && day < 24){
-              generalCount[2] ++;
-            }
-            else if(day >=24 && day < 32){
-              generalCount[3] ++;
-            }
+      if(airline == row.getString("MKT_CARRIER")){
+        switch (choice){    //Each case is for a different button --> date/ lateness/ cancellations 
+          
+          case 1: // Lateness -- Eva
+             break;
+          case 2:// Depature time -- Liv
+          column = "DEP_TIME";
+          title= "Depature Time";
+          xAxisLabel = "Time ";
+          int timeDep = row.getInt(column);
+          if (timeDep != 0)
+          {
+           if (day >0 && day < 8)
+          {
+            generalCount[0]++;
           }
-          column = "DIVERTED";
-          int diverted = row.getInt(column);
-          if(diverted == 1){
-            if(day >0 && day < 8){
-              generalCount[0] ++;
-            }
-            else if(day >= 8 && day < 16){
-              generalCount[1] ++;
-            }
-            else if(day >= 16 && day < 24){
-              generalCount[2] ++;
-            }
-            else if(day >=24 && day < 32){
-              generalCount[3] ++;
-            }
+          else if (day >7 && day < 15)
+          {
+            generalCount[1]++;
           }
-
-           break;
-           
-      
-     
-        //case "NK":
-        //  flightsCount[0] ++;
-        //  break;
-        //case "AA":
-        //  flightsCount[1] ++;
-        //  break;
-        //case "AS":
-        //  flightsCount[2] ++;
-        //  break;
-        //case "B6":
-        //  flightsCount[3] ++;
-        //  break;
-        //default:
-        // flightsCount[4] ++;
-        //  break;
+          else if (day >14 && day < 22)
+          {
+            generalCount[2]++;
+          }
+          else if (day >21 )
+          {
+            generalCount[3]++;
+          }
+          }
+             break;
+  
+          case 3:
+            title= "Diversions/Cancellations";
+            xAxisLabel = "Week";
+            column = "CANCELLED";
+            
+            int cancelled = row.getInt(column);
+            if(cancelled == 1){
+              if(day >0 && day < 8){
+                generalCount[0] ++;
+              }
+              else if(day >= 8 && day < 16){
+                generalCount[1] ++;
+              }
+              else if(day >= 16 && day < 24){
+                generalCount[2] ++;
+              }
+              else if(day >=24 && day < 32){
+                generalCount[3] ++;
+              }
+            }
+            column = "DIVERTED";
+            int diverted = row.getInt(column);
+            if(diverted == 1){
+              if(day >0 && day < 8){
+                generalCount[0] ++;
+              }
+              else if(day >= 8 && day < 16){
+                generalCount[1] ++;
+              }
+              else if(day >= 16 && day < 24){
+                generalCount[2] ++;
+              }
+              else if(day >=24 && day < 32){
+                generalCount[3] ++;
+              }
+            }
+  
+             break;
+        }
       }
     }
   }
-  
   
   void pieDraw()
   {
