@@ -137,18 +137,48 @@ class GeneralChart {
       textAlign(CENTER, CENTER);
       fill(128,126,250);
       PFont newFont = loadFont("BellMTItalic-48.vlw");textFont(newFont);
-      text(airlineNames[i], labelX, labelY); ////////////==========================================
+      text(xAxisLabel, labelX, labelY); 
       
       
       textAlign(CENTER, TOP);
-      text("Flight count by airline",475, 100); /////////////////////===================
+      text(title,475, 100); 
     }
   }
   
   
-  void draw()
+  void draw(){
+    line(60, 770, 60, 45);
+    line(60, 770, 770, 770);
+    
+    float barWidth = width / (generalCount.length +1);
+    float maxDataValue = (max(generalCount) -1);
+  
+  for(int i =0; i< generalCount.length; i++)
   {
+    float x = (i+1) * barWidth;
+    float y = map(generalCount[i], 0, maxDataValue, height, 50);
+    float barHeight = height- y;
+    
+    
+    textSize(15);
+    fill(#E82A2A);
+    rect(x, y, barWidth - 10, barHeight -30);
+    fill(#A51111);
+    textAlign(CENTER, BOTTOM);
+    text(generalCount[i], x+ barWidth /2, height -28);
+    textAlign(CENTER, TOP);
+    text( xAxisLabel , x+ barWidth /2, height -28);
+    
   }
-
-
-}
+  textSize(20);
+  textAlign(CENTER, BOTTOM);
+  text("change titles", 100, height -5);//=============chsnge title 
+  textAlign(RIGHT, BOTTOM);
+  translate(30, height /2);
+  rotate(-HALF_PI);
+  text("change title", 0, 0); //=======change title
+  }
+    
+  }
+  
+  
