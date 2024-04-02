@@ -7,6 +7,8 @@ int[] date;
 class GeneralChart {
   String column;
   String query;
+  String title;
+  String xAxisLabel;
   GeneralChart(Table loadTable, String airline, int option) 
   {
     data = loadTable;
@@ -29,6 +31,8 @@ class GeneralChart {
            break;
         case 2:// Depature time -- Liv
         column = "DEP_TIME";
+        title= "Depature Time";
+        xAxisLabel = "Time ";
         int timeDep = row.getInt(column);
         if (timeDep != 0)
         {
@@ -49,8 +53,6 @@ class GeneralChart {
           generalCount[3]++;
         }
         }
-        
-        
            break;
 
         case 3:
@@ -118,13 +120,13 @@ class GeneralChart {
     //float totalAngle =0;
     
      float totalCount = 0;
-    for (int i = 0; i < flightsCount.length; i++) {
-        totalCount += flightsCount[i];
+    for (int i = 0; i < generalCount.length; i++) {
+        totalCount += generalCount[i];
     }
     
-    for (int i=0; i< flightsCount.length; i++)
+    for (int i=0; i< generalCount.length; i++)
     {
-      float angle = radians(map(flightsCount[i], 0, totalCount, 0, 360));
+      float angle = radians(map(generalCount[i], 0, totalCount, 0, 360));
       fill(colors[i]);
       arc(width/2, height/2, 300, 300, startAngle, startAngle + angle, PIE);
       startAngle += angle;
@@ -135,11 +137,11 @@ class GeneralChart {
       textAlign(CENTER, CENTER);
       fill(128,126,250);
       PFont newFont = loadFont("BellMTItalic-48.vlw");textFont(newFont);
-      text(airlineNames[i], labelX, labelY);
+      text(airlineNames[i], labelX, labelY); ////////////==========================================
       
       
       textAlign(CENTER, TOP);
-      text("Flight count by airline",475, 100);
+      text("Flight count by airline",475, 100); /////////////////////===================
     }
   }
   
