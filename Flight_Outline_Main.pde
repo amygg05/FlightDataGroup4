@@ -186,8 +186,8 @@ void draw()
       searchButton.draw();
       button1.drawCloud();
       airlineFlights.printing();
-      //airlineFlights.draw();
-      airlineFlights.drawPieChart();
+      airlineFlights.draw();
+      //airlineFlights.drawPieChart();
       break;
       case 2:
       backBtn.draw();
@@ -195,6 +195,7 @@ void draw()
       searchButton.draw();
       button2.drawCloud();
       airport.printing();
+      //airport.draw();
       airport.drawPieChart();
       break;
       case 3:
@@ -205,9 +206,7 @@ void draw()
       datesTime.printing();
       datesTime.draw();
       break;
-    }
-    
+    } 
   }
-
 }
   

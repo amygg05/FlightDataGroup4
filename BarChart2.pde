@@ -1,3 +1,6 @@
+// One bar chart that isnt completely the same as the rest 
+
+
 Table table ;
 ArrayList<Integer> dayArray, monthArray, yearArray;
 ArrayList<String> dateArray;
