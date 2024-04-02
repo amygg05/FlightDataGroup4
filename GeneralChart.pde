@@ -29,9 +29,38 @@ class GeneralChart {
         case 2:
            break;
         case 3:
-        column = "CANCELLED";
-        String colfind = row.getString(column);
-        
+          column = "CANCELLED";
+          int cancelled = row.getInt(column);
+          if(cancelled == 1){
+            if(day >0 && day < 8){
+              generalCount[0] ++;
+            }
+            else if(day >= 8 && day < 16){
+              generalCount[1] ++;
+            }
+            else if(day >= 16 && day < 24){
+              generalCount[2] ++;
+            }
+            else if(day >=24 && day < 32){
+              generalCount[3] ++;
+            }
+          }
+          column = "DIVERTED";
+          int diverted = row.getInt(column);
+          if(diverted == 1){
+            if(day >0 && day < 8){
+              generalCount[0] ++;
+            }
+            else if(day >= 8 && day < 16){
+              generalCount[1] ++;
+            }
+            else if(day >= 16 && day < 24){
+              generalCount[2] ++;
+            }
+            else if(day >=24 && day < 32){
+              generalCount[3] ++;
+            }
+          }
            break;
            
            
