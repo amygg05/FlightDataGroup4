@@ -22,4 +22,9 @@ class dialogBox{
      choiceString = "";}
      return choiceString;
   }
+  
+  public String getChoice()
+  {
+    return choiceString;
+  }
 }

@@ -4,6 +4,9 @@ class searchButton{
   int x,y,w,h;
   PImage image;
   dialogBox box;
+  String savedInput;
+  
+  
   searchButton(int x,int y,int w,int h,PImage image, dialogBox box){
     this.x = x; this.y = y; this.w = w; this.h = h; this.image = image; this.box = box;
   }
@@ -14,19 +17,28 @@ class searchButton{
       if(mousePressed){
         if(mouseX > 400){  // if it's the search button
         String query = box.popup();
-        System.out.println(query);}
+        System.out.println(query);
+        savedInput = query;
+        }
        else{    // if its the dropdown
          String query = box.dropdown();
          System.out.println(query);    // return selection
          if(query != ""){
          int index = query.indexOf("(");    //get index of airline code
          String substr = query.substring(index + 1, index + 3);
-         System.out.println(substr);  } // return airline code}
+         System.out.println(substr);  
+         savedInput = substr;
+         } // return airline code}
        }
        }
       }
     else{
       image(image, x, y, w, h);
     }
+}
+
+String getSavedInput()
+{
+  return savedInput;
 }
 }
