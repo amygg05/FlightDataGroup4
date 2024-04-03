@@ -68,6 +68,9 @@ class Button {
         if(x>= 800)
         {
           isMoving = false;
+          page2=false;
+          page3=true;
+          x=50;
         }
       } 
   }

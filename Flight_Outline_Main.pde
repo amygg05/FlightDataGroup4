@@ -1,5 +1,4 @@
 import processing.sound.*;
-//GUYS FOR THE LOVE OF ALL THINGS HOLY CAN WE PLEASE START CODING CLASSES THAT ARE USEFUL FOR MORE THAN 1 SPECIFIC USECASE
 import javax.swing.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -8,7 +7,7 @@ import java.util.Date;
 boolean page1 = true;
 boolean page2, page3  = false;
 float cloudX=400;float cloudX2=100;
-PImage plane,plane2,planeHighlighted,arrow,backButtonImage,backButtonHighlighted,cloudImage, backgroundImage;
+PImage plane,plane2,planeHighlighted,arrow,homeButtonImage,homeButtonHighlighted,cloudImage, backgroundImage;
 float x = 400,y = 400,wPlane=230,hPlane=230; 
 float w = 300;
 float h = 300;
@@ -17,7 +16,7 @@ int SCREENX, SCREENY = 800;
 SoundFile selectionSound;
 SoundFile planeFlies;
 SoundFile goBackButton;
-
+float x1,x2,x3;
 
 BarChart1 airlineFlights;
 BarChart2 datesTime;
@@ -29,7 +28,7 @@ MovingPlane movingPlane1, movingPlane2;
 Button button1, button2, button3;
 ImageButton planeBtn1;
 ImageButton planeFliesPage2;
-ImageButton backBtn;
+ImageButton homeBtn;
 Read_Data readingData;
 
 PImage cartoonCloudImage, cartoonCloudImageSelected;
@@ -55,10 +54,10 @@ void setup()
   PImage passivePlane = loadImage("planeFromRight.png");
   PImage passivePlane2 = loadImage("planeFromRightSide.png");
   plane2 = loadImage("plane3.jpg");
-  backButtonImage = loadImage("backButton.png");
+  homeButtonImage = loadImage("homeButton.png");
   planeHighlighted = loadImage("bluePlaneSelected.png");
   cloudImage = loadImage("cloud.png");
-  backButtonHighlighted=loadImage("backArrowSelected.png");
+  homeButtonHighlighted=loadImage("backArrowSelected.png");
   backgroundImage = loadImage("USMAP.jpg");
   planeFlies = new SoundFile(this, "planeTakeOff.mp3");
   goBackButton = new SoundFile(this, "backButtonSound.mp3");
@@ -92,7 +91,7 @@ void setup()
 
   planeBtn1 = new ImageButton(x,y,plane,planeHighlighted,w,h, planeFlies);
   planeFliesPage2 = new ImageButton(0,400,plane,planeHighlighted,w,h, planeFlies);
-  backBtn = new ImageButton(570,30,backButtonImage,backButtonHighlighted,90,70, goBackButton);
+  homeBtn = new ImageButton(570,30,homeButtonImage,homeButtonHighlighted,90,70, goBackButton);
   
   // Read in file 
   data = loadTable("flights2k.csv", "header");
@@ -142,17 +141,19 @@ void draw()
     background(backgroundImage);
     planeFliesPage2.draw();
     planeFliesPage2.movePage2Plane();
-    backBtn.draw();
-    backBtn.moveBackButton();
+    homeBtn.draw();
+    //backBtn.moveBackButton();
+    homeBtn.homeButton();
     searchButton.draw();
     dropdownButton.draw();
     button1.draw();
     button2.draw();
     button3.draw();
     
-    float x1 = button1.getX();
-    float x2 = button2.getX();
-    float x3 = button3.getX();
+    x1 = button1.getX();
+    x2 = button2.getX();
+    x3 = button3.getX();
+
     if(x1>50)
     {
       movedCloud = 1;
@@ -161,32 +162,23 @@ void draw()
     {
       movedCloud = 2;
     }
-    else
+    else if(x3>50)
     {
       movedCloud = 3;
-    } 
-    if(x1>=700 || x2>=700 || x3>=700)
-    {
-      page2=false;
-      page3=true;
-      // think this is why back button dont work for page 3->2, as coordinates of clouds need to be reset maybe?
-    }
-    
+    }    
     movingPlane1.update();
-    movingPlane1.display();
-    
+    movingPlane1.display();   
     movingPlane2.updateNegative();
-
     movingPlane2.display();
   }
   else if (page3){
     background(255);
-
     switch(movedCloud)
     {
       case 1:
-      backBtn.draw();
-      backBtn.moveBackButton();
+      homeBtn.draw();
+      //backBtn.moveBackButton();
+      homeBtn.homeButton();
       searchButton.draw();
       //button1.drawCloud();
       airlineFlights.printing();
@@ -194,24 +186,24 @@ void draw()
       airlineFlights.drawPieChart();
       break;
       case 2:
-      backBtn.draw();
-      backBtn.moveBackButton();
+      homeBtn.draw();
+      //backBtn.moveBackButton();
+      homeBtn.homeButton();
       searchButton.draw();
       //button2.drawCloud();
       airport.printing();
       airport.drawPieChart();
       break;
       case 3:
-      backBtn.draw();
-      backBtn.moveBackButton();
+      homeBtn.draw();
+      homeBtn.homeButton();
       searchButton.draw();
       //button3.drawCloud();
       datesTime.printing();
       datesTime.draw();
+     // backBtn.moveBackButton();
       break;
     }
-    
   }
-
 }
   
