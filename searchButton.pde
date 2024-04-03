@@ -16,12 +16,17 @@ class searchButton{
       image(image, x - 12, y - 12, w + 25, h + 25);
       if(mousePressed){
         if(mouseX > 400){  // if it's the search button
-        String query = box.popup();
-        System.out.println(query);
-        savedInput = query;
+        String airport = box.popup();
+        System.out.println(airport);
+        savedInput = airport;
+        if (airport != null && !airport.isEmpty()) {
+            // Trigger dropdown only if airport input is provided
+            triggerDropdown(airport);
+          }
         }
        else{    // if its the dropdown
-         String query = box.dropdown();
+         Object[] queryList = {"Late", "Depart By Week", "Cancelled/Diverted By Weeks"};
+         String query = box.dropdown(queryList);
          System.out.println(query);    // return selection
          if(query != ""){
          int index = query.indexOf("(");    //get index of airline code
@@ -35,6 +40,17 @@ class searchButton{
     else{
       image(image, x, y, w, h);
     }
+}
+
+void triggerDropdown(String airport)
+{
+  Object[] queryList = {"Late", "Depart By Week", "Cancelled/Diverted By Weeks"};
+  String query = box.dropdown(queryList);
+  println(query);
+  if(!query.isEmpty())
+  {
+    savedInput = query;
+  }
 }
 
 String getSavedInput()

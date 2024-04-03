@@ -18,6 +18,7 @@ SoundFile selectionSound;
 SoundFile planeFlies;
 SoundFile goBackButton;
 String searchResult;
+String finalSearch;
 
 
 BarChart1 airlineFlights;
@@ -40,6 +41,7 @@ searchButton searchButton;
 PImage searchIcon;
 dialogBox dropdownMenu;
 searchButton dropdownButton;
+dialogBox dropDownMenuAfterSearch;
 PImage hamburgerMenu;
 
 
@@ -113,9 +115,11 @@ void setup()
   Object[] airlines = {"Alaska Airlines (AS)","American Airlines (AA)","Delta Airlines (DL) ","Frontier Airlines (F9)"
                       ,"Hawaiian Airlines (HA)","JetBlue Airways (B6)","Southwest Airlines (WN)","Spirit Airlines (NK)",
                         "United Airlines (UA)","USAirways (US)", "Allegiant Air LLC (G4)"};
+  Object[] queries = {"Late", "Depart By Week", "Cancelled/Diverted By Weeks"};
   String[] airports = {"JFK", "LAX", "FLL", "DCA"};
   dropdownMenu = new dialogBox(airlines);
   dropdownButton = new searchButton(0, 50, 50, 50, hamburgerMenu, dropdownMenu);
+  dropDownMenuAfterSearch = new dialogBox(queries);
 
   
   colors = new color[]{color(#CB6363), 
@@ -138,11 +142,17 @@ void draw()
     cloudX++;cloudX2--;
     searchButton.draw();
     dropdownButton.draw();
- 
-    while(searchResult != "JFK" || searchResult != "FLL" || searchResult != "DCA")
+    searchResult = searchButton.getSavedInput();
+    
+    
+    if(searchResult == "JFK" || searchResult == "LAX" || searchResult == "FLL" || searchResult == "DCA")
     {
-        searchResult = searchButton.getSavedInput();
+        finalSearch = searchResult;
+        
     }
+    
+    
+    println(finalSearch);
   }
   
   else if (page2){
