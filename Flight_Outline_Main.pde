@@ -17,6 +17,9 @@ SoundFile selectionSound;
 SoundFile planeFlies;
 SoundFile goBackButton;
 float x1,x2,x3;
+String searchResult;
+String finalSearch;
+
 
 BarChart1 airlineFlights;
 BarChart2 datesTime;
@@ -38,6 +41,7 @@ searchButton searchButton;
 PImage searchIcon;
 dialogBox dropdownMenu;
 searchButton dropdownButton;
+dialogBox dropDownMenuAfterSearch;
 PImage hamburgerMenu;
 
 
@@ -61,6 +65,12 @@ void setup()
   backgroundImage = loadImage("USMAP.jpg");
   planeFlies = new SoundFile(this, "planeTakeOff.mp3");
   goBackButton = new SoundFile(this, "backButtonSound.mp3");
+  PImage airline = loadImage("airline.png");
+  PImage airlineselected = loadImage("airlineselected.png");
+  PImage airportImage = loadImage("airport.png");
+  PImage airportselected = loadImage("airportselected.png");
+  PImage date = loadImage("date.png");
+  PImage dateselected = loadImage("dateselected.png");
 
   Table csv = loadTable("flights2k.csv", "header"); // Table for chart
  
@@ -79,13 +89,10 @@ void setup()
 
   cartoonCloudImage = loadImage("cartooncloud.png");
   cartoonCloudImageSelected = loadImage("cartooncloudselected.png");
-  String text1 = "Airline";
-  String text2 = "Airport";
-  String text3 = "Date";
 
-  button1 = new Button(50, -10, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text1, selectionSound);
-  button2 = new Button(50, 290, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text2, selectionSound);
-  button3 = new Button(50, 590, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text3, selectionSound);
+  button1 = new Button(50, -10, 250, 250, airline, airlineselected, selectionSound);
+  button2 = new Button(50, 290, 250, 250, airportImage, airportselected, selectionSound);
+  button3 = new Button(50, 590, 250, 250, date, dateselected, selectionSound);
   movingPlane1 = new MovingPlane(passivePlane, -200, 170, 3, 300, 160);
   movingPlane2 = new MovingPlane(passivePlane2, 900, 470, 3, 300, 160);
 
@@ -98,7 +105,6 @@ void setup()
   Read_Data readingData = new Read_Data(data);
   readingData.readData();
   println(readingData.arrivalLateness(37)); // this tests arrivalLateness --> 37 is just a random row index to test
-
   readingData.getDate(1);
   int[] test = readingData.getDate(1);
   println(test[1]);
@@ -112,8 +118,12 @@ void setup()
   Object[] airlines = {"Alaska Airlines (AS)","American Airlines (AA)","Delta Airlines (DL) ","Frontier Airlines (F9)"
                       ,"Hawaiian Airlines (HA)","JetBlue Airways (B6)","Southwest Airlines (WN)","Spirit Airlines (NK)",
                         "United Airlines (UA)","USAirways (US)", "Allegiant Air LLC (G4)"};
+  Object[] queries = {"Late", "Depart By Week", "Cancelled/Diverted By Weeks"};
+  String[] airports = {"JFK", "LAX", "FLL", "DCA"};
   dropdownMenu = new dialogBox(airlines);
   dropdownButton = new searchButton(0, 50, 50, 50, hamburgerMenu, dropdownMenu);
+  dropDownMenuAfterSearch = new dialogBox(queries);
+
   
   colors = new color[]{color(#CB6363), 
 color(#BD63CB), color(#639DCB), color(#CB9563), 
@@ -135,6 +145,14 @@ void draw()
     cloudX++;cloudX2--;
     searchButton.draw();
     dropdownButton.draw();
+    searchResult = searchButton.getSavedInput();
+    
+    if(searchResult == "JFK" || searchResult == "LAX" || searchResult == "FLL" || searchResult == "DCA")
+    {
+        finalSearch = searchResult;   
+    }
+    
+    println(finalSearch);
   }
   
   else if (page2){
