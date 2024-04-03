@@ -65,6 +65,12 @@ void setup()
   backgroundImage = loadImage("USMAP.jpg");
   planeFlies = new SoundFile(this, "planeTakeOff.mp3");
   goBackButton = new SoundFile(this, "backButtonSound.mp3");
+  PImage airline = loadImage("airline.png");
+  PImage airlineselected = loadImage("airlineselected.png");
+  PImage airportImage = loadImage("airport.png");
+  PImage airportselected = loadImage("airportselected.png");
+  PImage date = loadImage("date.png");
+  PImage dateselected = loadImage("dateselected.png");
 
   Table csv = loadTable("flights2k.csv", "header"); // Table for chart
  
@@ -83,13 +89,10 @@ void setup()
 
   cartoonCloudImage = loadImage("cartooncloud.png");
   cartoonCloudImageSelected = loadImage("cartooncloudselected.png");
-  String text1 = "Airline";
-  String text2 = "Airport";
-  String text3 = "Date";
 
-  button1 = new Button(50, -10, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text1, selectionSound);
-  button2 = new Button(50, 290, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text2, selectionSound);
-  button3 = new Button(50, 590, 250, 250, cartoonCloudImage, cartoonCloudImageSelected, text3, selectionSound);
+  button1 = new Button(50, -10, 250, 250, airline, airlineselected, selectionSound);
+  button2 = new Button(50, 290, 250, 250, airportImage, airportselected, selectionSound);
+  button3 = new Button(50, 590, 250, 250, date, dateselected, selectionSound);
   movingPlane1 = new MovingPlane(passivePlane, -200, 170, 3, 300, 160);
   movingPlane2 = new MovingPlane(passivePlane2, 900, 470, 3, 300, 160);
 
