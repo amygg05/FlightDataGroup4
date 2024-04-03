@@ -5,6 +5,7 @@ class searchButton{
   PImage image;
   dialogBox box;
   String savedInput;
+  String savedInput2;
   
   
   searchButton(int x,int y,int w,int h,PImage image, dialogBox box){
@@ -49,12 +50,17 @@ void triggerDropdown(String airport)
   println(query);
   if(!query.isEmpty())
   {
-    savedInput = query;
+    savedInput2 = query;
   }
 }
 
 String getSavedInput()
 {
   return savedInput;
+}
+
+String getSavedQuery()
+{
+  return savedInput2;
 }
 }

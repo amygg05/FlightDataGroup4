@@ -144,13 +144,11 @@ void draw()
     dropdownButton.draw();
     searchResult = searchButton.getSavedInput();
     
-    
     if(searchResult == "JFK" || searchResult == "LAX" || searchResult == "FLL" || searchResult == "DCA")
     {
         finalSearch = searchResult;
         
     }
-    
     
     println(finalSearch);
   }
