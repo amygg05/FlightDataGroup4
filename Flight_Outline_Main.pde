@@ -146,8 +146,7 @@ void draw()
     
     if(searchResult == "JFK" || searchResult == "LAX" || searchResult == "FLL" || searchResult == "DCA")
     {
-        finalSearch = searchResult;
-        
+        finalSearch = searchResult;   
     }
     
     println(finalSearch);
