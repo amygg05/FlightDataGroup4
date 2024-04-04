@@ -1,4 +1,4 @@
-import processing.sound.*;
+
 class Button {
   float x, y, w, h;
   String label;
@@ -10,7 +10,7 @@ class Button {
   float   movementSpeed = 4;
   SoundFile selected;
 
-  Button(float xpos, float ypos, float wid, float hig, PImage img, PImage img2, String lab, SoundFile selection) 
+  Button(float xpos, float ypos, float wid, float hig, PImage img, PImage img2, SoundFile selection) 
   {
     x = xpos;
     y = ypos;
@@ -18,7 +18,6 @@ class Button {
     h = hig;
     image = img;
     image2 = img2;
-    label = lab;
     selected = selection;
     
   }
@@ -29,13 +28,10 @@ class Button {
     colour = 255;
     image(image, x, y, w, h);
     fill(0);
-    textSize(30);
-    text(label, x+80, y+125);
 
     if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
     {
       image(image2, x, y, w, h);
-      text(label, x+80, y+125);
       fill(colour);
 
       if (mousePressed)
@@ -68,6 +64,9 @@ class Button {
         if(x>= 800)
         {
           isMoving = false;
+          page2=false;
+          page3=true;
+          x=50;
         }
       } 
   }
@@ -79,9 +78,6 @@ class Button {
   void drawCloud()
   {
     image(cartoonCloudImage, xPage3, yPage3, 250, 250);
-    textSize(30);
-    fill(0);
-    text(label, xPage3+185, yPage3+125);
     if(xPage3<=3)
     {
       isMovingPage3 = true;

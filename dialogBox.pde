@@ -14,12 +14,18 @@ class dialogBox{
   dialogBox(Object[] list){
     this.list = list;
   }
-  public String dropdown(){
+  public String dropdown(Object[] list){
      Object choice = JOptionPane.showInputDialog(null, "Choose", "Menu", JOptionPane.PLAIN_MESSAGE, null, list, list[0]);
      if(choice!= null){
      choiceString = choice.toString();}
      else{
-     choiceString = "";}
+     choiceString = "";
+   }
      return choiceString;
+  }
+  
+  public String getChoice()
+  {
+    return choiceString;
   }
 }
