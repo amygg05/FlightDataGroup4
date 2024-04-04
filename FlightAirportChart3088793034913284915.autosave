@@ -1,0 +1,144 @@
+//JFK LAX FLL DCA 
+ArrayList<String> airportArray;
+float[] count = new float[4];
+
+String[] airportName = {"JFK", "LAX", "FLL", "DCA"};
+
+
+class FlightAirportChart {
+  
+  FlightAirportChart(Table loadedTable, ArrayList<String> place)
+  {
+    table = loadedTable;
+    airportArray = place;
+  }
+  
+  void loadAirport()
+  {
+    for(TableRow row :  table.rows()){
+      String airportString = row.getString("ORIGIN");
+      switch (airportString){
+         case "JFK":
+           count[0] ++;
+           break;
+         case "LAX":
+           count[1] ++;
+           break;
+         case "FLL":
+           count[2] ++;
+           break;
+         case "DCA":
+           count[3] ++;
+           break;
+           
+      }
+    }
+  }
+  
+  void printing(){
+  for(int i = 0; i<4; i++)
+  {
+    println("Airport "+ (i+1) + " count: "+ count[i]);
+  }
+  }
+  
+  void drawPieChart(){
+    float startAngle =0;
+    float diameter = min(width, height) * 0.8;
+    //float totalAngle =0;
+    
+     float totalCount = 0;
+    for (int i = 0; i < count.length; i++) {
+        totalCount += count[i];
+    }
+    
+    for (int i=0; i< count.length; i++)
+    {
+      float angle = radians(map(count[i], 0, totalCount, 0, 360));
+      fill(colors[i]);
+      arc(width/2, height/2, 300, 300, startAngle, startAngle + angle, PIE);
+      startAngle += angle;
+      
+      float labelAngle = startAngle - angle / 2;
+      float labelX = width/2 + cos(labelAngle) * diameter / 2 * 0.7; // Adjust label position
+      float labelY = height/2 + sin(labelAngle) * diameter / 2 * 0.7; // Adjust label position
+      textAlign(CENTER, CENTER);
+      fill(128,126,250);
+      PFont newFont = loadFont("BellMTItalic-48.vlw");textFont(newFont);
+      text(airportName[i], labelX, labelY);
+      
+      textAlign(CENTER, TOP);
+      text("Flights departed by Airport",475, 100);
+    }
+  } 
+  
+  void draw(){
+    line(60, 770, 60, 45);
+    line(60, 770, 770, 770);
+    
+    
+    float barWidth = width / (count.length +1);
+    float cubeWidth = 10;
+    float cubeHeight = 10;
+    float maxDataValue = (max(count) -1);
+    
+    //horizontal lines
+    double increments = maxDataValue/5;
+    double lineIncrements = maxDataValue/5*7;
+    for(int countLine = 0; countLine<5; countLine++){
+      //textAlign(LEFT);
+      text((char)increments, 30 ,(float)lineIncrements*countLine + 45);
+      line((float)60, (float)lineIncrements*countLine + 45, (float)770, (float)lineIncrements*countLine + (float)45);
+    }
+    
+    
+    float lastX = 60;
+    float lastY = 770;
+    PVector previousPoint = null;
+  for(int i =0; i< count.length  ; i++)
+  {
+    float x = (i+1) * barWidth;
+    float y = map(count[i], 0, maxDataValue, height, 50);
+    float barHeight = height- y;
+    
+    
+    textSize(15);
+    fill(#E82A2A);
+    //rect(x, y, barWidth - 10, barHeight -30);
+    //rect(barWidth, barHeight, cubeWidth, cubeHeight); //first two set location, second two set size
+    rect(x + 85, y, cubeWidth, cubeHeight);
+    //line(x + 90, y + 5, previousPoint.x, previousPoint.y);
+    fill(#A51111);
+    textAlign(CENTER, BOTTOM);
+    //textAlign((int)x, (int)y+25);
+    //this for number at bottom
+    //text(count[i], x+ barWidth /2, height -28);
+    //this for number under point
+    text(count[i], x+85, y+25);
+    textAlign(CENTER, TOP);
+    text( airportName[i] , x+ barWidth /2, height -28);
+    
+    if (previousPoint != null) {
+      line(previousPoint.x + 90, previousPoint.y + 5, x + 90, y + 5);
+    }
+    
+    // Update previous point for next iteration
+    previousPoint = new PVector(x, y);
+    
+    //lastX = x;
+    //lastY = y;
+    //println("lastX = " + lastX + " and lastY = " + lastY);
+    
+  }
+  textSize(20);
+  textAlign(CENTER, BOTTOM);
+  text("Airports", 100, height -5);
+  textAlign(RIGHT, BOTTOM);
+  translate(30, height /2);
+  rotate(-HALF_PI);
+  text("Plane Amount", 0, 0);
+  }
+    
+  }
+  
+  

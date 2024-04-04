@@ -180,4 +180,55 @@ class GeneralChart {
     rotate(-HALF_PI);
     text("change title", 0, 0); //=======change title
   }
+  
+  
+  void drawLineGraph(){
+    line(60, 770,60,45);
+    line(60,770,770,770);
+    
+    float barWidth = width / (count.length + 1);
+    float cubeWidth = 10;
+    float cubeHeight = 10;
+    float maxDataValue = (max(count)-1);
+    
+    //horizontal lines
+    double increments = maxDataValue/5;
+    double lineIncrements = maxDataValue/5*7;
+    for(int countLine = 0; countLine<5; countLine++){
+      textAlign(LEFT);
+      text((char)increments, 30, (float)lineIncrements+countLine + 45);
+      line((float)60, (float)lineIncrements*countLine + 45, 770, (float)lineIncrements*countLine + 45);
+    }
+    
+    PVector previousPoint = null;
+    for(int i = 0; i<generalCount.length; i++){
+      float x = (i+1) * barWidth;
+      float y = map(generalCount[i], 0, maxDataValue, height, 50);
+      
+      textSize(15);
+      fill(#E82A2A);
+      rect(x+ 85, y, cubeWidth, cubeHeight);
+      fill(#A51111);
+      textAlign(CENTER, BOTTOM);
+      //check to make sure this is okay 
+      text(generalCount[i], x+85, y+25);
+      textAlign(CENTER, TOP);
+      //THIS HAS TO CHANGE FOR GENERALIZATION
+      text("whatever we are measuring (change)", x + barWidth /2, height -28);
+      
+      if(previousPoint!=null){
+        line(previousPoint.x+90, previousPoint.y + 5, x+90, y+5);
+      }
+      //update previous point for next iteration
+      previousPoint = new PVector(x,y);
+    }
+    textSize(20);
+    textAlign(CENTER, BOTTOM);
+    //TEXT NEEDS GENERALIZATION
+    text("query(change)", 100, height -5);
+    textAlign(RIGHT, BOTTOM);
+    translate(30, height/2);
+    //TEXT NEEDS GENERALIZATION
+    text("y value(change)", 0,0);
+  }
 }
