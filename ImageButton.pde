@@ -40,18 +40,7 @@ class ImageButton{
         }
       }
    } 
-   void movePage2Plane(){     
-   isMoving = true;
-    if(isMoving)
-      {
-       x+=6;y-=7;
-       if(x>=800){
-         isMoving=false;
-         x=0;y=400;
-       }
-      }
-      
-   }
+
   // void moveBackButton(){
   //   if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
   //  {
