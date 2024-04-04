@@ -51,6 +51,7 @@ class ImageButton{
         for (int i = 0; i < 100; i++) {
           homeBtnPressed = true;
       }
+                takeoff.play();
       }
    }
         if(homeBtnPressed){
