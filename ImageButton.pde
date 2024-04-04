@@ -4,10 +4,13 @@ class ImageButton{
   PImage imageHighlighted;
   boolean isMoving=false;
   boolean backBtnMoves=false;
-  float speed = 6;
+  boolean homeBtnPressed=false;
+  float speed = 10;
+  SoundFile takeoff;
     
-  ImageButton(float x,float y,PImage image,PImage imageHighlighted,float w, float h){
+  ImageButton(float x,float y,PImage image,PImage imageHighlighted,float w, float h, SoundFile takeoff){
     this.x = x; this.y=y; this.w = w; this.h = h;this.image = image;this.imageHighlighted=imageHighlighted;
+    this.takeoff=takeoff;
   }
   void draw(){
       image(image,x,y,w,h); 
@@ -18,6 +21,7 @@ class ImageButton{
         image(imageHighlighted,x,y,w,h);
       if (mousePressed)
       {
+        takeoff.play();
         for (int i = 0; i < 10; i++) {
           isMoving = true;
         }       
@@ -25,51 +29,42 @@ class ImageButton{
     }
     if(isMoving)
       {
-        x += speed;
-        y-=speed;
+        x += 6;
+        y-=6;
         if(x==760)
         {
           page1 = false;
-          page2 = true;
+          page2 = true;page3=false;
           x=400;y=400;
           isMoving=false;
         }
       }
    } 
-   void movePage2Plane(){     
-   isMoving = true;
-    if(isMoving)
-      {
-       x+=speed;y-=7;
-      }
-   }
-   void moveBackButton(){
-     if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
+
+   void homeButton(){
+       if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
     {
-      image(backButtonHighlighted,x,y,w,h);
+        image(image,x-2,y-2,w+5,h+5);
+    
       if (mousePressed)
       {
-        for (int i = 0; i < 10; i++) {
-          backBtnMoves = true;
-        }       
+        for (int i = 0; i < 100; i++) {
+          homeBtnPressed = true;
       }
-    }
-    if(backBtnMoves)
-      {
-        x-=speed;
-        if(x+w<=0)
-        {
-          if(page2){
-            page1 = true;
-            page2 = false;
-          }
-          if(page3){
-            page3=false;
-            page2=true;
-          }
-          backBtnMoves=false;
-          x=600;y=30;
-        }    
+      }
    }
+        if(homeBtnPressed){
+          x-=speed;
+          if(x<=0){
+            homeBtnPressed=false;
+            x=570;
+            if(page2){
+              page2=false;page1=true;
+            }
+            else {
+              page3=false;page1=true;
+            }
+          }    
+    }
    }
   }
