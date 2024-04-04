@@ -19,7 +19,7 @@ SoundFile goBackButton;
 float x1,x2,x3;
 String searchResult;
 String finalSearch;
-
+float page2X=0,page2Y=400;
 
 BarChart1 airlineFlights;
 BarChart2 datesTime;
@@ -133,6 +133,7 @@ color(#8C53C9)};
 void draw()
 {
   if(page1){
+    page2X=0;page2Y=400;
     background(backgroundImage);
     PFont stdFont = loadFont("Arial-Black-60.vlw");textFont(stdFont);
     planeBtn1.draw();    
@@ -157,8 +158,8 @@ void draw()
   
   else if (page2){
     background(backgroundImage);
-    planeFliesPage2.draw();
-    planeFliesPage2.movePage2Plane();
+    image(plane,page2X,page2Y,w,h);
+    page2X+=6;page2Y-=7;
     homeBtn.draw();
     //backBtn.moveBackButton();
     homeBtn.homeButton();
