@@ -1,6 +1,6 @@
 // NK = SPIRIT [0], AA = AMERICAN AIRLINES [1], AS = ALASKAN AIRLINES [2], B6 = JETBLUE [3], OTHER [4]
 int[] flightsCount = new int[5];
-  String[] airlineNames = {"   SPIRIT", "       AMERICAN", "ALASKAN", "JETBLUE       ", "OTHER"};
+String[] airlineNames = {"   SPIRIT", "       AMERICAN", "ALASKAN", "JETBLUE       ", "OTHER"};
 class BarChart1{
   
   BarChart1(Table passedTable)
