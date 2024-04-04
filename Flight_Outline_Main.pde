@@ -97,7 +97,6 @@ void setup()
   movingPlane2 = new MovingPlane(passivePlane2, 900, 470, 3, 300, 160);
 
   planeBtn1 = new ImageButton(x,y,plane,planeHighlighted,w,h, planeFlies);
-  planeFliesPage2 = new ImageButton(0,400,plane,planeHighlighted,w,h, planeFlies);
   homeBtn = new ImageButton(570,30,homeButtonImage,homeButtonHighlighted,90,70, goBackButton);
   
   // Read in file 
@@ -139,7 +138,8 @@ void draw()
     planeBtn1.draw();    
     planeBtn1.movePage1();
     fill(128,126,250);
-    text("       Click Here \n   For Flight Data",100,150);
+    textAlign(CENTER);
+    text("Click Here \n For Flight Data",400,150);
     image(arrow,x-400,y,wPlane,hPlane);
     image(cloudImage,cloudX,100,300,200);
     image(cloudImage,cloudX2,100,300,200);
@@ -197,7 +197,6 @@ void draw()
     {
       case 1:
       homeBtn.draw();
-      //backBtn.moveBackButton();
       homeBtn.homeButton();
       searchButton.draw();
       //button1.drawCloud();
@@ -207,7 +206,6 @@ void draw()
       break;
       case 2:
       homeBtn.draw();
-      //backBtn.moveBackButton();
       homeBtn.homeButton();
       searchButton.draw();
       //button2.drawCloud();
@@ -221,7 +219,6 @@ void draw()
       //button3.drawCloud();
       datesTime.printing();
       datesTime.draw();
-     // backBtn.moveBackButton();
       break;
     }
   }
