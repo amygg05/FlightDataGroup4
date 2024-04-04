@@ -5,7 +5,7 @@ class ImageButton{
   boolean isMoving=false;
   boolean backBtnMoves=false;
   boolean homeBtnPressed=false;
-  float speed = 40;
+  float speed = 10;
   SoundFile takeoff;
     
   ImageButton(float x,float y,PImage image,PImage imageHighlighted,float w, float h, SoundFile takeoff){
@@ -41,40 +41,10 @@ class ImageButton{
       }
    } 
 
-  // void moveBackButton(){
-  //   if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
-  //  {
-  ////    image(backButtonHighlighted,x,y,w,h);
-  //    if (mousePressed)
-  //    {
-  //      takeoff.play();
-  //      for (int i = 0; i < 10; i++) {
-  //        backBtnMoves = true;
-  //      }       
-  //    }
-  //  }
-  //  if(backBtnMoves)
-  //    {
-  //      x-=speed;
-  //      if(x+w<=0)
-  //      {
-  //        if(page2){
-  //          page1 = true;
-  //          page2 = false;
-  //        }
-  //        if(page3){
-  //          page3=false;
-  //          page2=true;
-  //        }
-  //        backBtnMoves=false;
-  //        x=600;y=30;
-  //      }    
-  // }
-  // }
    void homeButton(){
        if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
     {
-        image(image,x,y,w+10,h+10);
+        image(image,x-2,y-2,w+5,h+5);
     
       if (mousePressed)
       {
@@ -84,10 +54,10 @@ class ImageButton{
       }
    }
         if(homeBtnPressed){
-          w+=speed;h+=speed;x-=speed;
-          if(x<=-100){
+          x-=speed;
+          if(x<=0){
             homeBtnPressed=false;
-            x=570;w=90;h=70;
+            x=570;
             if(page2){
               page2=false;page1=true;
             }
