@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+boolean completedCount = false;
 boolean page1 = true;
 boolean page2, page3  = false;
 boolean piePressed = false;
@@ -24,10 +25,6 @@ float x1, x2, x3;
 String searchResult;
 String finalSearch;
 float page2X=0, page2Y=400;
-
-//BarChart1 airlineFlights;
-//BarChart2 datesTime;
-//FlightAirportChart airport;
 color[] colors; // Array to store colors for each slice
 
 MovingPlane movingPlane1, movingPlane2;
@@ -75,28 +72,7 @@ void setup()
   goBackButton = new SoundFile(this, "backButtonSound.mp3");
   PImage pieImage = loadImage("pieImage.png");
   PImage barImage = loadImage("barImage.png");
-  //PImage airline = loadImage("airline.png");
-  //PImage airlineselected = loadImage("airlineselected.png");
-  //PImage airportImage = loadImage("airport.png");
-  //PImage airportselected = loadImage("airportselected.png");
-  //PImage date = loadImage("date.png");
-  //PImage dateselected = loadImage("dateselected.png");
-
-  //Table csv = loadTable("flights_full.csv", "header"); // Table for chart
-
-  //dateArray = new ArrayList<String>();
-  //dayArray = new ArrayList<Integer>();
-  //monthArray = new ArrayList<Integer>();
-  //yearArray = new ArrayList<Integer>();
-
-  //airportArray = new ArrayList<String>();
-
-  //datesTime = new BarChart2(dayArray, monthArray, yearArray, dateArray, csv);
-  //airport = new FlightAirportChart(csv, airportArray);
-  //airlineFlights = new BarChart1(csv);
-  //airlineFlights.tableNew();
-  //datesTime.tableNew();
-
+  PImage lineImage = loadImage("lineImage.png");
 
 
   cartoonCloudImage = loadImage("cartooncloud.png");
@@ -104,7 +80,7 @@ void setup()
 
   pieButton = new Button(50, 300, 150, 150, pieImage, pieImage, selectionSound);
   barButton = new Button(300, 300, 150, 150, barImage, barImage, selectionSound);
-  //button3 = new Button(50, 590, 250, 250, date, dateselected, selectionSound);
+  lineButton = new Button(500, 300, 150, 150, lineImage, lineImage, selectionSound);
   movingPlane1 = new MovingPlane(passivePlane, -200, 170, 3, 300, 160);
   movingPlane2 = new MovingPlane(passivePlane2, 900, 470, 3, 300, 160);
 
@@ -115,7 +91,6 @@ void setup()
   data = loadTable("flights_full.csv", "header");
   readingData = new Read_Data(data);
   readingData.readData();
-
 
 
   searchIcon = loadImage("airline.png");
@@ -137,8 +112,6 @@ void setup()
 void draw()
 {
   if (page1) {
-    //pieButton.reset();
-    //barButton.reset();
     page2X=0;
     page2Y=400;
     background(backgroundImage);
@@ -170,6 +143,7 @@ void draw()
     dropdownButton.draw();
     if (chosenQuery != 0)
     {
+      print("switching page");
       page2 = false;
       page3 = true;
     }
@@ -190,6 +164,11 @@ void draw()
         barButton.justDraw();
         barButton.barButtonPressed(1);
       }
+      if(!barPressed && !piePressed)
+      {
+        lineButton.justDraw();
+        lineButton.lineButtonPressed(1);
+      }
       break;
     case 2:
       homeBtn.draw();
@@ -203,6 +182,11 @@ void draw()
       {
         barButton.justDraw();
         barButton.barButtonPressed(2);
+      }
+      if(!barPressed && !piePressed)
+      {
+        lineButton.justDraw();
+        lineButton.lineButtonPressed(2);
       }
       break;
     case 3:
@@ -218,10 +202,11 @@ void draw()
         barButton.justDraw();
         barButton.barButtonPressed(3);
       }
-      //else if(!barPressed && !piePressed)
-      //{
-        // draw line graph in here
-      //}
+      if(!barPressed && !piePressed)
+      {
+        lineButton.justDraw();
+        lineButton.lineButtonPressed(3);
+      }
       break;
     }
   }

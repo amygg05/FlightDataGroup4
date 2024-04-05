@@ -43,12 +43,12 @@ class searchButton {
           Object[] queryList = {"Late", "Depart By Week", "Cancelled/Diverted By Weeks"};
           String query = box.dropdown(queryList);
           System.out.println(query);    // return selection
-         // println("hiii");
           if (query != "") {
             int index = query.indexOf("(");    //get index of airline code
             String substr = query.substring(index + 1, index + 3);
             System.out.println(substr);
             savedInput2 = substr;
+            query = "";
           } // return airline code}
         }
       }
@@ -77,7 +77,9 @@ class searchButton {
 
   String getSavedInput()
   {
-    return savedInput;
+    String returnVal = savedInput;
+    savedInput = "";
+    return returnVal;
   }
 
   int getSavedQuery()
@@ -93,6 +95,7 @@ class searchButton {
     {
       queryNumber = 3;
     }
+    savedInput2 = "";
     return queryNumber;
   }
 }

@@ -142,6 +142,29 @@ class Button {
         barPressed = true;
       }
   }
+  
+  void lineButtonPressed(int choice)
+  {
+    if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
+    {
+      image(image2, x, y, w, h);
+      fill(colour);
+      if (mousePressed)
+      {
+        showChart = true;
+      }
+    }
+    if (showChart)
+      {
+        background(255);
+        homeBtn.draw();
+        homeBtn.homeButton();
+        firstChart = new GeneralChart(data, chosenAirline, choice, readingData);
+        firstChart.dataWant();
+        firstChart.drawLineGraph();
+        linePressed = true;
+      }
+  }
 
   void justDraw()
   {
@@ -153,6 +176,6 @@ class Button {
     showChart = false;
     piePressed = false;
     barPressed = false;
-    
+    linePressed = false;
   }
 }

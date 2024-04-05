@@ -78,6 +78,8 @@ class ImageButton {
       pieButton.reset();
       barButton.reset();
       chosenQuery = 0;
+      chosenAirline = "";
+      println("chosen query after home button: " + chosenQuery);
     }
   }
 }
