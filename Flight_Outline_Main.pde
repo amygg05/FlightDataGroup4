@@ -1,4 +1,4 @@
-import processing.sound.*;
+import processing.sound.*; //<>//
 import javax.swing.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -6,6 +6,9 @@ import java.util.Date;
 
 boolean page1 = true;
 boolean page2, page3  = false;
+boolean piePressed = false;
+boolean barPressed = false;
+boolean linePressed = false;
 float cloudX=400;
 float cloudX2=100;
 PImage plane, plane2, planeHighlighted, arrow, homeButtonImage, homeButtonHighlighted, cloudImage, backgroundImage;
@@ -29,7 +32,7 @@ color[] colors; // Array to store colors for each slice
 
 MovingPlane movingPlane1, movingPlane2;
 
-Button button1, button2, button3;
+Button pieButton, barButton, lineButton;
 ImageButton planeBtn1;
 ImageButton planeFliesPage2;
 ImageButton homeBtn;
@@ -70,14 +73,16 @@ void setup()
   backgroundImage = loadImage("USMAP.jpg");
   planeFlies = new SoundFile(this, "planeTakeOff.mp3");
   goBackButton = new SoundFile(this, "backButtonSound.mp3");
-  PImage airline = loadImage("airline.png");
-  PImage airlineselected = loadImage("airlineselected.png");
-  PImage airportImage = loadImage("airport.png");
-  PImage airportselected = loadImage("airportselected.png");
-  PImage date = loadImage("date.png");
-  PImage dateselected = loadImage("dateselected.png");
+  PImage pieImage = loadImage("pieImage.png");
+  PImage barImage = loadImage("barImage.png");
+  //PImage airline = loadImage("airline.png");
+  //PImage airlineselected = loadImage("airlineselected.png");
+  //PImage airportImage = loadImage("airport.png");
+  //PImage airportselected = loadImage("airportselected.png");
+  //PImage date = loadImage("date.png");
+  //PImage dateselected = loadImage("dateselected.png");
 
-  Table csv = loadTable("flights_full.csv", "header"); // Table for chart
+  //Table csv = loadTable("flights_full.csv", "header"); // Table for chart
 
   //dateArray = new ArrayList<String>();
   //dayArray = new ArrayList<Integer>();
@@ -91,15 +96,15 @@ void setup()
   //airlineFlights = new BarChart1(csv);
   //airlineFlights.tableNew();
   //datesTime.tableNew();
-  
-  
+
+
 
   cartoonCloudImage = loadImage("cartooncloud.png");
   cartoonCloudImageSelected = loadImage("cartooncloudselected.png");
 
-  button1 = new Button(50, -10, 250, 250, airline, airlineselected, selectionSound);
-  button2 = new Button(50, 290, 250, 250, airportImage, airportselected, selectionSound);
-  button3 = new Button(50, 590, 250, 250, date, dateselected, selectionSound);
+  pieButton = new Button(50, 300, 150, 150, pieImage, pieImage, selectionSound);
+  barButton = new Button(300, 300, 150, 150, barImage, barImage, selectionSound);
+  //button3 = new Button(50, 590, 250, 250, date, dateselected, selectionSound);
   movingPlane1 = new MovingPlane(passivePlane, -200, 170, 3, 300, 160);
   movingPlane2 = new MovingPlane(passivePlane2, 900, 470, 3, 300, 160);
 
@@ -108,14 +113,10 @@ void setup()
 
   // Read in file
   data = loadTable("flights_full.csv", "header");
-  Read_Data readingData = new Read_Data(data);
+  readingData = new Read_Data(data);
   readingData.readData();
-  println(readingData.arrivalLateness(37)); // this tests arrivalLateness --> 37 is just a random row index to test
-  readingData.getDate(1);
-  int[] test = readingData.getDate(1);
-  println(test[1]);
 
-  //airport.loadAirport();
+
 
   searchIcon = loadImage("airline.png");
   searchBox = new dialogBox("Enter an airline: ");
@@ -124,8 +125,6 @@ void setup()
   Object[] airlines = {"Alaska Airlines (AS)", "American Airlines (AA)", "Delta Airlines (DL) ", "Frontier Airlines (F9)"
     , "Hawaiian Airlines (HA)", "JetBlue Airways (B6)", "Southwest Airlines (WN)", "Spirit Airlines (NK)",
     "United Airlines (UA)", "USAirways (US)", "Allegiant Air LLC (G4)"};
- // queries = {"Late by Week", "Depart by Week", "Cancelled/Diverted by Week"};
- // String[] airports = {"JFK", "LAX", "FLL", "DCA"};
   dropdownMenu = new dialogBox(airlines);
   dropdownButton = new searchButton(0, 50, 50, 50, hamburgerMenu, dropdownMenu);
   dropDownMenuAfterSearch = new dialogBox(queries);
@@ -138,6 +137,8 @@ void setup()
 void draw()
 {
   if (page1) {
+    //pieButton.reset();
+    //barButton.reset();
     page2X=0;
     page2Y=400;
     background(backgroundImage);
@@ -153,16 +154,8 @@ void draw()
     image(cloudImage, cloudX2, 100, 300, 200);
     cloudX++;
     cloudX2--;
-    //searchButton.draw();
     dropdownButton.draw();
     searchResult = searchButton.getSavedInput();
-
-    //if (searchResult == "JFK" || searchResult == "LAX" || searchResult == "FLL" || searchResult == "DCA")
-    //{
-    //  finalSearch = searchResult;
-    //}
-
-    println(finalSearch);
   } else if (page2) {
     //cloudX=400;cloudX2=100;
     background(backgroundImage);
@@ -170,89 +163,65 @@ void draw()
     page2X+=6;
     page2Y-=7;
     homeBtn.draw();
-    ////backBtn.moveBackButton();
     homeBtn.homeButton();
     searchButton.draw();
-   // searchButton.dropdown(queries);
     chosenQuery = searchButton.getSavedQuery();
-    print(chosenQuery);
     chosenAirline = searchButton.getSavedInput();
-    
     dropdownButton.draw();
-    chosenQuery =1;
-    
-    if(chosenQuery != 0)
+    if (chosenQuery != 0)
     {
       page2 = false;
       page3 = true;
     }
-    //button1.draw();
-    //button2.draw();
-    //button3.draw();
-
-    //x1 = button1.getX();
-    //x2 = button2.getX();
-    //x3 = button3.getX();
-
-    //if(x1>50)
-    //{
-    //  movedCloud = 1;
-    //}
-    //else if(x2>50)
-    //{
-    //  movedCloud = 2;
-    //}
-    //else if(x3>50)
-    //{
-    //  movedCloud = 3;
-    //}
-    //movingPlane1.update();
-    //movingPlane1.display();
-    //movingPlane2.updateNegative();
-    //movingPlane2.display();
-    
   } else if (page3) {
     background(255);
     switch(chosenQuery)
     {
     case 1: // chosen query == "Late"
-      
       homeBtn.draw();
       homeBtn.homeButton();
-      
-      Read_Data readForChart = new Read_Data(data);
-      firstChart = new GeneralChart(data, "AS", 1, readForChart); //<>//
-      firstChart.dataWant();
-      firstChart.draw();
-      
-      
-      
-      
-      
-      //searchButton.draw();
-      //button1.drawCloud();
-      //airlineFlights.printing();
-      //airlineFlights.draw();
-      //airlineFlights.drawPieChart();
-      
-      
+      if (!barPressed && !linePressed)
+      {
+        pieButton.justDraw();
+        pieButton.pieButtonPressed(1);
+      }
+      if (!piePressed && !linePressed)
+      {
+        barButton.justDraw();
+        barButton.barButtonPressed(1);
+      }
       break;
     case 2:
       homeBtn.draw();
       homeBtn.homeButton();
-      searchButton.draw();
-      //button2.drawCloud();
-     // airport.printing();
-      //airport.draw();
-      //airport.drawPieChart();
+      if (!barPressed && !linePressed)
+      {
+        pieButton.justDraw();
+        pieButton.pieButtonPressed(2);
+      }
+      if (!piePressed && !linePressed)
+      {
+        barButton.justDraw();
+        barButton.barButtonPressed(2);
+      }
       break;
     case 3:
       homeBtn.draw();
       homeBtn.homeButton();
-      searchButton.draw();
-      //button3.drawCloud();
-      //datesTime.printing();
-      //datesTime.draw();
+      if (!barPressed && !linePressed)
+      {
+        pieButton.justDraw();
+        pieButton.pieButtonPressed(3);
+      }
+      if (!piePressed && !linePressed)
+      {
+        barButton.justDraw();
+        barButton.barButtonPressed(3);
+      }
+      //else if(!barPressed && !piePressed)
+      //{
+        // draw line graph in here
+      //}
       break;
     }
   }

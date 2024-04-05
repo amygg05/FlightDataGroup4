@@ -43,6 +43,7 @@ class searchButton {
           Object[] queryList = {"Late", "Depart By Week", "Cancelled/Diverted By Weeks"};
           String query = box.dropdown(queryList);
           System.out.println(query);    // return selection
+         // println("hiii");
           if (query != "") {
             int index = query.indexOf("(");    //get index of airline code
             String substr = query.substring(index + 1, index + 3);
@@ -61,16 +62,9 @@ class searchButton {
     if (airline != null) {
       Object[] queryList = {"Late", "Depart By Week", "Cancelled/Diverted By Weeks"};
       String query = box.dropdown(queryList);
-      println(query);
-      if (!query.isEmpty())
+      if(query != "")
       {
-        int index = query.indexOf("(");
-        if (index != -1)
-        {
-          String substr = query.substring(index+1, index+ 3);
-          println(substr);
-          savedInput2 = substr;
-        }
+        savedInput2 = query;
       }
     }
   }
@@ -88,6 +82,7 @@ class searchButton {
 
   int getSavedQuery()
   {
+    //println(savedInput2);
     if(savedInput2 == "Late")
     {
       queryNumber = 1; // lateness is query 1

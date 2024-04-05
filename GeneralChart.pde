@@ -32,24 +32,15 @@ class GeneralChart {
       //rowIndex++;
       date = dataR.getDate(rowIndex);
       day = date[1];
-      println("day: " + day + " ." );
-      //print(choice);
       String comp = data.getString(rowIndex, 1);
-      //println(airline);
-      //println(comp);
 
       if (airline.equals(comp)) {
-        print(choice);
         switch (choice) {    //Each case is for a different button --> date/ lateness/ cancellations
 
         case 1: // Lateness -- Eva
           int lateness = dataR.arrivalLateness(rowIndex);
           title = "No. Late Flights/Week";
           xAxisLabel = "Week";
-          //println(day);
-          //print(lateness);
-
-
           if (lateness > 0)
           {
             if (day > 21)

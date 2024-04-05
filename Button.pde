@@ -7,10 +7,11 @@ class Button {
   int colour;
   boolean isMoving = false;
   boolean isSelected = false;
+  boolean showChart = false;
   float   movementSpeed = 4;
   SoundFile selected;
 
-  Button(float xpos, float ypos, float wid, float hig, PImage img, PImage img2, SoundFile selection) 
+  Button(float xpos, float ypos, float wid, float hig, PImage img, PImage img2, SoundFile selection)
   {
     x = xpos;
     y = ypos;
@@ -19,9 +20,8 @@ class Button {
     image = img;
     image2 = img2;
     selected = selection;
-    
   }
-  
+
   void draw()
   {
     fill(colour);
@@ -53,47 +53,106 @@ class Button {
           }
           println();  // Move to next line after each row
         }
-        
+
         selected.play();
       }
     }
 
-    if(isMoving)
+    if (isMoving)
+    {
+      x += movementSpeed;
+      if (x>= 800)
       {
-        x += movementSpeed;
-        if(x>= 800)
-        {
-          isMoving = false;
-          page2=false;
-          page3=true;
-          x=50;
-        }
-      } 
+        isMoving = false;
+        page2=false;
+        page3=true;
+        x=50;
+      }
+    }
   }
-  
-   int xPage3 = -90;
-   int yPage3 = 0;
-   boolean isMovingPage3 = false;
-  
+
+  int xPage3 = -90;
+  int yPage3 = 0;
+  boolean isMovingPage3 = false;
+
   void drawCloud()
   {
     image(cartoonCloudImage, xPage3, yPage3, 250, 250);
-    if(xPage3<=3)
+    if (xPage3<=3)
     {
       isMovingPage3 = true;
     }
-    if(isMovingPage3 == true)
+    if (isMovingPage3 == true)
     {
       xPage3+=movementSpeed;
     }
-    if(xPage3>= 3)
+    if (xPage3>= 3)
     {
       isMovingPage3 = false;
     }
   }
-  
+
   float getX()
   {
     return this.x;
+  }
+
+  void pieButtonPressed(int choice)
+  {
+    if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
+    {
+      image(image2, x, y, w, h);
+      fill(colour);
+      if (mousePressed)
+      {
+        showChart = true;
+      }
+    }
+    if (showChart)
+      {
+        background(255);
+        homeBtn.draw();
+        homeBtn.homeButton();
+        firstChart = new GeneralChart(data, chosenAirline, choice, readingData);
+        firstChart.dataWant();
+        firstChart.pieDraw();
+        piePressed = true;
+      }
+  }
+  
+  void barButtonPressed(int choice)
+  {
+    if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
+    {
+      image(image2, x, y, w, h);
+      fill(colour);
+      if (mousePressed)
+      {
+        showChart = true;
+      }
+    }
+    if (showChart)
+      {
+        background(255);
+        homeBtn.draw();
+        homeBtn.homeButton();
+        firstChart = new GeneralChart(data, chosenAirline, choice, readingData);
+        firstChart.dataWant();
+        firstChart.draw();
+        barPressed = true;
+      }
+  }
+
+  void justDraw()
+  {
+    image(image, x, y, w, h);
+  }
+  
+  void reset()
+  {
+    showChart = false;
+    piePressed = false;
+    barPressed = false;
+    
   }
 }
