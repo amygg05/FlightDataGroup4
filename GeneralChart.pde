@@ -7,8 +7,6 @@ String xAxisLabel;
 String title;
 
 
-
-
 class GeneralChart {
   String column;
   String query;
@@ -174,71 +172,85 @@ class GeneralChart {
       textSize(15);
       fill(#E82A2A);
       rect(x, y, barWidth - 10, barHeight -30);
-      fill(#A51111);
+      //fill(#A51111);
+      fill(#000000);
       textAlign(CENTER, BOTTOM);
-      text(generalCount[i], x+ barWidth /2, height -28);
+      text(generalCount[i], x+ barWidth /2, y + 20);
+      text((i+1), x+ barWidth /2, height-12);
       textAlign(CENTER, TOP);
       //text( xAxisLabel, x+ barWidth /2, height -28);
     }
     textSize(20);
     textAlign(CENTER, BOTTOM);
-    text("change titles", 100, height -5);//=============chsnge title
+    text("Weeks in January", 100, height -5);//=============chsnge title
     textAlign(RIGHT, BOTTOM);
     translate(30, height /2);
     rotate(-HALF_PI);
-    text("change title", 0, 0); //=======change title
+    text(getQueryString(this.choice), 0, 0); //=======change title
   }
 
-
-
-
+  //this method draws a lineGraph that is able adapt to whichever query selected - Amy
   void drawLineGraph() {
+    //axes
     line(60, 770, 60, 45);
     line(60, 770, 770, 770);
 
+    //variables
     float barWidth = width / (generalCount.length + 1);
     float cubeWidth = 10;
     float cubeHeight = 10;
     float maxDataValue = (max(generalCount)-1);
 
     //horizontal lines
-    double increments = maxDataValue/5;
-    double lineIncrements = maxDataValue/5*7;
-    for (int countLine = 0; countLine<5; countLine++) {
+    double increments = maxDataValue/7;
+    for (int countLine = 0; countLine<8; countLine++) {
+      line(60, 770-(725/7)*countLine, 770, 770-(725/7)*countLine);
       textAlign(LEFT);
-      text((char)increments, 30, (float)lineIncrements+countLine + 45);
-      line((float)60, (float)lineIncrements*countLine + 45, 770, (float)lineIncrements*countLine + 45);
+      text((int)increments*countLine, 30, 770-(725/7)*countLine);
     }
 
+    //production of graph
     PVector previousPoint = null;
     for (int i = 0; i<generalCount.length; i++) {
       float x = (i+1) * barWidth;
       float y = map(generalCount[i], 0, maxDataValue, height, 50);
 
+      //data points
       textSize(15);
       fill(#E82A2A);
       rect(x+ 85, y, cubeWidth, cubeHeight);
       fill(#A51111);
       textAlign(CENTER, BOTTOM);
-      //check to make sure this is okay
-      text(generalCount[i], x+85, y+25);
+      //do we want actual data value there?
+      //text(generalCount[i], x+85, y+25);
       textAlign(CENTER, TOP);
-      //THIS HAS TO CHANGE FOR GENERALIZATION
-      text("whatever we are measuring (change)", x + barWidth /2, height -28);
+      text((i+1), x + barWidth /2, height -23);
 
+      //connecting the dots
       if (previousPoint!=null) {
         line(previousPoint.x+90, previousPoint.y + 5, x+90, y+5);
       }
       //update previous point for next iteration
       previousPoint = new PVector(x, y);
     }
+    //text for axes headers
     textSize(20);
     textAlign(CENTER, BOTTOM);
-    //TEXT NEEDS GENERALIZATION
-    text("query(change)", 100, height -5);
+    text("Weeks in January", 100, height -5);
     textAlign(RIGHT, BOTTOM);
     translate(30, height/2);
-    //TEXT NEEDS GENERALIZATION
-    text("y value(change)", 0, 0);
+    rotate(-HALF_PI);
+    text(getQueryString(this.choice), 0, 0);
+  }
+  
+  String getQueryString(int choice){
+    if(choice == 1){
+      return "Lateness (Mins)";
+    } else if (choice == 2){
+      return "Departures";
+    } else if (choice == 3){
+      return "Cancellations or Diversions";
+    }
+    return "";
   }
 }
