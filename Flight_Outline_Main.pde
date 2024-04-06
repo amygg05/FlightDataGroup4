@@ -1,14 +1,19 @@
-import processing.sound.*;
+import processing.sound.*; //<>//
 import javax.swing.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+boolean completedCount = false;
 boolean page1 = true;
 boolean page2, page3  = false;
-float cloudX=400;float cloudX2=100;
-PImage plane,plane2,planeHighlighted,arrow,homeButtonImage,homeButtonHighlighted,cloudImage, backgroundImage;
-float x = 400,y = 400,wPlane=230,hPlane=230; 
+boolean piePressed = false;
+boolean barPressed = false;
+boolean linePressed = false;
+float cloudX=400;
+float cloudX2=100;
+PImage plane, plane2, planeHighlighted, arrow, homeButtonImage, homeButtonHighlighted, cloudImage, backgroundImage;
+float x = 400, y = 400, wPlane=230, hPlane=230;
 float w = 300;
 float h = 300;
 int movedCloud = 0;
@@ -16,19 +21,15 @@ int SCREENX, SCREENY = 800;
 SoundFile selectionSound;
 SoundFile planeFlies;
 SoundFile goBackButton;
-float x1,x2,x3;
+float x1, x2, x3;
 String searchResult;
 String finalSearch;
-float page2X=0,page2Y=400;
-
-BarChart1 airlineFlights;
-BarChart2 datesTime;
-FlightAirportChart airport;
+float page2X=0, page2Y=400;
 color[] colors; // Array to store colors for each slice
 
 MovingPlane movingPlane1, movingPlane2;
 
-Button button1, button2, button3;
+Button pieButton, barButton, lineButton;
 ImageButton planeBtn1;
 ImageButton planeFliesPage2;
 ImageButton homeBtn;
@@ -42,7 +43,10 @@ PImage searchIcon;
 dialogBox dropdownMenu;
 searchButton dropdownButton;
 dialogBox dropDownMenuAfterSearch;
-PImage hamburgerMenu;
+int chosenQuery = 1;
+String chosenAirline;
+GeneralChart firstChart;
+Object[] queries = {"Late by Week", "Depart by Week", "Cancelled/Diverted by Week"};
 
 
 void setup()
@@ -50,8 +54,8 @@ void setup()
   background(255);
   stroke(10);
   noFill();
-  size(800,800); 
-  
+  size(800, 800);
+
   selectionSound = new SoundFile(this, "cloudselection.mp3");
   arrow = loadImage("arrow.png");
   plane = loadImage("bluePlane.png");
@@ -65,164 +69,140 @@ void setup()
   backgroundImage = loadImage("USMAP.jpg");
   planeFlies = new SoundFile(this, "planeTakeOff.mp3");
   goBackButton = new SoundFile(this, "backButtonSound.mp3");
-  PImage airline = loadImage("airline.png");
-  PImage airlineselected = loadImage("airlineselected.png");
-  PImage airportImage = loadImage("airport.png");
-  PImage airportselected = loadImage("airportselected.png");
-  PImage date = loadImage("date.png");
-  PImage dateselected = loadImage("dateselected.png");
+  PImage pieImage = loadImage("pieImage.png");
+  PImage barImage = loadImage("barImage.png");
+  PImage lineImage = loadImage("lineImage.png");
 
-  Table csv = loadTable("flights2k.csv", "header"); // Table for chart
- 
-  dateArray = new ArrayList<String>();
-  dayArray = new ArrayList<Integer>();
-  monthArray = new ArrayList<Integer>();
-  yearArray = new ArrayList<Integer>();
-  
-  airportArray = new ArrayList<String>();
-  
-  datesTime = new BarChart2(dayArray, monthArray, yearArray, dateArray, csv);
-  airport = new FlightAirportChart(csv, airportArray);
-  airlineFlights = new BarChart1(csv);
-  airlineFlights.tableNew();
-  datesTime.tableNew();
 
   cartoonCloudImage = loadImage("cartooncloud.png");
   cartoonCloudImageSelected = loadImage("cartooncloudselected.png");
 
-  button1 = new Button(50, -10, 250, 250, airline, airlineselected, selectionSound);
-  button2 = new Button(50, 290, 250, 250, airportImage, airportselected, selectionSound);
-  button3 = new Button(50, 590, 250, 250, date, dateselected, selectionSound);
+  pieButton = new Button(50, 300, 150, 150, pieImage, pieImage, selectionSound);
+  barButton = new Button(325, 300, 150, 150, barImage, barImage, selectionSound);
+  lineButton = new Button(600, 300, 150, 150, lineImage, lineImage, selectionSound);
   movingPlane1 = new MovingPlane(passivePlane, -200, 170, 3, 300, 160);
   movingPlane2 = new MovingPlane(passivePlane2, 900, 470, 3, 300, 160);
 
-  planeBtn1 = new ImageButton(x,y,plane,planeHighlighted,w,h, planeFlies);
-  homeBtn = new ImageButton(570,30,homeButtonImage,homeButtonHighlighted,90,70, goBackButton);
-  
-  // Read in file 
-  data = loadTable("flights2k.csv", "header");
-  Read_Data readingData = new Read_Data(data);
+  planeBtn1 = new ImageButton(x, y, plane, planeHighlighted, w, h, planeFlies);
+  homeBtn = new ImageButton(700, 20, homeButtonImage, homeButtonHighlighted, 90, 70, goBackButton);
+
+  // Read in file
+  data = loadTable("flights_full.csv", "header");
+  readingData = new Read_Data(data);
   readingData.readData();
-  println(readingData.arrivalLateness(37)); // this tests arrivalLateness --> 37 is just a random row index to test
-  readingData.getDate(1);
-  int[] test = readingData.getDate(1);
-  println(test[1]);
-  
-  airport.loadAirport();
-  
-  searchIcon = loadImage("search.png");
-  searchBox = new dialogBox("Enter an airport: ");
-  searchButton = new searchButton(750, 0, 50, 50, searchIcon, searchBox);
-  hamburgerMenu = loadImage("hamburgerMenu.png");
-  Object[] airlines = {"Alaska Airlines (AS)","American Airlines (AA)","Delta Airlines (DL) ","Frontier Airlines (F9)"
-                      ,"Hawaiian Airlines (HA)","JetBlue Airways (B6)","Southwest Airlines (WN)","Spirit Airlines (NK)",
-                        "United Airlines (UA)","USAirways (US)", "Allegiant Air LLC (G4)"};
-  Object[] queries = {"Late", "Depart By Week", "Cancelled/Diverted By Weeks"};
-  String[] airports = {"JFK", "LAX", "FLL", "DCA"};
+
+
+  searchIcon = loadImage("airline.png");
+  searchBox = new dialogBox("Enter an airline: ");
+  searchButton = new searchButton(300, 300, 200, 200, searchIcon, searchBox);
+  Object[] airlines = {"Alaska Airlines (AS)", "American Airlines (AA)", "Delta Airlines (DL) ", "Frontier Airlines (F9)"
+    , "Hawaiian Airlines (HA)", "JetBlue Airways (B6)", "Southwest Airlines (WN)", "Spirit Airlines (NK)",
+    "United Airlines (UA)", "USAirways (US)", "Allegiant Air LLC (G4)"};
   dropdownMenu = new dialogBox(airlines);
-  dropdownButton = new searchButton(0, 50, 50, 50, hamburgerMenu, dropdownMenu);
   dropDownMenuAfterSearch = new dialogBox(queries);
 
-  
-  colors = new color[]{color(#CB6363), 
-color(#BD63CB), color(#639DCB), color(#CB9563), 
-color(#8C53C9)};
 
+  colors = new color[]{color(#CB6363),
+    color(#BD63CB), color(#639DCB), color(#CB9563),
+    color(#8C53C9)};
 }
 void draw()
 {
-  if(page1){
-    page2X=0;page2Y=400;
+  if (page1) {
+    page2X=0;
+    page2Y=400;
     background(backgroundImage);
-    PFont stdFont = loadFont("Arial-Black-60.vlw");textFont(stdFont);
-    planeBtn1.draw();    
+    PFont stdFont = loadFont("Arial-Black-60.vlw");
+    textFont(stdFont);
+    planeBtn1.draw();
     planeBtn1.movePage1();
-    fill(128,126,250);
+    fill(128, 126, 250);
     textAlign(CENTER);
-    text("Click Here \n For Flight Data",400,150);
-    image(arrow,x-400,y,wPlane,hPlane);
-    image(cloudImage,cloudX,100,300,200);
-    image(cloudImage,cloudX2,100,300,200);
-    cloudX++;cloudX2--;
-    searchButton.draw();
-    dropdownButton.draw();
+    text("Click Here \n For Flight Data", 400, 150);
+    image(arrow, x-400, y, wPlane, hPlane);
+    image(cloudImage, cloudX, 100, 300, 200);
+    image(cloudImage, cloudX2, 100, 300, 200);
+    cloudX++;
+    cloudX2--;
     searchResult = searchButton.getSavedInput();
-    
-    if(searchResult == "JFK" || searchResult == "LAX" || searchResult == "FLL" || searchResult == "DCA")
-    {
-        finalSearch = searchResult;   
-    }
-    
-    println(finalSearch);
-  }
-  
-  else if (page2){
-    cloudX=400;cloudX2=100;
+  } else if (page2) {
+    //cloudX=400;cloudX2=100;
     background(backgroundImage);
-    image(plane,page2X,page2Y,w,h);
-    page2X+=6;page2Y-=7;
+    image(plane, page2X, page2Y, w, h);
+    page2X+=6;
+    page2Y-=7;
     homeBtn.draw();
-    //backBtn.moveBackButton();
     homeBtn.homeButton();
     searchButton.draw();
-    dropdownButton.draw();
-    button1.draw();
-    button2.draw();
-    button3.draw();
-    
-    x1 = button1.getX();
-    x2 = button2.getX();
-    x3 = button3.getX();
-
-    if(x1>50)
+    chosenQuery = searchButton.getSavedQuery();
+    chosenAirline = searchButton.getSavedInput();
+    if (chosenQuery != 0)
     {
-      movedCloud = 1;
+      println("chosenQuery: " + chosenQuery);
+      page2 = false;
+      page3 = true;
     }
-    else if(x2>50)
-    {
-      movedCloud = 2;
-    }
-    else if(x3>50)
-    {
-      movedCloud = 3;
-    }    
-    movingPlane1.update();
-    movingPlane1.display();   
-    movingPlane2.updateNegative();
-    movingPlane2.display();
-  }
-  else if (page3){
+  } else if (page3) {
     background(255);
-    switch(movedCloud)
+    switch(chosenQuery)
     {
-      case 1:
+    case 1: // chosen query == "Late"
       homeBtn.draw();
       homeBtn.homeButton();
-      searchButton.draw();
-      //button1.drawCloud();
-      airlineFlights.printing();
-      airlineFlights.draw();
-      //airlineFlights.drawPieChart();
+      if (!barPressed && !linePressed)
+      {
+        pieButton.justDraw();
+        pieButton.pieButtonPressed(1);
+      }
+      if (!piePressed && !linePressed)
+      {
+        barButton.justDraw();
+        barButton.barButtonPressed(1);
+      }
+      if(!barPressed && !piePressed)
+      {
+        lineButton.justDraw();
+        lineButton.lineButtonPressed(1);
+      }
       break;
-      case 2:
+    case 2:
       homeBtn.draw();
       homeBtn.homeButton();
-      searchButton.draw();
-      //button2.drawCloud();
-      airport.printing();
-      //airport.draw();
-      airport.drawPieChart();
+      if (!barPressed && !linePressed)
+      {
+        pieButton.justDraw();
+        pieButton.pieButtonPressed(2);
+      }
+      if (!piePressed && !linePressed)
+      {
+        barButton.justDraw();
+        barButton.barButtonPressed(2);
+      }
+      if(!barPressed && !piePressed)
+      {
+        lineButton.justDraw();
+        lineButton.lineButtonPressed(2);
+      }
       break;
-      case 3:
+    case 3:
       homeBtn.draw();
       homeBtn.homeButton();
-      searchButton.draw();
-      //button3.drawCloud();
-      datesTime.printing();
-      datesTime.draw();
+      if (!barPressed && !linePressed)
+      {
+        pieButton.justDraw();
+        pieButton.pieButtonPressed(3);
+      }
+      if (!piePressed && !linePressed)
+      {
+        barButton.justDraw();
+        barButton.barButtonPressed(3);
+      }
+      if(!barPressed && !piePressed)
+      {
+        lineButton.justDraw();
+        lineButton.lineButtonPressed(3);
+      }
       break;
-
-    } 
-
+    }
   }
-} 
+}
