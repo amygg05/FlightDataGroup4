@@ -101,7 +101,7 @@ class Button {
   {
     if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
     {
-      image(image2, x, y, w, h);
+      image(image2, x-2, y-2, w+5, h+5);
       fill(colour);
       if (mousePressed)
       {
@@ -124,7 +124,7 @@ class Button {
   {
     if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
     {
-      image(image2, x, y, w, h);
+      image(image2, x-2, y-2, w+5, h+5);
       fill(colour);
       if (mousePressed)
       {
@@ -147,7 +147,7 @@ class Button {
   {
     if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
     {
-      image(image2, x, y, w, h);
+      image(image2, x-2, y-2, w+5, h+5);
       fill(colour);
       if (mousePressed)
       {

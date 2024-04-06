@@ -126,7 +126,7 @@ void draw()
     cloudX2--;
     searchResult = searchButton.getSavedInput();
   } else if (page2) {
-    //cloudX=400;cloudX2=100;
+    cloudX=400;cloudX2=100;
     background(backgroundImage);
     image(plane, page2X, page2Y, w, h);
     page2X+=6;
