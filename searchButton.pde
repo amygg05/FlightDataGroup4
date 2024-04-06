@@ -30,7 +30,7 @@ class searchButton {
             airline = box.popup();
             if (!isValidAirline(airline))
             {
-              JOptionPane.showMessageDialog(null, "Invalid airport. Please try again.");
+              JOptionPane.showMessageDialog(null, "Invalid airline. Please try again.");
             }
           } while (!isValidAirline(airline));
           System.out.println(airline);
@@ -49,6 +49,7 @@ class searchButton {
             System.out.println(substr);
             savedInput2 = substr;
             query = "";
+            substr = "";
           } // return airline code}
         }
       }
@@ -84,7 +85,6 @@ class searchButton {
 
   int getSavedQuery()
   {
-    //println(savedInput2);
     if(savedInput2 == "Late")
     {
       queryNumber = 1; // lateness is query 1
@@ -94,6 +94,9 @@ class searchButton {
     } else if(savedInput2 == "Cancelled/Diverted By Weeks")
     {
       queryNumber = 3;
+    } else if(savedInput2 == "")
+    {
+      queryNumber = 0;
     }
     savedInput2 = "";
     return queryNumber;

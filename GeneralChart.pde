@@ -3,13 +3,15 @@ int choice;
 int day;
 int rowIndex;
 int[] date;
+String xAxisLabel;
+String title;
+
+
 
 
 class GeneralChart {
   String column;
   String query;
-  String title;
-  String xAxisLabel;
   String airline;
   int choice;
   Read_Data dataR;
@@ -88,7 +90,6 @@ class GeneralChart {
             title= "Diversions/Cancellations";
             xAxisLabel = "Week";
             column = "CANCELLED";
-
             int cancelled = data.getInt(rowIndex, column);
             if (cancelled == 1) {
               if (day >0 && day < 8) {

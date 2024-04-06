@@ -43,7 +43,6 @@ PImage searchIcon;
 dialogBox dropdownMenu;
 searchButton dropdownButton;
 dialogBox dropDownMenuAfterSearch;
-PImage hamburgerMenu;
 int chosenQuery = 1;
 String chosenAirline;
 GeneralChart firstChart;
@@ -79,13 +78,13 @@ void setup()
   cartoonCloudImageSelected = loadImage("cartooncloudselected.png");
 
   pieButton = new Button(50, 300, 150, 150, pieImage, pieImage, selectionSound);
-  barButton = new Button(300, 300, 150, 150, barImage, barImage, selectionSound);
-  lineButton = new Button(500, 300, 150, 150, lineImage, lineImage, selectionSound);
+  barButton = new Button(325, 300, 150, 150, barImage, barImage, selectionSound);
+  lineButton = new Button(600, 300, 150, 150, lineImage, lineImage, selectionSound);
   movingPlane1 = new MovingPlane(passivePlane, -200, 170, 3, 300, 160);
   movingPlane2 = new MovingPlane(passivePlane2, 900, 470, 3, 300, 160);
 
   planeBtn1 = new ImageButton(x, y, plane, planeHighlighted, w, h, planeFlies);
-  homeBtn = new ImageButton(570, 30, homeButtonImage, homeButtonHighlighted, 90, 70, goBackButton);
+  homeBtn = new ImageButton(700, 20, homeButtonImage, homeButtonHighlighted, 90, 70, goBackButton);
 
   // Read in file
   data = loadTable("flights_full.csv", "header");
@@ -96,12 +95,10 @@ void setup()
   searchIcon = loadImage("airline.png");
   searchBox = new dialogBox("Enter an airline: ");
   searchButton = new searchButton(300, 300, 200, 200, searchIcon, searchBox);
-  hamburgerMenu = loadImage("hamburgerMenu.png");
   Object[] airlines = {"Alaska Airlines (AS)", "American Airlines (AA)", "Delta Airlines (DL) ", "Frontier Airlines (F9)"
     , "Hawaiian Airlines (HA)", "JetBlue Airways (B6)", "Southwest Airlines (WN)", "Spirit Airlines (NK)",
     "United Airlines (UA)", "USAirways (US)", "Allegiant Air LLC (G4)"};
   dropdownMenu = new dialogBox(airlines);
-  dropdownButton = new searchButton(0, 50, 50, 50, hamburgerMenu, dropdownMenu);
   dropDownMenuAfterSearch = new dialogBox(queries);
 
 
@@ -127,7 +124,6 @@ void draw()
     image(cloudImage, cloudX2, 100, 300, 200);
     cloudX++;
     cloudX2--;
-    dropdownButton.draw();
     searchResult = searchButton.getSavedInput();
   } else if (page2) {
     //cloudX=400;cloudX2=100;
@@ -140,10 +136,9 @@ void draw()
     searchButton.draw();
     chosenQuery = searchButton.getSavedQuery();
     chosenAirline = searchButton.getSavedInput();
-    dropdownButton.draw();
     if (chosenQuery != 0)
     {
-      print("switching page");
+      println("chosenQuery: " + chosenQuery);
       page2 = false;
       page3 = true;
     }
