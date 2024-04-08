@@ -224,7 +224,7 @@ class GeneralChart {
       //do we want actual data value there?
       //text(generalCount[i], x+85, y+25);
       textAlign(CENTER, TOP);
-      text((i+1), x + barWidth /2, height -23);
+      text("Week " + (i+1), x + barWidth /2, height -23);
 
       //connecting the dots
       if (previousPoint!=null) {
