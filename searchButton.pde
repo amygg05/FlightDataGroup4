@@ -9,21 +9,24 @@ class searchButton {
   String savedInput;
   String savedInput2;
   int queryNumber;
+  SoundFile selected;
 
 
-  searchButton(int x, int y, int w, int h, PImage image, dialogBox box) {
+  searchButton(int x, int y, int w, int h, PImage image, dialogBox box, SoundFile selected) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
     this.image = image;
     this.box = box;
+    this.selected = selected;
   }
 
   void draw() {
     if (mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y+h) {
       image(image, x - 12, y - 12, w + 25, h + 25);
       if (mousePressed) {
+        selected.play();
         if (mouseX > 0) {  // if it's the search button
           String airline;
           do {

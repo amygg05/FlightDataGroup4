@@ -80,8 +80,8 @@ void setup()
   pieButton = new Button(50, 300, 150, 150, pieImage, pieImage, selectionSound);
   barButton = new Button(325, 300, 150, 150, barImage, barImage, selectionSound);
   lineButton = new Button(600, 300, 150, 150, lineImage, lineImage, selectionSound);
-  movingPlane1 = new MovingPlane(passivePlane, -200, 170, 3, 300, 160);
-  movingPlane2 = new MovingPlane(passivePlane2, 900, 470, 3, 300, 160);
+  movingPlane1 = new MovingPlane(passivePlane, -200, 100, 3, 300, 160);
+  movingPlane2 = new MovingPlane(passivePlane2, 900, 500, 3, 300, 160);
 
   planeBtn1 = new ImageButton(x, y, plane, planeHighlighted, w, h, planeFlies);
   homeBtn = new ImageButton(700, 20, homeButtonImage, homeButtonHighlighted, 90, 70, goBackButton);
@@ -94,7 +94,7 @@ void setup()
 
   searchIcon = loadImage("airline.png");
   searchBox = new dialogBox("Enter an airline: ");
-  searchButton = new searchButton(300, 300, 200, 200, searchIcon, searchBox);
+  searchButton = new searchButton(300, 300, 200, 200, searchIcon, searchBox, selectionSound);
   Object[] airlines = {"Alaska Airlines (AS)", "American Airlines (AA)", "Delta Airlines (DL) ", "Frontier Airlines (F9)"
     , "Hawaiian Airlines (HA)", "JetBlue Airways (B6)", "Southwest Airlines (WN)", "Spirit Airlines (NK)",
     "United Airlines (UA)", "USAirways (US)", "Allegiant Air LLC (G4)"};
@@ -133,6 +133,10 @@ void draw()
     page2Y-=7;
     homeBtn.draw();
     homeBtn.homeButton();
+    movingPlane1.display();
+    movingPlane1.update();
+    movingPlane2.display();
+    movingPlane2.updateNegative();
     searchButton.draw();
     chosenQuery = searchButton.getSavedQuery();
     chosenAirline = searchButton.getSavedInput();

@@ -105,6 +105,7 @@ class Button {
       fill(colour);
       if (mousePressed)
       {
+        selected.play();
         showChart = true;
       }
     }
@@ -128,6 +129,7 @@ class Button {
       fill(colour);
       if (mousePressed)
       {
+        selected.play();
         showChart = true;
       }
     }
@@ -151,6 +153,7 @@ class Button {
       fill(colour);
       if (mousePressed)
       {
+        selected.play();
         showChart = true;
       }
     }

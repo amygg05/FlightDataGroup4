@@ -6,16 +6,16 @@ class ImageButton {
   boolean backBtnMoves=false;
   boolean homeBtnPressed=false;
   float speed = 10;
-  SoundFile takeoff;
+  SoundFile selected;
 
-  ImageButton(float x, float y, PImage image, PImage imageHighlighted, float w, float h, SoundFile takeoff) {
+  ImageButton(float x, float y, PImage image, PImage imageHighlighted, float w, float h, SoundFile selected) {
     this.x = x;
     this.y=y;
     this.w = w;
     this.h = h;
     this.image = image;
     this.imageHighlighted=imageHighlighted;
-    this.takeoff=takeoff;
+    this.selected=selected;
   }
   void draw() {
     image(image, x, y, w, h);
@@ -26,7 +26,7 @@ class ImageButton {
       image(imageHighlighted, x, y, w, h);
       if (mousePressed)
       {
-        takeoff.play();
+        selected.play();
         for (int i = 0; i < 10; i++) {
           isMoving = true;
         }
@@ -55,6 +55,7 @@ class ImageButton {
 
       if (mousePressed)
       {
+        selected.play();
         for (int i = 0; i < 100; i++) {
           homeBtnPressed = true;
         }
