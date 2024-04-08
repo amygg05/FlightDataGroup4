@@ -146,7 +146,7 @@ class GeneralChart {
       fill(128, 126, 250);
       PFont newFont = loadFont("BellMTItalic-48.vlw");
       textFont(newFont);
-      text(xAxisLabel, labelX, labelY);
+      text(xAxisLabel + " " + (i + 1), labelX, labelY);
 
 
       textAlign(CENTER, TOP);
