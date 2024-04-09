@@ -62,17 +62,6 @@ class ImageButton {
       }
     }
     if (homeBtnPressed) {
-      //x-=speed;
-      //if(x<=0){
-      //  homeBtnPressed=false;
-      //  x=570;
-      //  if(page2){
-      //    page2=false;page1=true;
-      //  }
-      //  else {
-      //    page3=false;page1=true;
-      //  }
-      //}
       page2 = page3 = false;
       homeBtnPressed = false;
       page1 = true;
@@ -81,7 +70,6 @@ class ImageButton {
       lineButton.reset();
       chosenQuery = 0;
       chosenAirline = "";
-      //println("chosen query after home button: " + chosenQuery);
     }
   }
 }
