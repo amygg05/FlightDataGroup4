@@ -1,12 +1,9 @@
 class ImageButton {
-  float x, y, w, h;
-  PImage image;
-  PImage imageHighlighted;
-  boolean isMoving=false;
-  boolean backBtnMoves=false;
-  boolean homeBtnPressed=false;
-  float speed = 10;
-  SoundFile selected;
+  float x, y, w, h;                                // load coordinates
+  float speed = 10;    
+  PImage image; PImage imageHighlighted;           // load button images
+  boolean isMoving=false; boolean backBtnMoves=false; boolean homeBtnPressed=false;               // load boolean variables
+  SoundFile selected;                                  // load sound files
 
   ImageButton(float x, float y, PImage image, PImage imageHighlighted, float w, float h, SoundFile selected) {
     this.x = x;
@@ -18,27 +15,27 @@ class ImageButton {
     this.selected=selected;
   }
   void draw() {
-    image(image, x, y, w, h);
+    image(image, x, y, w, h);                                              // draw button image 
   }
-  void movePage1() {
+  void movePage1() {                                                       // method for page 1 plane button
     if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
     {
-      image(imageHighlighted, x, y, w, h);
+      image(imageHighlighted, x, y, w, h);                                 // if mouse hovers over button , highlight button
       if (mousePressed)
       {
-        selected.play();
-        for (int i = 0; i < 10; i++) {
-          isMoving = true;
+        selected.play();                                                   // if mouse clicks button, play sound 
+        for (int i = 0; i < 10; i++) {                                     
+          isMoving = true;                                                 // set moving boolean to true
         }
       }
     }
     if (isMoving)
     {
-      x += 6;
+      x += 6;                                                                // fly plane off page 1
       y-=6;
       if (x==760)
       {
-        page1 = false;
+        page1 = false;                                                       // once plane is off page 1, reset all variables
         page2 = true;
         page3=false;
         x=400;
@@ -48,31 +45,20 @@ class ImageButton {
     }
   }
 
-  void homeButton() {
+  void homeButton() {                                                         // method for home button 
     if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
     {
-      image(image, x-2, y-2, w+5, h+5);
+      image(image, x-2, y-2, w+5, h+5);                                       // if mouse hovers, enlargen button slightly 
 
       if (mousePressed)
       {
-        selected.play();
+        selected.play();                                                       // if button pressed, play sound
         for (int i = 0; i < 100; i++) {
           homeBtnPressed = true;
         }
       }
     }
-    if (homeBtnPressed) {
-      //x-=speed;
-      //if(x<=0){
-      //  homeBtnPressed=false;
-      //  x=570;
-      //  if(page2){
-      //    page2=false;page1=true;
-      //  }
-      //  else {
-      //    page3=false;page1=true;
-      //  }
-      //}
+    if(homeBtnPressed){
       page2 = page3 = false;
       homeBtnPressed = false;
       page1 = true;
