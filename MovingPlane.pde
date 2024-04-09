@@ -42,10 +42,6 @@ class MovingPlane {
   void display() {                                                        //essentially the draw function for the plane           
    
     image(image, x, y, imgWidth, imgHeight);
-<<<<<<< HEAD
-=======
-   
->>>>>>> be92d716847c7ccfd93b393cb4e2f0210c801e36
     
     }
 }
