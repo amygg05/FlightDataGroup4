@@ -1,7 +1,5 @@
-int[] generalCount = new int[4]; // keep 4 as 4 weeks in a month :D //<>//
-int choice;
+int[] generalCount = new int[4]; // keep 4 as 4 weeks in a month :D //<>// //<>//
 int day;
-int rowIndex;
 int[] date;
 String xAxisLabel;
 String title;
@@ -13,7 +11,6 @@ class GeneralChart {
   String airline;
   int choice;
   Read_Data dataR;
-  boolean isSame = false;
 
 
   GeneralChart(Table loadTable, String airline, int option, Read_Data read)
@@ -21,7 +18,6 @@ class GeneralChart {
     data = loadTable;
     this.airline = airline;
     this.choice = option;
-    rowIndex = 0;
     this.dataR = read;
   }
 
@@ -60,11 +56,18 @@ class GeneralChart {
             }
             completedCount = true;
             break;
-          case 2:// Depature time -- Liv
+            
+           // Depature time -- Olivia 
+          case 2:   
+            //variable for titles for charts and axis
             column = "DEP_TIME";
             title= "Depature Time";
             xAxisLabel = "Time ";
+            
+            //Retrieves data from csv that gets the departure time
             int timeDep = data.getInt(rowIndex, column);
+            
+            //Gets count of days in each week
             if (timeDep != 0)
             {
               if (day >0 && day < 8)
@@ -81,6 +84,8 @@ class GeneralChart {
                 generalCount[3]++;
               }
             }
+            
+            
             completedCount = true;
             break;
 
@@ -121,27 +126,33 @@ class GeneralChart {
     }
   }
 
-  void pieDraw()
+
+
+  void pieDraw()  // Pie chart function - Olivia
   {
+    //Variables used to represent the graph
     float startAngle =0;
     float diameter = min(width, height) * 0.8;
-    //float totalAngle =0;
-
     float totalCount = 0;
+    
+    //Count for the total segments on the chart 
     for (int i = 0; i < generalCount.length; i++) {
       totalCount += generalCount[i];
     }
 
+    //This for loop draws each part of the pie chart
     for (int i=0; i< generalCount.length; i++)
     {
       float angle = radians(map(generalCount[i], 0, totalCount, 0, 360));
       fill(colors[i]);
       arc(width/2, height/2, 300, 300, startAngle, startAngle + angle, PIE);
-      startAngle += angle;
+      startAngle += angle;  
 
       float labelAngle = startAngle - angle / 2;
       float labelX = width/2 + cos(labelAngle) * diameter / 2 * 0.7; // Adjust label position
       float labelY = height/2 + sin(labelAngle) * diameter / 2 * 0.7; // Adjust label position
+      
+      //labels pie chart
       textAlign(CENTER, CENTER);
       fill(128, 126, 250);
       PFont newFont = loadFont("BellMTItalic-48.vlw");
@@ -155,7 +166,7 @@ class GeneralChart {
   }
 
 
-  void draw() {
+  void draw() {   // Bar chart function - Olivia 
     line(60, 770, 60, 45);
     line(60, 770, 770, 770);
 
@@ -172,21 +183,19 @@ class GeneralChart {
       textSize(15);
       fill(#E82A2A);
       rect(x, y, barWidth - 10, barHeight -30);
-      //fill(#A51111);
       fill(#000000);
       textAlign(CENTER, BOTTOM);
       text(generalCount[i], x+ barWidth /2, y + 20);
       text((i+1), x+ barWidth /2, height-12);
       textAlign(CENTER, TOP);
-      //text( xAxisLabel, x+ barWidth /2, height -28);
     }
     textSize(20);
     textAlign(CENTER, BOTTOM);
-    text("Weeks in January", 100, height -5);//=============chsnge title
+    text("Weeks in January", 100, height -5);
     textAlign(RIGHT, BOTTOM);
     translate(30, height /2);
     rotate(-HALF_PI);
-    text(getQueryString(this.choice), 0, 0); //=======change title
+    text(getQueryString(this.choice), 0, 0);
   }
 
   //this method draws a lineGraph that is able adapt to whichever query selected - Amy
