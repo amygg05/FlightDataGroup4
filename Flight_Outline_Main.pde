@@ -1,4 +1,4 @@
-import processing.sound.*;                    // Sound library used for audio playback //<>// //<>//
+import processing.sound.SoundFile;                    // Sound library used for audio playback //<>// //<>//
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;                    // Swing library used for JOption Pane dialogs
 import java.time.LocalDate;
