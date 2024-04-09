@@ -167,12 +167,14 @@ class GeneralChart {
 
 
   void draw() {   // Bar chart function - Olivia 
-    line(60, 770, 60, 45);
-    line(60, 770, 770, 770);
+    line(60, 770, 60, 45);    // y-axis
+    line(60, 770, 770, 770);  // x-axis
 
+    //values used to represent data 
     float barWidth = width / (generalCount.length +1);
     float maxDataValue = (max(generalCount) -1);
 
+    // loop builds the graphs
     for (int i =0; i< generalCount.length; i++)
     {
       float x = (i+1) * barWidth;
@@ -180,6 +182,7 @@ class GeneralChart {
       float barHeight = height- y;
 
 
+      //labels indivdual bars 
       textSize(15);
       fill(#E82A2A);
       rect(x, y, barWidth - 10, barHeight -30);
@@ -189,6 +192,8 @@ class GeneralChart {
       text((i+1), x+ barWidth /2, height-12);
       textAlign(CENTER, TOP);
     }
+    
+    //labels bar chart
     textSize(20);
     textAlign(CENTER, BOTTOM);
     text("Weeks in January", 100, height -5);
