@@ -1,7 +1,3 @@
-//for some stupid reason our two button classes are useless for image buttons, imagebutton is only useful for planes and arrows , and button is only useful for clouds now
-//(even though i coded it to be useful for any button.) so HERE WE ARE, A THIRD BUTTON CLASS DEEP.
-import javax.swing.JOptionPane;
-import javax.swing.JFrame;
 class searchButton {
   int x, y, w, h;
   PImage image;

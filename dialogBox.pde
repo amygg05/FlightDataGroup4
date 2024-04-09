@@ -1,4 +1,3 @@
-import javax.swing.JOptionPane;
 class dialogBox{
   public String inputString;
   public String output;
