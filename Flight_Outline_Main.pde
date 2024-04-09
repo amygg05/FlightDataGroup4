@@ -1,19 +1,15 @@
-import processing.sound.*; //<>//
-import javax.swing.*;
+import processing.sound.*;                    // Sound library used for audio playback //<>//
+import javax.swing.JOptionPane;
+import javax.swing.JFrame;                    // Swing library used for JOption Pane dialogs
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;    // Time library used for date/time gathering and formatting
+import java.util.Date;                        // Date class for date reading
 
-boolean completedCount = false;
-boolean page1 = true;
-boolean page2, page3  = false;
-boolean piePressed = false;
-boolean barPressed = false;
-boolean linePressed = false;
-float cloudX=400;
-float cloudX2=100;
+
+boolean page1, page2, page3, completedCount, piePressed, barPressed, linePressed;   // Load boolean variables
+float cloudX, cloudX2;
 PImage plane, plane2, planeHighlighted, arrow, homeButtonImage, homeButtonHighlighted, cloudImage, backgroundImage;
-float x = 400, y = 400, wPlane=230, hPlane=230;
+final float x = 400, y = 400, wPlane=230, hPlane=230;
 float w = 300;
 float h = 300;
 int movedCloud = 0;
@@ -102,6 +98,9 @@ void setup()
   dropDownMenuAfterSearch = new dialogBox(queries);
 
 
+  cloudX = 400;
+  cloudX2 = 100;
+  page1 = true;
   colors = new color[]{color(#CB6363),
     color(#BD63CB), color(#639DCB), color(#CB9563),
     color(#8C53C9)};
