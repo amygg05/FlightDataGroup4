@@ -1,9 +1,8 @@
-int[] generalCount = new int[4]; // keep 4 as 4 weeks in a month :D //<>// //<>//
+int[] generalCount = new int[4]; // keep 4 as 4 weeks in a month :D 
 int day;
 int[] date;
 String xAxisLabel;
 String title;
-
 
 class GeneralChart {
   String column;
@@ -210,7 +209,7 @@ class GeneralChart {
     line(60, 770, 770, 770);
 
     //variables
-    float barWidth = width / (generalCount.length + 1);
+    float cubeLineXPos = width / (generalCount.length + 1);
     float cubeWidth = 10;
     float cubeHeight = 10;
     float maxDataValue = (max(generalCount)-1);
@@ -226,7 +225,7 @@ class GeneralChart {
     //production of graph
     PVector previousPoint = null;
     for (int i = 0; i<generalCount.length; i++) {
-      float x = (i+1) * barWidth;
+      float x = (i+1) * cubeLineXPos;
       float y = map(generalCount[i], 0, maxDataValue, height, 50);
 
       //data points
@@ -235,10 +234,8 @@ class GeneralChart {
       rect(x+ 85, y, cubeWidth, cubeHeight);
       fill(#A51111);
       textAlign(CENTER, BOTTOM);
-      //do we want actual data value there?
-      //text(generalCount[i], x+85, y+25);
       textAlign(CENTER, TOP);
-      text("Week " + (i+1), x + barWidth /2, height -23);
+      text("Week " + (i+1), x + cubeLineXPos /2, height -23);
 
       //connecting the dots
       if (previousPoint!=null) {
@@ -256,7 +253,8 @@ class GeneralChart {
     rotate(-HALF_PI);
     text(getQueryString(this.choice), 0, 0);
   }
-  
+  //in this class the queries are taken in as ints (either 1,2, or 3). 
+  //This method takes that input and put is back into string form for axes labels - Amy
   String getQueryString(int choice){
     if(choice == 1){
       return "Lateness (Mins)";
