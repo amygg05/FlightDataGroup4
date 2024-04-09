@@ -9,9 +9,7 @@ import java.util.Date;                        // Date class for date reading
 boolean page1, page2, page3, completedCount, piePressed, barPressed, linePressed;   // Load boolean variables
 float cloudX, cloudX2, x1, x2, x3;
 PImage plane, planeHighlighted, arrow, homeButtonImage, homeButtonHighlighted, cloudImage, backgroundImage, cartoonCloudImage, cartoonCloudImageSelected, searchIcon;
-final float x = 400, y = 400, wPlane=230, hPlane=230;
-float w = 300;
-float h = 300;
+final float x = 400, y = 400, wPlane=230, hPlane=230, w = 300, h = 300;
 SoundFile selectionSound, planeFlies, goBackButton;
 String searchResult;
 float page2X=0, page2Y=400;
