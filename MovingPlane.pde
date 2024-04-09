@@ -44,19 +44,7 @@ class MovingPlane {
   void display() {
    
     image(image, x, y, imgWidth, imgHeight);
-    
-    /*float tailLength = 100; 
-    float step = tailLength / 5; 
-    float tailX = x+y;
-    float tailY = y;
-    
-    for (int i = 0; i < 5; i++) {
-        float opacity = 255 * (1 - i * step / tailLength); 
-        stroke(0, 0, 255, opacity); 
-        float endX = tailX - i * step; 
-        line(tailX, tailY, endX, tailY); 
-        tailX = endX; 
-    */
+   
     
     }
 }
