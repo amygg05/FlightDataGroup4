@@ -67,7 +67,6 @@ class ImageButton {
       lineButton.reset();
       chosenQuery = 0;                                                      
       chosenAirline = "";
-      //println("chosen query after home button: " + chosenQuery);
     }
   }
 }
