@@ -1,5 +1,3 @@
-import processing.sound.*;
-
 class MovingPlane {
   PImage image;
   int x, y;

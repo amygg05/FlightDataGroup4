@@ -1,4 +1,4 @@
-import processing.sound.*;                    // Sound library used for audio playback //<>//
+import processing.sound.*;                    // Sound library used for audio playback //<>// //<>//
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;                    // Swing library used for JOption Pane dialogs
 import java.time.LocalDate;
@@ -57,7 +57,6 @@ void setup()
   plane = loadImage("bluePlane.png");
   PImage passivePlane = loadImage("planeFromRight.png");
   PImage passivePlane2 = loadImage("planeFromRightSide.png");
-  plane2 = loadImage("plane3.jpg");
   homeButtonImage = loadImage("homeButton.png");
   planeHighlighted = loadImage("bluePlaneSelected.png");
   cloudImage = loadImage("cloud.png");
