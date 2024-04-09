@@ -52,20 +52,20 @@ class ImageButton {
 
       if (mousePressed)
       {
-        selected.play();                                                       // if button pressed, play sound
+        selected.play();                                                     // if button pressed, play sound
         for (int i = 0; i < 100; i++) {
           homeBtnPressed = true;
         }
       }
     }
     if(homeBtnPressed){
-      page2 = page3 = false;
+      page2 = page3 = false;                                                 // move back to page 1 
       homeBtnPressed = false;
       page1 = true;
-      pieButton.reset();
+      pieButton.reset();                                                     // reset chart drawings and queries
       barButton.reset();
       lineButton.reset();
-      chosenQuery = 0;
+      chosenQuery = 0;                                                      
       chosenAirline = "";
       //println("chosen query after home button: " + chosenQuery);
     }
