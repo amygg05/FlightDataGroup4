@@ -1,3 +1,9 @@
+/*
+This class was collectively worked on by Amy and Eva
+It reads in the data and sorts it into a table. From there it parses strings to ints for the columns that need to be used as ints.
+In this class there is also a method calculating lateness from the extimated arrival time to actual arrival time.
+There is also a method parsing the date column to sort the day, month, and year into an array for easy access
+*/
 final int NUM_COLS = 18;
 final int ARR_TIME_COL = 14;
 final int SCH_ARR_TIME_COL = 13;
@@ -8,8 +14,6 @@ final int DATE_COLUMN = 0;
 int num_row;
 String colName;
 Table data;
-
-
 
 class Read_Data {
 
@@ -32,7 +36,6 @@ class Read_Data {
       }
     }
   }
-
 
   int arrivalLateness(int rowIndex)
   {
