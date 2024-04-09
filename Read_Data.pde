@@ -21,7 +21,10 @@ class Read_Data {
     data = passedTable;
   }
 
-
+/*
+This function reads in the data from the csv file and fills in the data table with each
+column and row filled accordingly.
+*/
   void readData() {
 
     num_row = data.getRowCount();
@@ -37,6 +40,11 @@ class Read_Data {
     }
   }
 
+/*
+arrivalLateness(rowIndex):
+    Takes a row index and returns the lateness (in minutes) of that flight.
+    Note: If the flight was early, the value will be negative.
+*/
   int arrivalLateness(int rowIndex)
   {
     int arrLateness = 0;
@@ -71,7 +79,15 @@ class Read_Data {
     }
     return arrLateness;
   }
-
+  
+  
+/*
+getDate(rowIndex):
+    Takes a row index and returns an integer array with the parsed date values.
+    date[0] - month
+    date[1] - day
+    date[2] - year
+*/
   int[] getDate(int rowIndex) {
     String dateTimeString = data.getString(rowIndex, DATE_COLUMN);
     String[] dateParts = dateTimeString.split(" ");
