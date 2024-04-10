@@ -1,5 +1,5 @@
 class Button {
-  float x, y, w, h;
+  float x, y, w, h;                                                                                   //declare all variables in button class
   String label;
   PFont widgetFont;
   PImage image, image2;
@@ -19,7 +19,7 @@ class Button {
     selected = selection;
   }
 
-  void draw()                                                                                         //draws the button and triggers sounds when clicked 
+  void draw()                                                                                        //draws the button and triggers sounds when clicked 
   {
     fill(colour);
     colour = 255;
@@ -56,12 +56,12 @@ class Button {
     }
   }
 
-  float getX()                                                                                      //returns x position of button for movement
+  float getX()                                                                                       //returns x position of button for movement
   {
     return this.x;
   }
 
-  void pieButtonPressed(int choice)
+  void pieButtonPressed(int choice)                                                                  // method to trigger the pie chart when chosen by user. The choice is saved and used as the parameter
   {
     if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
     {
@@ -86,7 +86,7 @@ class Button {
       }
   }
   
-  void barButtonPressed(int choice)
+  void barButtonPressed(int choice)                                                                 //method to trigger the bar chart when chosen by user 
   {
     if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
     {
@@ -110,7 +110,7 @@ class Button {
       }
   }
   
-  void lineButtonPressed(int choice)
+  void lineButtonPressed(int choice)                                                             //method to trigger the line graph                           
   {
     if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
     {
@@ -134,12 +134,12 @@ class Button {
       }
   }
 
-  void justDraw()
+  void justDraw()                                                                                    //standard draw method to add button to screen
   {
     image(image, x, y, w, h);
   }
   
-  void reset()
+  void reset()                                                                                      //method to reset what was pressed (used for home button function)
   {
     mousePressed=false;
     showChart = false;

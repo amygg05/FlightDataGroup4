@@ -1,12 +1,12 @@
 class dialogBox{
-  public String inputString;
+  public String inputString;                             //declaring all variables to be used in class
   public String output;
   public Object[] list;
   public String choiceString;
   dialogBox(String inputString){
     this.inputString = inputString;
   }
-  public String popup(){
+  public String popup(){                                 //method to create popup
     output = JOptionPane.showInputDialog(inputString);
     return output;
   }
