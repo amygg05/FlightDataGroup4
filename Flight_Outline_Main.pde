@@ -1,4 +1,5 @@
-import processing.sound.*;                    // Sound library used for audio playback //<>// //<>//
+import processing.sound.*;                    // Sound library used for audio playback //<>// //<>// //<>//
+import processing.sound.SoundFile;             // Sound library used for audio playback //<>// //<>// //<>//
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;                    // Swing library used for JOption Pane dialogs
 import java.time.LocalDate;
@@ -7,38 +8,22 @@ import java.util.Date;                        // Date class for date reading
 
 
 boolean page1, page2, page3, completedCount, piePressed, barPressed, linePressed;   // Load boolean variables
-float cloudX, cloudX2;
-PImage plane, plane2, planeHighlighted, arrow, homeButtonImage, homeButtonHighlighted, cloudImage, backgroundImage;
-final float x = 400, y = 400, wPlane=230, hPlane=230;
-float w = 300;
-float h = 300;
-int movedCloud = 0;
-int SCREENX, SCREENY = 800;
-SoundFile selectionSound;
-SoundFile planeFlies;
-SoundFile goBackButton;
-float x1, x2, x3;
+float cloudX, cloudX2, x1, x2, x3;
+PImage plane, planeHighlighted, arrow, homeButtonImage, homeButtonHighlighted, cloudImage, backgroundImage, cartoonCloudImage, cartoonCloudImageSelected, searchIcon;
+final float x = 400, y = 400, wPlane=230, hPlane=230, w = 300, h = 300;
+SoundFile selectionSound, planeFlies, goBackButton;
 String searchResult;
-String finalSearch;
 float page2X=0, page2Y=400;
 color[] colors; // Array to store colors for each slice
 
 MovingPlane movingPlane1, movingPlane2;
 
 Button pieButton, barButton, lineButton;
-ImageButton planeBtn1;
-ImageButton planeFliesPage2;
-ImageButton homeBtn;
+ImageButton planeBtn1, homeBtn;
 Read_Data readingData;
 
-PImage cartoonCloudImage, cartoonCloudImageSelected;
-
-dialogBox searchBox;
+dialogBox searchBox, dropdownMenu, dropDownMenuAfterSearch;
 searchButton searchButton;
-PImage searchIcon;
-dialogBox dropdownMenu;
-searchButton dropdownButton;
-dialogBox dropDownMenuAfterSearch;
 int chosenQuery = 1;
 String chosenAirline;
 GeneralChart firstChart;
@@ -57,7 +42,6 @@ void setup()
   plane = loadImage("bluePlane.png");
   PImage passivePlane = loadImage("planeFromRight.png");
   PImage passivePlane2 = loadImage("planeFromRightSide.png");
-  plane2 = loadImage("plane3.jpg");
   homeButtonImage = loadImage("homeButton.png");
   planeHighlighted = loadImage("bluePlaneSelected.png");
   cloudImage = loadImage("cloud.png");

@@ -1,15 +1,11 @@
-import processing.sound.*;
-
 class MovingPlane {
   PImage image;
-  int x, y;
-  int prevX, prevY;
-  int speed, imgWidth, imgHeight;
+  int x, y,  prevX, prevY, speed, imgWidth, imgHeight;                   //declare variables to be used for constructor                                                                         
   
 
-  MovingPlane(PImage img, int xpos, int ypos, int sp, int wid, int heig) 
+  MovingPlane(PImage img, int xpos, int ypos, int sp, int wid, int heig) //constructor which assigns an image, position, speed, current location, and size of the plane
   {
-    image = img;
+    image = img;                                            
     x = xpos;
     y = ypos;
     prevX = xpos;
@@ -20,7 +16,7 @@ class MovingPlane {
     
   }
   
-  void update() 
+  void update()                                                          //method to update current position of plane, makes the plane move
   {
     prevX = x;
     prevY = y;
@@ -33,7 +29,7 @@ class MovingPlane {
   
 
   
-  void updateNegative()
+  void updateNegative()                                                  //same as update(), but applies to plane going in other direction
   {
     prevX = x;
     prevY = y;
@@ -43,22 +39,9 @@ class MovingPlane {
     }
   }
 
-  void display() {
+  void display() {                                                        //essentially the draw function for the plane           
    
     image(image, x, y, imgWidth, imgHeight);
-    
-    /*float tailLength = 100; 
-    float step = tailLength / 5; 
-    float tailX = x+y;
-    float tailY = y;
-    
-    for (int i = 0; i < 5; i++) {
-        float opacity = 255 * (1 - i * step / tailLength); 
-        stroke(0, 0, 255, opacity); 
-        float endX = tailX - i * step; 
-        line(tailX, tailY, endX, tailY); 
-        tailX = endX; 
-    */
     
     }
 }
