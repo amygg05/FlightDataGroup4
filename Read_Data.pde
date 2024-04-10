@@ -25,7 +25,6 @@ class Read_Data {
 This function reads in the data from the csv file and fills in the data table with each
 column and row filled accordingly.
 */
-
   void readData() {
 
     num_row = data.getRowCount();
@@ -47,9 +46,6 @@ arrivalLateness(rowIndex):
     Takes a row index and returns the lateness (in minutes) of that flight.
     Note: If the flight was early, the value will be negative.
 */
-
-
-
   int arrivalLateness(int rowIndex)
   {
     //fetching data
