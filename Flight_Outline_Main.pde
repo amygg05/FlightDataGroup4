@@ -22,7 +22,7 @@ Button pieButton, barButton, lineButton;
 ImageButton planeBtn1, homeBtn;
 Read_Data readingData;
 
-dialogBox searchBox, dropdownMenu, dropDownMenuAfterSearch;
+dialogBox searchBox, dropDownMenuAfterSearch;
 searchButton searchButton;
 int chosenQuery = 1;
 String chosenAirline;
@@ -75,10 +75,6 @@ void setup()
   searchIcon = loadImage("airline.png");
   searchBox = new dialogBox("Enter an airline: ");
   searchButton = new searchButton(300, 500, 200, 200, searchIcon, searchBox, selectionSound);
-  Object[] airlines = {"Alaska Airlines (AS)", "American Airlines (AA)", "Delta Airlines (DL) ", "Frontier Airlines (F9)"
-    , "Hawaiian Airlines (HA)", "JetBlue Airways (B6)", "Southwest Airlines (WN)", "Spirit Airlines (NK)",
-    "United Airlines (UA)", "USAirways (US)", "Allegiant Air LLC (G4)"};
-  dropdownMenu = new dialogBox(airlines);
   dropDownMenuAfterSearch = new dialogBox(queries);
 
 
