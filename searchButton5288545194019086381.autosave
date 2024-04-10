@@ -6,7 +6,7 @@ class searchButton {
   String savedInput2;
   int queryNumber;
   SoundFile selected;
-
+  
 
   searchButton(int x, int y, int w, int h, PImage image, dialogBox box, SoundFile selected) {
     this.x = x;
@@ -20,9 +20,8 @@ class searchButton {
 
   void draw() {
     if (mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y+h) {
-      image(image, x , y , w + 25, h + 25);
+      image(image, x - 12, y - 12, w + 25, h + 25);
       if (mousePressed) {
-        mousePressed=false;
         selected.play();
         if (mouseX > 0) {  // if it's the search button
           String airline;
@@ -40,7 +39,7 @@ class searchButton {
             triggerDropdown(airline);
           }
         } else {    // if its the dropdown
-          Object[] queryList = {"Delays By Week", "Departures By Week", "Cancellelations/Diversions By Weeks"};
+          Object[] queryList = {"Late", "Depart By Week", "Cancelled/Diverted By Weeks"};
           String query = box.dropdown(queryList);
           System.out.println(query);    // return selection
           if (query != "") {
@@ -61,7 +60,7 @@ class searchButton {
   void triggerDropdown(String airline)
   {
     if (airline != null) {
-      Object[] queryList = {"Delays By Week", "Departures By Week", "Cancellelations/Diversions By Weeks"};
+      Object[] queryList = {"Late", "Depart By Week", "Cancelled/Diverted By Weeks"};
       String query = box.dropdown(queryList);
       if(query != "")
       {
@@ -85,13 +84,13 @@ class searchButton {
 
   int getSavedQuery()
   {
-    if(savedInput2 == "Delays By Week")
+    if(savedInput2 == "Late")
     {
       queryNumber = 1; // lateness is query 1
-    } else if (savedInput2 == "Departures By Week")
+    } else if (savedInput2 == "Depart By Week")
     {
       queryNumber = 2;
-    } else if(savedInput2 == "Cancellelations/Diversions By Weeks")
+    } else if(savedInput2 == "Cancelled/Diverted By Weeks")
     {
       queryNumber = 3;
     } else if(savedInput2 == "")

@@ -1,28 +1,53 @@
-import processing.sound.SoundFile;             // Sound library used for audio playback //<>// //<>// //<>// //<>//
-import javax.swing.JOptionPane;
-import javax.swing.JFrame;                    // Swing library used for JOption Pane dialogs
+import processing.sound.*;
+import javax.swing.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;    // Time library used for date/time gathering and formatting
-import java.util.Date;                        // Date class for date reading
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
-
-boolean page1, page2, page3, completedCount, piePressed, barPressed, linePressed;   // Load boolean variables
-float cloudX, cloudX2, x1, x2, x3;
-PImage plane, planeHighlighted, arrow, homeButtonImage, homeButtonHighlighted, cloudImage, backgroundImage, cartoonCloudImage, cartoonCloudImageSelected, searchIcon;
-final float x = 400, y = 400, wPlane=230, hPlane=230, w = 300, h = 300;
-SoundFile selectionSound, planeFlies, goBackButton;
+boolean completedCount = false;
+boolean page1 = true;
+boolean page2, page3  = false;
+boolean piePressed = false;
+boolean barPressed = false;
+boolean linePressed = false;
+float cloudX=400;
+float cloudX2=100;
+PImage plane, plane2, planeHighlighted, arrow, homeButtonImage, homeButtonHighlighted, cloudImage, backgroundImage;
+float x = 400, y = 400, wPlane=230, hPlane=230;
+float w = 300;
+float h = 300;
+int movedCloud = 0;
+int SCREENX, SCREENY = 800;
+SoundFile selectionSound;
+SoundFile planeFlies;
+SoundFile goBackButton;
+float x1, x2, x3;
 String searchResult;
+String finalSearch;
 float page2X=0, page2Y=400;
 color[] colors; // Array to store colors for each slice
+Object[] airlines = {"Alaska Airlines (AS)", "American Airlines (AA)", "Delta Airlines (DL) ", "Frontier Airlines (F9)"
+    , "Hawaiian Airlines (HA)", "JetBlue Airways (B6)", "Southwest Airlines (WN)", "Spirit Airlines (NK)",
+    "United Airlines (UA)", "USAirways (US)", "Allegiant Air LLC (G4)"};
 
 MovingPlane movingPlane1, movingPlane2;
 
 Button pieButton, barButton, lineButton;
-ImageButton planeBtn1, homeBtn;
+ImageButton planeBtn1;
+ImageButton planeFliesPage2;
+ImageButton homeBtn;
 Read_Data readingData;
 
-dialogBox searchBox, dropDownMenuAfterSearch;
+PImage airlineCodes;
+
+PImage cartoonCloudImage, cartoonCloudImageSelected;
+
+dialogBox searchBox;
 searchButton searchButton;
+PImage searchIcon;
+dialogBox dropdownMenu;
+searchButton dropdownButton;
+dialogBox dropDownMenuAfterSearch;
 int chosenQuery = 1;
 String chosenAirline;
 GeneralChart firstChart;
@@ -41,6 +66,7 @@ void setup()
   plane = loadImage("bluePlane.png");
   PImage passivePlane = loadImage("planeFromRight.png");
   PImage passivePlane2 = loadImage("planeFromRightSide.png");
+  plane2 = loadImage("plane3.jpg");
   homeButtonImage = loadImage("homeButton.png");
   planeHighlighted = loadImage("bluePlaneSelected.png");
   cloudImage = loadImage("cloud.png");
@@ -51,6 +77,8 @@ void setup()
   PImage pieImage = loadImage("pieImage.png");
   PImage barImage = loadImage("barImage.png");
   PImage lineImage = loadImage("lineImage.png");
+  airlineCodes = loadImage("airlineCodes.png");
+  //airlineCodes.resize(160,200);
 
 
   cartoonCloudImage = loadImage("cartooncloud.png");
@@ -73,13 +101,14 @@ void setup()
 
   searchIcon = loadImage("airline.png");
   searchBox = new dialogBox("Enter an airline: ");
-  searchButton = new searchButton(300, 500, 200, 200, searchIcon, searchBox, selectionSound);
+  searchButton = new searchButton(300, 300, 200, 200, searchIcon, searchBox, selectionSound);
+  //Object[] airlines = {"Alaska Airlines (AS)", "American Airlines (AA)", "Delta Airlines (DL) ", "Frontier Airlines (F9)"
+  //  , "Hawaiian Airlines (HA)", "JetBlue Airways (B6)", "Southwest Airlines (WN)", "Spirit Airlines (NK)",
+  //  "United Airlines (UA)", "USAirways (US)", "Allegiant Air LLC (G4)"};
+  dropdownMenu = new dialogBox(airlines);
   dropDownMenuAfterSearch = new dialogBox(queries);
 
 
-  cloudX = 400;
-  cloudX2 = 100;
-  page1 = true;
   colors = new color[]{color(#CB6363),
     color(#BD63CB), color(#639DCB), color(#CB9563),
     color(#8C53C9)};
@@ -116,6 +145,7 @@ void draw()
     movingPlane2.display();
     movingPlane2.updateNegative();
     searchButton.draw();
+    image(airlineCodes, 0, 0);
     chosenQuery = searchButton.getSavedQuery();
     chosenAirline = searchButton.getSavedInput();
     if (chosenQuery != 0)

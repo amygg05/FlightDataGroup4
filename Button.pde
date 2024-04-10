@@ -33,6 +33,7 @@ class Button {
 
       if (mousePressed)
       {
+        mousePressed=false;
         isSelected = true;
         num_row = data.getRowCount();
         for (int i = 0; i < NUM_COLS; i++) {
@@ -66,7 +67,8 @@ class Button {
     {
       image(image2, x-2, y-2, w+5, h+5);
       fill(colour);
-      if (mousePressed)
+      
+      if(mousePressed)
       {
         selected.play();
         showChart = true;
@@ -90,7 +92,7 @@ class Button {
     {
       image(image2, x-2, y-2, w+5, h+5);
       fill(colour);
-      if (mousePressed)
+      if(mousePressed)
       {
         selected.play();
         showChart = true;
@@ -114,7 +116,7 @@ class Button {
     {
       image(image2, x-2, y-2, w+5, h+5);
       fill(colour);
-      if (mousePressed)
+      if(mousePressed)
       {
         selected.play();
         showChart = true;
@@ -139,6 +141,7 @@ class Button {
   
   void reset()
   {
+    mousePressed=false;
     showChart = false;
     piePressed = false;
     barPressed = false;
