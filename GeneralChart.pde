@@ -155,13 +155,13 @@ class GeneralChart {
       
 
       float labelAngle = startAngle - angle / 2;
-      float labelX = width/2 + cos(labelAngle) * diameter / 2 * 0.7; // Adjust label position
-      float labelY = height/2 + sin(labelAngle) * diameter / 2 * 0.7; // Adjust label position
+      float labelX = width/2 + cos(labelAngle) * diameter / 2 * 0.7; // Adjust label position for name of slice
+      float labelY = height/2 + sin(labelAngle) * diameter / 2 * 0.7; // Adjust label position for name of slice
       
       // Display percentage in slice
       float midAngle = startAngle + angles[i]/2;
-      float perX = width/2 + 80 * cos(midAngle);
-      float perY = height/2 + 50 * sin(midAngle);
+      float perX = width/2 + 80 * cos(midAngle); // Adjust label position for percentage of slice
+      float perY = height/2 + 50 * sin(midAngle); // Adjust label position for percentage of slice
       textAlign(CENTER, CENTER);
       fill(255);
       textSize(25);
@@ -176,7 +176,7 @@ class GeneralChart {
       textFont(newFont);
       text(xAxisLabel + " " + (i + 1), labelX, labelY);
 
-
+      //Title 
       textAlign(CENTER, TOP);
       text(title, 400, 100);
     }
