@@ -85,13 +85,13 @@ class searchButton {
 
   int getSavedQuery()
   {
-    if(savedInput2 == "Late")
+    if(savedInput2 == "Average Lateness By Week")
     {
       queryNumber = 1; // lateness is query 1
-    } else if (savedInput2 == "Depart By Week")
+    } else if (savedInput2 == "Departures By Week")
     {
       queryNumber = 2;
-    } else if(savedInput2 == "Cancelled/Diverted By Weeks")
+    } else if(savedInput2 == "Cancellelations/Diversions By Weeks")
     {
       queryNumber = 3;
     } else if(savedInput2 == "")
