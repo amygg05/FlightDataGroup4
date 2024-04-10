@@ -4,7 +4,6 @@ class ImageButton {
   PImage image; PImage imageHighlighted;           // load button images
   boolean isMoving=false; boolean backBtnMoves=false; boolean homeBtnPressed=false;               // load boolean variables
   SoundFile selected;                                  // load sound files
-
   ImageButton(float x, float y, PImage image, PImage imageHighlighted, float w, float h, SoundFile selected) {
     this.x = x;
     this.y=y;
@@ -50,8 +49,9 @@ class ImageButton {
     {
       image(image, x-2, y-2, w+5, h+5);                                       // if mouse hovers, enlargen button slightly 
 
-      if (mousePressed)
+      if(mousePressed)
       {
+        mousePressed=false;
         selected.play();                                                     // if button pressed, play sound
         for (int i = 0; i < 100; i++) {
           homeBtnPressed = true;
@@ -63,6 +63,7 @@ class ImageButton {
       homeBtnPressed = false;
       page1 = true;
       pieButton.reset();                                                     // reset chart drawings and queries
+      mousePressed=false;
       barButton.reset();
       lineButton.reset();
       chosenQuery = 0;                                                      
