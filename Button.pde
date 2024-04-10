@@ -4,9 +4,7 @@ class Button {
   PFont widgetFont;
   PImage image, image2;
   int colour;
-  boolean isMoving = false;
-  boolean isSelected = false;
-  boolean showChart = false;
+  boolean isSelected, showChart;
   float   movementSpeed = 4;
   SoundFile selected;
 
@@ -40,7 +38,6 @@ class Button {
         for (int i = 0; i < NUM_COLS; i++) {
           String colName = data.getColumnTitle(i);
           print(colName + "\t");  // Use "\t" for tab separation
-          isMoving = true;
         }
         println();  // Move to next line after headers
 
@@ -55,39 +52,6 @@ class Button {
 
         selected.play();
       }
-    }
-
-    if (isMoving)
-    {
-      x += movementSpeed;
-      if (x>= 800)
-      {
-        isMoving = false;
-        page2=false;
-        page3=true;
-        x=50;
-      }
-    }
-  }
-
-  int xPage3 = -90;
-  int yPage3 = 0;
-  boolean isMovingPage3 = false;
-
-  void drawCloud()
-  {
-    image(cartoonCloudImage, xPage3, yPage3, 250, 250);
-    if (xPage3<=3)
-    {
-      isMovingPage3 = true;
-    }
-    if (isMovingPage3 == true)
-    {
-      xPage3+=movementSpeed;
-    }
-    if (xPage3>= 3)
-    {
-      isMovingPage3 = false;
     }
   }
 

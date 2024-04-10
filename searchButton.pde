@@ -20,7 +20,7 @@ class searchButton {
 
   void draw() {
     if (mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y+h) {
-      image(image, x - 12, y - 12, w + 25, h + 25);
+      image(image, x , y , w + 25, h + 25);
       if (mousePressed) {
         selected.play();
         if (mouseX > 0) {  // if it's the search button

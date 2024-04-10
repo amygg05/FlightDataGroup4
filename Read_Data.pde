@@ -25,6 +25,7 @@ class Read_Data {
 This function reads in the data from the csv file and fills in the data table with each
 column and row filled accordingly.
 */
+
   void readData() {
 
     num_row = data.getRowCount();
@@ -40,32 +41,36 @@ column and row filled accordingly.
     }
   }
 
+
 /*
 arrivalLateness(rowIndex):
     Takes a row index and returns the lateness (in minutes) of that flight.
     Note: If the flight was early, the value will be negative.
 */
+
+
+
   int arrivalLateness(int rowIndex)
   {
+    //fetching data
     int arrLateness = 0;
     int arrTime = 0;
     int schArrTime = data.getInt(rowIndex, SCH_ARR_TIME_COL);
     arrTime += data.getInt(rowIndex, ARR_TIME_COL);
     if (arrTime != 0)
     {
+      //turning time into only minutes
       int arrMins = arrTime % 100;
       int arrHours = arrTime - arrMins;
       arrMins += (arrHours / 100) * MIN_IN_HR;
-
 
       int schMins = schArrTime % 100;
       int schHours = schArrTime - schMins;
       schMins += (schHours / 100) * MIN_IN_HR;
 
-
       int arrivalDiff = arrMins - schMins;
-
-
+    
+      //calculating latness with converted minutes
       if (arrivalDiff < 0 && arrivalDiff > MAX_TIME_DIFF)
       {
         arrLateness = arrivalDiff;
@@ -97,7 +102,8 @@ getDate(rowIndex):
     int month = int(parts[0]);
     int day = int(parts[1]);
     int year = int(parts[2]);
-
+  
+    //array of a single day
     int[] date = new int[3];
     date[0] = month;
     date[1] = day;
