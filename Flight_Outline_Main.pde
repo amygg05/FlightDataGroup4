@@ -1,4 +1,4 @@
-import processing.sound.*;                    // Sound library used for audio playback //<>//
+import processing.sound.*;                    // Sound library used for audio playback //<>// //<>//
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;                    // Swing library used for JOption Pane dialogs
 import java.time.LocalDate;
@@ -90,7 +90,7 @@ void setup()
 
   searchIcon = loadImage("airline.png");
   searchBox = new dialogBox("Enter an airline: ");
-  searchButton = new searchButton(300, 300, 200, 200, searchIcon, searchBox, selectionSound);
+  searchButton = new searchButton(300, 500, 200, 200, searchIcon, searchBox, selectionSound);
   Object[] airlines = {"Alaska Airlines (AS)", "American Airlines (AA)", "Delta Airlines (DL) ", "Frontier Airlines (F9)"
     , "Hawaiian Airlines (HA)", "JetBlue Airways (B6)", "Southwest Airlines (WN)", "Spirit Airlines (NK)",
     "United Airlines (UA)", "USAirways (US)", "Allegiant Air LLC (G4)"};

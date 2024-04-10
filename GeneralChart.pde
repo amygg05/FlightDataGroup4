@@ -1,8 +1,9 @@
-int[] generalCount = new int[4]; // keep 4 as 4 weeks in a month :D 
+int[] generalCount = new int[4]; // keep 4 as 4 weeks in a month :D  //<>//
 int day;
 int[] date;
 String xAxisLabel;
 String title;
+float[] angles; // Store angles for animation
 
 class GeneralChart {
   String column;
@@ -133,10 +134,16 @@ class GeneralChart {
     float startAngle =0;
     float diameter = min(width, height) * 0.8;
     float totalCount = 0;
+    angles = new float[generalCount.length];
     
     //Count for the total segments on the chart 
     for (int i = 0; i < generalCount.length; i++) {
       totalCount += generalCount[i];
+    }
+    
+     // Calculate angles for each slice
+    for (int j = 0; j < generalCount.length; j++) {
+      angles[j] = radians(map(generalCount[j], 0, totalCount, 0, 360));
     }
 
     //This for loop draws each part of the pie chart
@@ -145,11 +152,22 @@ class GeneralChart {
       float angle = radians(map(generalCount[i], 0, totalCount, 0, 360));
       fill(colors[i]);
       arc(width/2, height/2, 300, 300, startAngle, startAngle + angle, PIE);
-      startAngle += angle;  
+      
 
       float labelAngle = startAngle - angle / 2;
       float labelX = width/2 + cos(labelAngle) * diameter / 2 * 0.7; // Adjust label position
       float labelY = height/2 + sin(labelAngle) * diameter / 2 * 0.7; // Adjust label position
+      
+      // Display percentage in slice
+      float midAngle = startAngle + angles[i]/2;
+      float perX = width/2 + 80 * cos(midAngle);
+      float perY = height/2 + 50 * sin(midAngle);
+      textAlign(CENTER, CENTER);
+      fill(255);
+      textSize(25);
+      text(nf(generalCount[i]*100/totalCount, 0, 1) + "%",perX, perY);
+      
+      startAngle += angle;  
       
       //labels pie chart
       textAlign(CENTER, CENTER);
@@ -160,13 +178,13 @@ class GeneralChart {
 
 
       textAlign(CENTER, TOP);
-      text(title, 475, 100);
+      text(title, 400, 100);
     }
   }
 
 
   void draw() {   // Bar chart function - Olivia 
-    line(60, 770, 60, 45);    // y-axis
+    line(60, 770, 60, 65);    // y-axis
     line(60, 770, 770, 770);  // x-axis
 
     //values used to represent data 
@@ -177,13 +195,13 @@ class GeneralChart {
     for (int i =0; i< generalCount.length; i++)
     {
       float x = (i+1) * barWidth;
-      float y = map(generalCount[i], 0, maxDataValue, height, 50);
+      float y = map(generalCount[i], 0, maxDataValue, height, 100);
       float barHeight = height- y;
 
 
       //labels indivdual bars 
       textSize(15);
-      fill(#E82A2A);
+      fill(#DC88DE);
       rect(x, y, barWidth - 10, barHeight -30);
       fill(#000000);
       textAlign(CENTER, BOTTOM);
@@ -195,11 +213,11 @@ class GeneralChart {
     //labels bar chart
     textSize(20);
     textAlign(CENTER, BOTTOM);
-    text("Weeks in January", 100, height -5);
+    text("Weeks in January", 120, height -5);
     textAlign(RIGHT, BOTTOM);
     translate(30, height /2);
     rotate(-HALF_PI);
-    text(getQueryString(this.choice), 0, 0);
+    text(getQueryString(this.choice), 200, 0);
   }
 
   //this method draws a lineGraph that is able adapt to whichever query selected - Amy
@@ -219,7 +237,7 @@ class GeneralChart {
     for (int countLine = 0; countLine<8; countLine++) {
       line(60, 770-(725/7)*countLine, 770, 770-(725/7)*countLine);
       textAlign(LEFT);
-      text((int)increments*countLine, 30, 770-(725/7)*countLine);
+      text((int)increments*countLine, 60, 770-(725/7)*countLine);
     }
 
     //production of graph
@@ -235,7 +253,7 @@ class GeneralChart {
       fill(#A51111);
       textAlign(CENTER, BOTTOM);
       textAlign(CENTER, TOP);
-      text("Week " + (i+1), x + cubeLineXPos /2, height -23);
+      text((i+1), x + cubeLineXPos /2, height -23);
 
       //connecting the dots
       if (previousPoint!=null) {
@@ -247,17 +265,17 @@ class GeneralChart {
     //text for axes headers
     textSize(20);
     textAlign(CENTER, BOTTOM);
-    text("Weeks in January", 100, height -5);
+    text("Weeks in January", 120, height -5);
     textAlign(RIGHT, BOTTOM);
     translate(30, height/2);
     rotate(-HALF_PI);
-    text(getQueryString(this.choice), 0, 0);
+    text(getQueryString(this.choice), 200, 0);
   }
   //in this class the queries are taken in as ints (either 1,2, or 3). 
   //This method takes that input and put is back into string form for axes labels - Amy
   String getQueryString(int choice){
     if(choice == 1){
-      return "Lateness (Mins)";
+      return "Total Lateness (Number of Flights)";
     } else if (choice == 2){
       return "Departures";
     } else if (choice == 3){
