@@ -139,7 +139,7 @@ class Button {
     image(image, x, y, w, h);
   }
   
-  void reset()                                                                                      //method to reset what was pressed (used for home button function)
+  void reset()                                                                                       //method to reset what was pressed (used for home button function)
   {
     mousePressed=false;
     showChart = false;

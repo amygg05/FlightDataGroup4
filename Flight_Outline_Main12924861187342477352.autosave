@@ -1,4 +1,4 @@
-import processing.sound.SoundFile;             // Sound library used for audio playback //<>// //<>// //<>// //<>// //<>// //<>//
+import processing.sound.SoundFile;             // Sound library used for audio playback //<>// //<>// //<>// //<>//
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;                    // Swing library used for JOption Pane dialogs
 import java.time.LocalDate;
@@ -17,9 +17,9 @@ color[] colors; // Array to store colors for each slice
 int chosenQuery = 1;
 String chosenAirline;
 
-MovingPlane movingPlane1, movingPlane2;                                                                    // create planes on page 2
-Button pieButton, barButton, lineButton;                                                                   // create chart buttons
-ImageButton planeBtn1, homeBtn;                                                                            // create plane and home button
+MovingPlane movingPlane1, movingPlane2;                                                                      // create planes on page 2
+Button pieButton, barButton, lineButton;                                                                     // create chart buttons
+ImageButton planeBtn1, homeBtn;                                                                              // create plane and home button
 Read_Data readingData;                                   
 dialogBox searchBox, dropDownMenuAfterSearch;
 searchButton searchButton;
@@ -51,7 +51,7 @@ void setup()
   PImage pieImage = loadImage("pieImage.png");                                                               // load chart icon images
   PImage barImage = loadImage("barImage.png");
   PImage lineImage = loadImage("lineImage.png");
-  flightTable = loadImage("FlightTable4.png");
+  flightTable = loadImage("FlightTable3.png");
 
   pieButton = new Button(50, 300, 150, 150, pieImage, pieImage, selectionSound);                             // create charts
   barButton = new Button(325, 300, 150, 150, barImage, barImage, selectionSound);
@@ -83,35 +83,32 @@ void setup()
 void draw()
 {
   if (page1) {
-    page2X=0;                                                                        // plane page 1 coordiantes reset each time
+    page2X=0;                                                                                                // plane page 1 coordiantes reset each time
     page2Y=400;
-    background(backgroundImage);                                                     // load background image and fonts and text
+    background(backgroundImage);                                                                             // load background image and fonts and text
     PFont stdFont = loadFont("Arial-Black-60.vlw");
     textFont(stdFont);
-    planeBtn1.draw();                                                                // draw and move plane button page 1
+    planeBtn1.draw();                                                                                        // draw and move plane button page 1
     planeBtn1.movePage1();
-    fill(#2941C1);
-    textAlign(CENTER);
-    text("Click Here \n For Flight Data", 400, 150);
     image(arrow, x-400, y, wPlane, hPlane);
-    image(cloudImage, cloudX, 100, 300, 200);                                        // load cloud images and move them
+    image(cloudImage, cloudX, 100, 300, 200);                                                                // load cloud images and move them
     image(cloudImage, cloudX2, 100, 300, 200);
     cloudX++;                                     
     cloudX2--;
     searchResult = searchButton.getSavedInput();                    
   } else if (page2) {
-    cloudX=400;cloudX2=100;                                                          // reset cloud coordinates
-    background(backgroundImage);                                                     // clear screen before drawing
-    image(plane, page2X, page2Y, w, h);                                              // draw and move plane from page 1 onto page 2
+    cloudX=400;cloudX2=100;                                                                                  // reset cloud coordinates
+    background(backgroundImage);                                                                             // clear screen before drawing
+    image(plane, page2X, page2Y, w, h);                                                                      // draw and move plane from page 1 onto page 2
     page2X+=6;
     page2Y-=7;
-    homeBtn.draw();                                                                  // draw home button
+    homeBtn.draw();                                                                                          // draw home button
     homeBtn.homeButton();
-    movingPlane1.display();                                                          // draw and move planes
+    movingPlane1.display();                                                                                  // draw and move planes
     movingPlane1.update();
     movingPlane2.display();
     movingPlane2.updateNegative();
-    searchButton.draw();                                                             // draw search box and recieve user input
+    searchButton.draw();                                                                                     // draw search box and recieve user input
     chosenQuery = searchButton.getSavedQuery();
     chosenAirline = searchButton.getSavedInput();
     image(flightTable, 250 , 10);
