@@ -60,7 +60,7 @@ class searchButton {
   void triggerDropdown(String airline)
   {
     if (airline != null) {
-      Object[] queryList = {"Delays By Week", "Departures By Week", "Cancellalations/Diversions By Weeks"};
+      Object[] queryList = {"Delays By Week", "Departures By Week", "Cancellations/Diversions By Weeks"};
       String query = box.dropdown(queryList);
       if (query != "")
       {
@@ -96,7 +96,7 @@ class searchButton {
     } else if (savedInput2 == "Departures By Week")
     {
       queryNumber = 2;
-    } else if (savedInput2 == "Cancellalations/Diversions By Weeks")
+    } else if (savedInput2 == "Cancellations/Diversions By Weeks")
     {
       queryNumber = 3;
     } else if (savedInput2 == "")
