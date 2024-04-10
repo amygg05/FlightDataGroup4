@@ -1,4 +1,5 @@
-int[] generalCount = new int[4]; // keep 4 as 4 weeks in a month :D  //<>//
+ //<>//
+int[] generalCount = new int[4]; // keep 4 as 4 weeks in a month 
 int day;
 int[] date;
 String xAxisLabel;

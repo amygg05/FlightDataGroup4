@@ -73,7 +73,7 @@ class searchButton {
   boolean isValidAirline(String airline)
   {
     return airline != null && !airline.isEmpty() && (airline.equals("AS") || airline.equals("AA") || airline.equals("DL") || airline.equals("F9") || airline.equals("HA") || airline.equals("B6")
-      || airline.equals("WN") || airline.equals("NK") || airline.equals("UA") || airline.equals("US") || airline.equals("G4"));
+      || airline.equals("WN") || airline.equals("NK") || airline.equals("UA") || airline.equals("G4"));
   }
 
   String getSavedInput()

@@ -1,3 +1,7 @@
+/*
+Class written by Orla
+This function creates buttons used on the first page and the home button. 
+*/
 class ImageButton {
   float x, y, w, h;                                                                                            // load coordinates
   float speed = 10;    
