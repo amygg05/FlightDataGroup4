@@ -69,6 +69,7 @@ class searchButton {
     }
   }
 
+  // Author: Ethan
   // Function: Determines whether user input airline code is valid
   boolean isValidAirline(String airline)
   {
@@ -76,6 +77,7 @@ class searchButton {
       || airline.equals("WN") || airline.equals("NK") || airline.equals("UA") || airline.equals("G4"));
   }
 
+  // Author: Ethan
   // Function: returns the typed input (airline code) for use in main
   String getSavedInput()
   {
