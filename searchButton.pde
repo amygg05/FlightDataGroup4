@@ -39,7 +39,7 @@ class searchButton {
             triggerDropdown(airline);
           }
         } else {    // if its the dropdown
-          Object[] queryList = {"Late", "Depart By Week", "Cancelled/Diverted By Weeks"};
+          Object[] queryList = {"Average Lateness By Week", "Departures By Week", "Cancellelations/Diversions By Weeks"};
           String query = box.dropdown(queryList);
           System.out.println(query);    // return selection
           if (query != "") {
@@ -60,7 +60,7 @@ class searchButton {
   void triggerDropdown(String airline)
   {
     if (airline != null) {
-      Object[] queryList = {"Late", "Depart By Week", "Cancelled/Diverted By Weeks"};
+      Object[] queryList = {"Average Lateness By Week", "Departures By Week", "Cancellelations/Diversions By Weeks"};
       String query = box.dropdown(queryList);
       if(query != "")
       {
