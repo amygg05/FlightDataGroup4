@@ -1,4 +1,4 @@
- //<>//
+ //<>// //<>//
 int[] generalCount = new int[4]; // keep 4 as 4 weeks in a month 
 int day;
 int[] date;
@@ -63,7 +63,7 @@ class GeneralChart {
             //variable for titles for charts and axis
             column = "DEP_TIME";
             title= "Depature Time";
-            xAxisLabel = "Time ";
+            xAxisLabel = "Week ";
             
             //Retrieves data from csv that gets the departure time
             int timeDep = data.getInt(rowIndex, column);
@@ -175,7 +175,7 @@ class GeneralChart {
       fill(128, 126, 250);
       PFont newFont = loadFont("BellMTItalic-48.vlw");
       textFont(newFont);
-      text(xAxisLabel + " " + (i + 1), labelX, labelY);
+      text(xAxisLabel + " " + (i + 1) + " ", labelX, labelY);
 
       //Title 
       textAlign(CENTER, TOP);
