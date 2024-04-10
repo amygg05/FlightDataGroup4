@@ -1,3 +1,8 @@
+/*
+Authors: Leo, Ethan, and Eva
+ Function: Applies function to the airline search box on page 2. First, typed input box pops up, then a drop down menu.
+ The input values are then stored and made available for use in the program.
+ */
 class searchButton {
   int x, y, w, h;
   PImage image;
@@ -7,7 +12,8 @@ class searchButton {
   int queryNumber;
   SoundFile selected;
 
-
+// Author: Leo and Ethan
+// Function: Constructor assigns values to x. y, width, height, image, dialog box, and drop down menu.
   searchButton(int x, int y, int w, int h, PImage image, dialogBox box, SoundFile selected) {
     this.x = x;
     this.y = y;
@@ -18,9 +24,12 @@ class searchButton {
     this.selected = selected;
   }
 
+
+// Author: Leo
+// Function: prompts the user for typed input (airline code) and then their chosen query in a drop down menu
   void draw() {
     if (mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y+h) {
-      image(image, x , y , w + 25, h + 25);
+      image(image, x, y, w + 25, h + 25);
       if (mousePressed) {
         mousePressed=false;
         selected.play();
@@ -39,43 +48,35 @@ class searchButton {
             // Trigger dropdown only if airport input is provided
             triggerDropdown(airline);
           }
-        } else {    // if its the dropdown
-          Object[] queryList = {"Delays By Week", "Departures By Week", "Cancellelations/Diversions By Weeks"};
-          String query = box.dropdown(queryList);
-          System.out.println(query);    // return selection
-          if (query != "") {
-            int index = query.indexOf("(");    //get index of airline code
-            String substr = query.substring(index + 1, index + 3);
-            System.out.println(substr);
-            savedInput2 = substr;
-            query = "";
-            substr = "";
-          } // return airline code}
         }
       }
     } else {
       image(image, x, y, w, h);
     }
   }
-
+  
+// Author: Ethan
+// Function: triggers drop down menu when called
   void triggerDropdown(String airline)
   {
     if (airline != null) {
       Object[] queryList = {"Delays By Week", "Departures By Week", "Cancellelations/Diversions By Weeks"};
       String query = box.dropdown(queryList);
-      if(query != "")
+      if (query != "")
       {
         savedInput2 = query;
       }
     }
   }
 
+// Function: Determines whether user input airline code is valid
   boolean isValidAirline(String airline)
   {
     return airline != null && !airline.isEmpty() && (airline.equals("AS") || airline.equals("AA") || airline.equals("DL") || airline.equals("F9") || airline.equals("HA") || airline.equals("B6")
       || airline.equals("WN") || airline.equals("NK") || airline.equals("UA") || airline.equals("G4"));
   }
 
+// Function: returns the typed input (airline code) for use in main
   String getSavedInput()
   {
     String returnVal = savedInput;
@@ -83,18 +84,20 @@ class searchButton {
     return returnVal;
   }
 
+// Author: Eva
+// Function: returns an integer value that corresponds to user chosen query for use in main
   int getSavedQuery()
   {
-    if(savedInput2 == "Delays By Week")
+    if (savedInput2 == "Delays By Week")
     {
       queryNumber = 1; // lateness is query 1
     } else if (savedInput2 == "Departures By Week")
     {
       queryNumber = 2;
-    } else if(savedInput2 == "Cancellelations/Diversions By Weeks")
+    } else if (savedInput2 == "Cancellelations/Diversions By Weeks")
     {
       queryNumber = 3;
-    } else if(savedInput2 == "")
+    } else if (savedInput2 == "")
     {
       queryNumber = 0;
     }

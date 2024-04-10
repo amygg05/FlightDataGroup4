@@ -1,4 +1,4 @@
-import processing.sound.SoundFile;             // Sound library used for audio playback  //<>//
+import processing.sound.SoundFile;             // Sound library used for audio playback  //<>// //<>//
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;                    // Swing library used for JOption Pane dialogs
 import java.time.LocalDate;
@@ -20,7 +20,7 @@ String chosenAirline;
 MovingPlane movingPlane1, movingPlane2;                                                                    // create planes on page 2
 Button pieButton, barButton, lineButton;                                                                   // create chart buttons
 ImageButton planeBtn1, homeBtn;                                                                            // create plane and home button
-Read_Data readingData;                                   
+Read_Data readingData;
 dialogBox searchBox, dropDownMenuAfterSearch;
 searchButton searchButton;
 GeneralChart firstChart;
@@ -29,7 +29,7 @@ Object[] queries = {"Late by Week", "Depart by Week", "Cancelled/Diverted by Wee
 
 void setup()
 {
-  background(255);                                                                                            // set size, background, clear outline on images 
+  background(255);                                                                                            // set size, background, clear outline on images
   stroke(10);
   noFill();
   size(800, 800);
@@ -56,10 +56,10 @@ void setup()
   pieButton = new Button(50, 300, 150, 150, pieImage, pieImage, selectionSound);                             // create charts
   barButton = new Button(325, 300, 150, 150, barImage, barImage, selectionSound);
   lineButton = new Button(600, 300, 150, 150, lineImage, lineImage, selectionSound);
-  
+
   movingPlane1 = new MovingPlane(passivePlane, -200, 100, 3, 300, 160);                                      // create moving planes
   movingPlane2 = new MovingPlane(passivePlane2, 900, 500, 3, 300, 160);
-  
+
   planeBtn1 = new ImageButton(x, y, plane, planeHighlighted, w, h, planeFlies);                              // creates image button on page 1 and home button
   homeBtn = new ImageButton(700, 20, homeButtonImage, homeButtonHighlighted, 90, 70, goBackButton);
 
@@ -73,7 +73,7 @@ void setup()
   searchButton = new searchButton(300, 500, 200, 200, searchIcon, searchBox, selectionSound);
   dropDownMenuAfterSearch = new dialogBox(queries);
 
-  cloudX = 400;                                                                                              // set coordinates for clouds page 1                          
+  cloudX = 400;                                                                                              // set coordinates for clouds page 1
   cloudX2 = 100;
   page1 = true;
   colors = new color[]{color(#CB6363),
@@ -96,11 +96,12 @@ void draw()
     image(arrow, x-400, y, wPlane, hPlane);
     image(cloudImage, cloudX, 100, 300, 200);                                        // load cloud images and move them
     image(cloudImage, cloudX2, 100, 300, 200);
-    cloudX++;                                     
+    cloudX++;
     cloudX2--;
-    searchResult = searchButton.getSavedInput();                    
+    searchResult = searchButton.getSavedInput();
   } else if (page2) {
-    cloudX=400;cloudX2=100;                                                          // reset cloud coordinates
+    cloudX=400;
+    cloudX2=100;                                                          // reset cloud coordinates
     background(backgroundImage);                                                     // clear screen before drawing
     image(plane, page2X, page2Y, w, h);                                              // draw and move plane from page 1 onto page 2
     page2X+=6;
@@ -114,7 +115,7 @@ void draw()
     searchButton.draw();                                                             // draw search box and recieve user input
     chosenQuery = searchButton.getSavedQuery();
     chosenAirline = searchButton.getSavedInput();
-    image(flightTable, 250 , 10);
+    image(flightTable, 250, 10);
     if (chosenQuery != 0)
     {
       println("chosenQuery: " + chosenQuery);
@@ -138,7 +139,7 @@ void draw()
         barButton.justDraw();
         barButton.barButtonPressed(1);
       }
-      if(!barPressed && !piePressed)
+      if (!barPressed && !piePressed)
       {
         lineButton.justDraw();
         lineButton.lineButtonPressed(1);
@@ -157,7 +158,7 @@ void draw()
         barButton.justDraw();
         barButton.barButtonPressed(2);
       }
-      if(!barPressed && !piePressed)
+      if (!barPressed && !piePressed)
       {
         lineButton.justDraw();
         lineButton.lineButtonPressed(2);
@@ -176,7 +177,7 @@ void draw()
         barButton.justDraw();
         barButton.barButtonPressed(3);
       }
-      if(!barPressed && !piePressed)
+      if (!barPressed && !piePressed)
       {
         lineButton.justDraw();
         lineButton.lineButtonPressed(3);

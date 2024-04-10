@@ -1,9 +1,9 @@
 /*
 This class was collectively worked on by Amy and Eva
-It reads in the data and sorts it into a table. From there it parses strings to ints for the columns that need to be used as ints.
-In this class there is also a method calculating lateness from the extimated arrival time to actual arrival time.
-There is also a method parsing the date column to sort the day, month, and year into an array for easy access
-*/
+ It reads in the data and sorts it into a table. From there it parses strings to ints for the columns that need to be used as ints.
+ In this class there is also a method calculating lateness from the extimated arrival time to actual arrival time.
+ There is also a method parsing the date column to sort the day, month, and year into an array for easy access
+ */
 final int NUM_COLS = 18;
 final int ARR_TIME_COL = 14;
 final int SCH_ARR_TIME_COL = 13;
@@ -21,10 +21,11 @@ class Read_Data {
     data = passedTable;
   }
 
-/*
-This function reads in the data from the csv file and fills in the data table with each
-column and row filled accordingly.
-*/
+  /*
+  Authors: Amy and Eva
+   Function: Reads in the data from the csv file and fills in the data table with each
+   column and row filled accordingly.
+   */
   void readData() {
 
     num_row = data.getRowCount();
@@ -41,11 +42,11 @@ column and row filled accordingly.
   }
 
 
-/*
-arrivalLateness(rowIndex):
-    Takes a row index and returns the lateness (in minutes) of that flight.
-    Note: If the flight was early, the value will be negative.
-*/
+  /*
+  Authors: Eva and Amy
+   Function: Takes a row index and returns the lateness (in minutes) of that flight.
+   Note: If the flight was early, the value will be negative.
+   */
   int arrivalLateness(int rowIndex)
   {
     //fetching data
@@ -65,7 +66,7 @@ arrivalLateness(rowIndex):
       schMins += (schHours / 100) * MIN_IN_HR;
 
       int arrivalDiff = arrMins - schMins;
-    
+
       //calculating latness with converted minutes
       if (arrivalDiff < 0 && arrivalDiff > MAX_TIME_DIFF)
       {
@@ -80,15 +81,15 @@ arrivalLateness(rowIndex):
     }
     return arrLateness;
   }
-  
-  
-/*
-getDate(rowIndex):
-    Takes a row index and returns an integer array with the parsed date values.
-    date[0] - month
-    date[1] - day
-    date[2] - year
-*/
+
+
+  /*
+  Authors: Amy, Eva, and Leo
+   Function: Takes a row index and returns an integer array with the parsed date values.
+   date[0] - month
+   date[1] - day
+   date[2] - year
+   */
   int[] getDate(int rowIndex) {
     String dateTimeString = data.getString(rowIndex, DATE_COLUMN);
     String[] dateParts = dateTimeString.split(" ");
@@ -98,7 +99,7 @@ getDate(rowIndex):
     int month = int(parts[0]);
     int day = int(parts[1]);
     int year = int(parts[2]);
-  
+
     //array of a single day
     int[] date = new int[3];
     date[0] = month;

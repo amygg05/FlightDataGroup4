@@ -1,5 +1,8 @@
- //<>// //<>//
-int[] generalCount = new int[4]; // keep 4 as 4 weeks in a month 
+/* //<>//
+Authors: Olivia, Leo, Eva, and Amy
+ Function: Filters the data according to user input. Contains functions that create the data visualizations.
+ */
+int[] generalCount = new int[4]; // keep 4 as 4 weeks in a month
 int day;
 int[] date;
 String xAxisLabel;
@@ -13,7 +16,8 @@ class GeneralChart {
   int choice;
   Read_Data dataR;
 
-
+  // Authors: Olivia and Leo
+  // Function: Constructor assigns data, airline, and choice to the object
   GeneralChart(Table loadTable, String airline, int option, Read_Data read)
   {
     data = loadTable;
@@ -22,6 +26,8 @@ class GeneralChart {
     this.dataR = read;
   }
 
+  // Authors: Olivia, Leo, and Eva
+  // Function: Filters the data for only relevant information. Sorts it accordingly for use when graphing
   void dataWant()
   {
     if (!completedCount)
@@ -31,7 +37,7 @@ class GeneralChart {
         date = dataR.getDate(rowIndex);
         day = date[1];
         String comp = data.getString(rowIndex, 1);
-        
+
         if (airline.equals(comp)) {
           switch (choice) {    //Each case is for a different button --> date/ lateness/ cancellations
 
@@ -57,17 +63,17 @@ class GeneralChart {
             }
             completedCount = true;
             break;
-            
-           // Depature time -- Olivia 
-          case 2:   
+
+            // Depature time -- Olivia
+          case 2:
             //variable for titles for charts and axis
             column = "DEP_TIME";
             title= "Depature Time";
             xAxisLabel = "Week ";
-            
+
             //Retrieves data from csv that gets the departure time
             int timeDep = data.getInt(rowIndex, column);
-            
+
             //Gets count of days in each week
             if (timeDep != 0)
             {
@@ -85,12 +91,12 @@ class GeneralChart {
                 generalCount[3]++;
               }
             }
-            
-            
+
+
             completedCount = true;
             break;
 
-          case 3:
+          case 3: // Diversions -- Leo
             title= "Diversions/Cancellations";
             xAxisLabel = "Week";
             column = "CANCELLED";
@@ -125,24 +131,25 @@ class GeneralChart {
         }
       }
     }
-  
- }
+  }
 
 
-  void pieDraw()  // Pie chart function - Olivia
+  // Author: Olivia
+  // Function: Draws pie chart using filtered data
+  void pieDraw()
   {
     //Variables used to represent the graph
     float startAngle =0;
     float diameter = min(width, height) * 0.8;
     float totalCount = 0;
     angles = new float[generalCount.length];
-    
-    //Count for the total segments on the chart 
+
+    //Count for the total segments on the chart
     for (int i = 0; i < generalCount.length; i++) {
       totalCount += generalCount[i];
     }
-    
-     // Calculate angles for each slice
+
+    // Calculate angles for each slice
     for (int j = 0; j < generalCount.length; j++) {
       angles[j] = radians(map(generalCount[j], 0, totalCount, 0, 360));
     }
@@ -153,12 +160,12 @@ class GeneralChart {
       float angle = radians(map(generalCount[i], 0, totalCount, 0, 360));
       fill(colors[i]);
       arc(width/2, height/2, 300, 300, startAngle, startAngle + angle, PIE);
-      
+
 
       float labelAngle = startAngle - angle / 2;
       float labelX = width/2 + cos(labelAngle) * diameter / 2 * 0.7; // Adjust label position for name of slice
       float labelY = height/2 + sin(labelAngle) * diameter / 2 * 0.7; // Adjust label position for name of slice
-      
+
       // Display percentage in slice
       float midAngle = startAngle + angles[i]/2;
       float perX = width/2 + 80 * cos(midAngle); // Adjust label position for percentage of slice
@@ -166,10 +173,10 @@ class GeneralChart {
       textAlign(CENTER, CENTER);
       fill(255);
       textSize(25);
-      text(nf(generalCount[i]*100/totalCount, 0, 1) + "%",perX, perY);
-      
-      startAngle += angle;  
-      
+      text(nf(generalCount[i]*100/totalCount, 0, 1) + "%", perX, perY);
+
+      startAngle += angle;
+
       //labels pie chart
       textAlign(CENTER, CENTER);
       fill(128, 126, 250);
@@ -177,18 +184,19 @@ class GeneralChart {
       textFont(newFont);
       text(xAxisLabel + " " + (i + 1) + " ", labelX, labelY);
 
-      //Title 
+      //Title
       textAlign(CENTER, TOP);
       text(title, 400, 100);
     }
   }
 
-
-  void draw() {   // Bar chart function - Olivia 
+  // Author: Olivia
+  // Function: Draws bar chart using filtered data
+  void draw() {
     line(60, 770, 60, 65);    // y-axis
     line(60, 770, 770, 770);  // x-axis
 
-    //values used to represent data 
+    //values used to represent data
     float barWidth = width / (generalCount.length +1);
     float maxDataValue = (max(generalCount) -1);
 
@@ -200,7 +208,7 @@ class GeneralChart {
       float barHeight = height- y;
 
 
-      //labels indivdual bars 
+      //labels indivdual bars
       textSize(15);
       fill(#DC88DE);
       rect(x, y, barWidth - 10, barHeight -30);
@@ -210,7 +218,7 @@ class GeneralChart {
       text((i+1), x+ barWidth /2, height-12);
       textAlign(CENTER, TOP);
     }
-    
+
     //labels bar chart
     textSize(20);
     textAlign(CENTER, BOTTOM);
@@ -221,7 +229,8 @@ class GeneralChart {
     text(getQueryString(this.choice), 200, 0);
   }
 
-  //this method draws a lineGraph that is able adapt to whichever query selected - Amy
+  // Author: Amy
+  // Function: Draws line graph using filtered data
   void drawLineGraph() {
     //axes
     line(60, 770, 60, 45);
@@ -272,14 +281,14 @@ class GeneralChart {
     rotate(-HALF_PI);
     text(getQueryString(this.choice), 200, 0);
   }
-  //in this class the queries are taken in as ints (either 1,2, or 3). 
+  //in this class the queries are taken in as ints (either 1,2, or 3).
   //This method takes that input and put is back into string form for axes labels - Amy
-  String getQueryString(int choice){
-    if(choice == 1){
+  String getQueryString(int choice) {
+    if (choice == 1) {
       return "Total Lateness (Number of Flights)";
-    } else if (choice == 2){
+    } else if (choice == 2) {
       return "Departures";
-    } else if (choice == 3){
+    } else if (choice == 3) {
       return "Cancellations or Diversions";
     }
     return "";

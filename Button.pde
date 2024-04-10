@@ -1,5 +1,10 @@
+/*
+Authors: Eva and Ethan
+ Class created buttons and applies their various functions
+ */
+
 class Button {
-  float x, y, w, h;                                                                                   //declare all variables in button class
+  float x, y, w, h;                                             //declare all variables in button class
   String label;
   PFont widgetFont;
   PImage image, image2;
@@ -8,7 +13,9 @@ class Button {
   float   movementSpeed = 4;
   SoundFile selected;
 
-  Button(float xpos, float ypos, float wid, float hig, PImage img, PImage img2, SoundFile selection) //constructior which assigns the position, size, images, and sound for each button
+  // Author: Ethan
+  // Function: Constructor assigns position, size, images, and sound for each button
+  Button(float xpos, float ypos, float wid, float hig, PImage img, PImage img2, SoundFile selection)
   {
     x = xpos;
     y = ypos;
@@ -19,7 +26,10 @@ class Button {
     selected = selection;
   }
 
-  void draw()                                                                                        //draws the button and triggers sounds when clicked 
+
+  // Author: Ethan
+  // Function: draw button and triggers sounds when clicked
+  void draw()
   {
     fill(colour);
     colour = 255;
@@ -38,17 +48,17 @@ class Button {
         num_row = data.getRowCount();
         for (int i = 0; i < NUM_COLS; i++) {
           String colName = data.getColumnTitle(i);
-          print(colName + "\t");  // Use "\t" for tab separation
+          print(colName + "\t");                                // Use "\t" for tab separation
         }
-        println();  // Move to next line after headers
+        println();                                              // Move to next line after headers
 
         // Print data rows
         for (int i = 0; i < 10; i++) {
           for (int j = 0; j < NUM_COLS; j++) {
-            String value = data.getString(i, j);  // Assuming String data type, adjust for others
+            String value = data.getString(i, j);                // Assuming String data type, adjust for others
             print(value + "\t");
           }
-          println();  // Move to next line after each row
+          println();                                            // Move to next line after each row
         }
 
         selected.play();
@@ -56,90 +66,102 @@ class Button {
     }
   }
 
-  float getX()                                                                                       //returns x position of button for movement
+  // Author: Ethan
+  // Function: returns x position of button for movement
+  float getX()
   {
     return this.x;
   }
 
-  void pieButtonPressed(int choice)                                                                  // method to trigger the pie chart when chosen by user. The choice is saved and used as the parameter
+  // Author: Eva
+  // Function: triggers the pie chart to be created and drawn using the user input
+  void pieButtonPressed(int choice)
   {
     if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
     {
       image(image2, x-2, y-2, w+5, h+5);
       fill(colour);
-      
-      if(mousePressed)
+
+      if (mousePressed)
       {
         selected.play();
         showChart = true;
       }
     }
     if (showChart)
-      {
-        background(255);
-        homeBtn.draw();
-        homeBtn.homeButton();
-        firstChart = new GeneralChart(data, chosenAirline, choice, readingData);
-        firstChart.dataWant();
-        firstChart.pieDraw();
-        piePressed = true;
-      }
-  }
-  
-  void barButtonPressed(int choice)                                                                 //method to trigger the bar chart when chosen by user 
-  {
-    if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
     {
-      image(image2, x-2, y-2, w+5, h+5);
-      fill(colour);
-      if(mousePressed)
-      {
-        selected.play();
-        showChart = true;
-      }
+      background(255);
+      homeBtn.draw();
+      homeBtn.homeButton();
+      firstChart = new GeneralChart(data, chosenAirline, choice, readingData);
+      firstChart.dataWant();
+      firstChart.pieDraw();
+      piePressed = true;
     }
-    if (showChart)
-      {
-        background(255);
-        homeBtn.draw();
-        homeBtn.homeButton();
-        firstChart = new GeneralChart(data, chosenAirline, choice, readingData);
-        firstChart.dataWant();
-        firstChart.draw();
-        barPressed = true;
-      }
-  }
-  
-  void lineButtonPressed(int choice)                                                             //method to trigger the line graph                           
-  {
-    if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
-    {
-      image(image2, x-2, y-2, w+5, h+5);
-      fill(colour);
-      if(mousePressed)
-      {
-        selected.play();
-        showChart = true;
-      }
-    }
-    if (showChart)
-      {
-        background(255);
-        homeBtn.draw();
-        homeBtn.homeButton();
-        firstChart = new GeneralChart(data, chosenAirline, choice, readingData);
-        firstChart.dataWant();
-        firstChart.drawLineGraph();
-        linePressed = true;
-      }
   }
 
-  void justDraw()                                                                                    //standard draw method to add button to screen
+  // Author: Eva
+  // Function: triggers bar chart to be created and drawn using the user input
+  void barButtonPressed(int choice)
+  {
+    if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
+    {
+      image(image2, x-2, y-2, w+5, h+5);
+      fill(colour);
+      if (mousePressed)
+      {
+        selected.play();
+        showChart = true;
+      }
+    }
+    if (showChart)
+    {
+      background(255);
+      homeBtn.draw();
+      homeBtn.homeButton();
+      firstChart = new GeneralChart(data, chosenAirline, choice, readingData);
+      firstChart.dataWant();
+      firstChart.draw();
+      barPressed = true;
+    }
+  }
+
+  // Author: Eva
+  // Function:  triggers line graph to be created and drawn using the user input
+  void lineButtonPressed(int choice)
+  {
+    if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
+    {
+      image(image2, x-2, y-2, w+5, h+5);
+      fill(colour);
+      if (mousePressed)
+      {
+        selected.play();
+        showChart = true;
+      }
+    }
+    if (showChart)
+    {
+      background(255);
+      homeBtn.draw();
+      homeBtn.homeButton();
+      firstChart = new GeneralChart(data, chosenAirline, choice, readingData);
+      firstChart.dataWant();
+      firstChart.drawLineGraph();
+      linePressed = true;
+    }
+  }
+
+  // Author: Eva
+  // Function: standard draw method to add button to screen
+  void justDraw()
   {
     image(image, x, y, w, h);
   }
-  
-  void reset()                                                                                       //method to reset what was pressed (used for home button function)
+
+  // Author: Eva
+  // Function: resets the buttons (used for home button function)
+  void reset()
   {
     mousePressed=false;
     showChart = false;

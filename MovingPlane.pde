@@ -1,11 +1,15 @@
+/*
+Author: Ethan
+ Function: displays moving planes (used on second page)
+ */
 class MovingPlane {
   PImage image;
-  int x, y,  prevX, prevY, speed, imgWidth, imgHeight;                   //declare variables to be used for constructor                                                                         
-  
+  int x, y, prevX, prevY, speed, imgWidth, imgHeight;                   //declare variables to be used for constructor
 
-  MovingPlane(PImage img, int xpos, int ypos, int sp, int wid, int heig) //constructor which assigns an image, position, speed, current location, and size of the plane
+  // Function: Constructor assigns an image, position, speed, current location, and size of plane
+  MovingPlane(PImage img, int xpos, int ypos, int sp, int wid, int heig)
   {
-    image = img;                                            
+    image = img;
     x = xpos;
     y = ypos;
     prevX = xpos;
@@ -13,23 +17,22 @@ class MovingPlane {
     speed = sp;
     imgWidth = wid;
     imgHeight= heig;
-    
   }
-  
-  void update()                                                          //method to update current position of plane, makes the plane move
+
+  // Function: updates current position of plane and makes plane move
+  void update()
   {
     prevX = x;
     prevY = y;
-    
+
     x += speed;
     if (x > width) {
       x = -image.width;
     }
   }
-  
 
-  
-  void updateNegative()                                                  //same as update(), but applies to plane going in other direction
+  // Function: same as update(), but applies to plane going in other direction
+  void updateNegative()
   {
     prevX = x;
     prevY = y;
@@ -39,10 +42,8 @@ class MovingPlane {
     }
   }
 
-  void display() {                                                        //essentially the draw function for the plane           
-   
+  // Function: draws the plane
+  void display() {
     image(image, x, y, imgWidth, imgHeight);
-    
-    }
+  }
 }
-  
