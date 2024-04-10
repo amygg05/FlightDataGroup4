@@ -1,9 +1,12 @@
-import processing.sound.SoundFile;             // Sound library used for audio playback  //<>// //<>//
+/* //<>//
+Authors: All
+ */
+import processing.sound.SoundFile;                        // Sound library used for audio playback  //<>//
 import javax.swing.JOptionPane;
-import javax.swing.JFrame;                    // Swing library used for JOption Pane dialogs
+import javax.swing.JFrame;                                // Swing library used for JOption Pane dialogs
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;    // Time library used for date/time gathering and formatting
-import java.util.Date;                        // Date class for date reading
+import java.time.format.DateTimeFormatter;                // Time library used for date/time gathering and formatting
+import java.util.Date;                                    // Date class for date reading
 
 
 boolean page1, page2, page3, completedCount, piePressed, barPressed, linePressed;   // Load boolean variables
@@ -17,9 +20,9 @@ color[] colors; // Array to store colors for each slice
 int chosenQuery = 1;
 String chosenAirline;
 
-MovingPlane movingPlane1, movingPlane2;                                                                    // create planes on page 2
-Button pieButton, barButton, lineButton;                                                                   // create chart buttons
-ImageButton planeBtn1, homeBtn;                                                                            // create plane and home button
+MovingPlane movingPlane1, movingPlane2;                     // create planes on page 2
+Button pieButton, barButton, lineButton;                    // create chart buttons
+ImageButton planeBtn1, homeBtn;                             // create plane and home button
 Read_Data readingData;
 dialogBox searchBox, dropDownMenuAfterSearch;
 searchButton searchButton;
@@ -29,15 +32,16 @@ Object[] queries = {"Late by Week", "Depart by Week", "Cancelled/Diverted by Wee
 
 void setup()
 {
-  background(255);                                                                                            // set size, background, clear outline on images
+  background(255);                                           // set size, background, clear outline on images
   stroke(10);
   noFill();
   size(800, 800);
 
-  selectionSound = new SoundFile(this, "cloudselection.mp3");                                                 // load sounds
+  // Load images and sounds
+  selectionSound = new SoundFile(this, "cloudselection.mp3"); // load sounds
   planeFlies = new SoundFile(this, "planeTakeOff.mp3");
   goBackButton = new SoundFile(this, "backButtonSound.mp3");
-  arrow = loadImage("arrow.png");                                                                             // load cloud,plane and home button images
+  arrow = loadImage("arrow.png");                             // load cloud,plane and home button images
   plane = loadImage("bluePlane.png");
   PImage passivePlane = loadImage("planeFromRight.png");
   PImage passivePlane2 = loadImage("planeFromRightSide.png");
@@ -48,19 +52,18 @@ void setup()
   cloudImage = loadImage("cloud.png");
   backgroundImage = loadImage("USMAP.jpg");
   searchIcon = loadImage("airline.png");
-  PImage pieImage = loadImage("pieImage.png");                                                               // load chart icon images
+  PImage pieImage = loadImage("pieImage.png");                // load chart icon images
   PImage barImage = loadImage("barImage.png");
   PImage lineImage = loadImage("lineImage.png");
   flightTable = loadImage("FlightTableNoUS.png");
 
-  pieButton = new Button(50, 300, 150, 150, pieImage, pieImage, selectionSound);                             // create charts
+  // Initialize buttons and moving planes
+  pieButton = new Button(50, 300, 150, 150, pieImage, pieImage, selectionSound);            // create charts
   barButton = new Button(325, 300, 150, 150, barImage, barImage, selectionSound);
   lineButton = new Button(600, 300, 150, 150, lineImage, lineImage, selectionSound);
-
-  movingPlane1 = new MovingPlane(passivePlane, -200, 100, 3, 300, 160);                                      // create moving planes
+  movingPlane1 = new MovingPlane(passivePlane, -200, 100, 3, 300, 160);                     // create moving planes
   movingPlane2 = new MovingPlane(passivePlane2, 900, 500, 3, 300, 160);
-
-  planeBtn1 = new ImageButton(x, y, plane, planeHighlighted, w, h, planeFlies);                              // creates image button on page 1 and home button
+  planeBtn1 = new ImageButton(x, y, plane, planeHighlighted, w, h, planeFlies);             // creates image button on page 1 and home button
   homeBtn = new ImageButton(700, 20, homeButtonImage, homeButtonHighlighted, 90, 70, goBackButton);
 
   // Read in file
@@ -68,12 +71,12 @@ void setup()
   readingData = new Read_Data(data);
   readingData.readData();
 
-
-  searchBox = new dialogBox("Enter an airline: ");                                                           // creates search box and dropdown
+  // Initialize dialog box
+  searchBox = new dialogBox("Enter an airline: ");                                           // creates search box and dropdown
   searchButton = new searchButton(300, 500, 200, 200, searchIcon, searchBox, selectionSound);
   dropDownMenuAfterSearch = new dialogBox(queries);
 
-  cloudX = 400;                                                                                              // set coordinates for clouds page 1
+  cloudX = 400;                                                                              // set coordinates for clouds page 1
   cloudX2 = 100;
   page1 = true;
   colors = new color[]{color(#CB6363),
@@ -82,37 +85,42 @@ void setup()
 }
 void draw()
 {
+  // Draw home page
   if (page1) {
-    page2X=0;                                                                        // plane page 1 coordiantes reset each time
+    // Authors: Orla and Ethan
+    page2X=0;       // plane page 1 coordiantes reset each time
     page2Y=400;
-    background(backgroundImage);                                                     // load background image and fonts and text
+    background(backgroundImage);                                                              // load background image and fonts and text
     PFont stdFont = loadFont("Arial-Black-60.vlw");
     textFont(stdFont);
-    planeBtn1.draw();                                                                // draw and move plane button page 1
+    planeBtn1.draw();                                                                         // draw and move plane button page 1
     planeBtn1.movePage1();
     fill(#2941C1);
     textAlign(CENTER);
     text("Click Here \n For Flight Data", 400, 150);
     image(arrow, x-400, y, wPlane, hPlane);
-    image(cloudImage, cloudX, 100, 300, 200);                                        // load cloud images and move them
+    image(cloudImage, cloudX, 100, 300, 200);                                                 // load cloud images and move them
     image(cloudImage, cloudX2, 100, 300, 200);
     cloudX++;
     cloudX2--;
     searchResult = searchButton.getSavedInput();
+
+    // Draw second page: user input
   } else if (page2) {
+    // Authors: Orla and Ethan
     cloudX=400;
-    cloudX2=100;                                                          // reset cloud coordinates
-    background(backgroundImage);                                                     // clear screen before drawing
-    image(plane, page2X, page2Y, w, h);                                              // draw and move plane from page 1 onto page 2
+    cloudX2=100;                                                                              // reset cloud coordinates
+    background(backgroundImage);                                                            // clear screen before drawing
+    image(plane, page2X, page2Y, w, h);                                                       // draw and move plane from page 1 onto page 2
     page2X+=6;
     page2Y-=7;
-    homeBtn.draw();                                                                  // draw home button
+    homeBtn.draw();                                                                           // draw home button
     homeBtn.homeButton();
-    movingPlane1.display();                                                          // draw and move planes
+    movingPlane1.display();                                                                   // draw and move planes
     movingPlane1.update();
     movingPlane2.display();
     movingPlane2.updateNegative();
-    searchButton.draw();                                                             // draw search box and recieve user input
+    searchButton.draw();                                                                      // draw search box and recieve user input
     chosenQuery = searchButton.getSavedQuery();
     chosenAirline = searchButton.getSavedInput();
     image(flightTable, 250, 10);
@@ -122,11 +130,13 @@ void draw()
       page2 = false;
       page3 = true;
     }
+    // Draw third page (query display options) and display graphs
   } else if (page3) {
+    // Author: Eva
     background(255);
     switch(chosenQuery)
     {
-    case 1: // chosen query == "Late"
+    case 1: // Chosen Query: "Delays by Week"
       homeBtn.draw();
       homeBtn.homeButton();
       if (!barPressed && !linePressed)
@@ -145,7 +155,7 @@ void draw()
         lineButton.lineButtonPressed(1);
       }
       break;
-    case 2:
+    case 2: // Chosen Query: "Departures by Week"
       homeBtn.draw();
       homeBtn.homeButton();
       if (!barPressed && !linePressed)
@@ -164,7 +174,7 @@ void draw()
         lineButton.lineButtonPressed(2);
       }
       break;
-    case 3:
+    case 3: // Chosen Query: "Cancellations/Diversions by Week"
       homeBtn.draw();
       homeBtn.homeButton();
       if (!barPressed && !linePressed)

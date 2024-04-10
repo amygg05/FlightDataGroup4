@@ -41,7 +41,7 @@ class GeneralChart {
         if (airline.equals(comp)) {
           switch (choice) {    //Each case is for a different button --> date/ lateness/ cancellations
 
-          case 1: // Lateness -- Eva
+          case 1: // Delayed Flights -- Eva
             int lateness = dataR.arrivalLateness(rowIndex);
             title = "No. Late Flights/Week";
             xAxisLabel = "Week";
