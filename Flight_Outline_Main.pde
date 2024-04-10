@@ -8,7 +8,7 @@ import java.util.Date;                        // Date class for date reading
 
 boolean page1, page2, page3, completedCount, piePressed, barPressed, linePressed;   // Load boolean variables
 float cloudX, cloudX2, x1, x2, x3;
-PImage plane, planeHighlighted, arrow, homeButtonImage, homeButtonHighlighted, cloudImage, backgroundImage, cartoonCloudImage, cartoonCloudImageSelected, searchIcon;
+PImage plane, planeHighlighted, arrow, homeButtonImage, homeButtonHighlighted, cloudImage, backgroundImage, cartoonCloudImage, cartoonCloudImageSelected, searchIcon, flightTable;
 final float x = 400, y = 400, wPlane=230, hPlane=230, w = 300, h = 300;
 SoundFile selectionSound, planeFlies, goBackButton;
 String searchResult;
@@ -51,6 +51,7 @@ void setup()
   PImage pieImage = loadImage("pieImage.png");
   PImage barImage = loadImage("barImage.png");
   PImage lineImage = loadImage("lineImage.png");
+  flightTable = loadImage("FlightTable3.png");
 
 
   cartoonCloudImage = loadImage("cartooncloud.png");
@@ -118,6 +119,7 @@ void draw()
     searchButton.draw();
     chosenQuery = searchButton.getSavedQuery();
     chosenAirline = searchButton.getSavedInput();
+    image(flightTable, 250 , 10);
     if (chosenQuery != 0)
     {
       println("chosenQuery: " + chosenQuery);
