@@ -90,6 +90,9 @@ void draw()
     textFont(stdFont);
     planeBtn1.draw();                                                                // draw and move plane button page 1
     planeBtn1.movePage1();
+    fill(128, 126, 250);
+    textAlign(CENTER);
+    text("Click Here \n For FLight Data", 400, 150);
     image(arrow, x-400, y, wPlane, hPlane);
     image(cloudImage, cloudX, 100, 300, 200);                                        // load cloud images and move them
     image(cloudImage, cloudX2, 100, 300, 200);
