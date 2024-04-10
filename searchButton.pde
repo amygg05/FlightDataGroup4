@@ -25,7 +25,7 @@ class searchButton {
   }
 
 
-  // Author: Leo
+  // Author: Leo and Ethan
   // Function: prompts the user for typed input (airline code) and then their chosen query in a drop down menu
   void draw() {
     if (mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y+h) {
