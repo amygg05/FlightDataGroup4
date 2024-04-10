@@ -59,6 +59,7 @@ class ImageButton {
       }
     }
     if(homeBtnPressed){
+      completedCount=false;
       page2 = page3 = false;                                                 // move back to page 1 
       homeBtnPressed = false;
       page1 = true;
@@ -68,6 +69,10 @@ class ImageButton {
       lineButton.reset();
       chosenQuery = 0;                                                      
       chosenAirline = "";
+      generalCount[0] = 0;
+      generalCount[1] = 0;
+      generalCount[2] = 0;
+      generalCount[3] = 0;
     }
   }
 }
