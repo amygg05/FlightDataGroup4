@@ -178,7 +178,8 @@ class GeneralChart {
 
       //Title 
       textAlign(CENTER, TOP);
-      text(title, 400, 100);
+      //text(title, 400, 100);
+      text(getQueryString(this.choice), 400, 100);
     }
   }
 
@@ -274,6 +275,7 @@ class GeneralChart {
   //in this class the queries are taken in as ints (either 1,2, or 3). 
   //This method takes that input and put is back into string form for axes labels - Amy
   String getQueryString(int choice){
+    //println("choice: " + choice);
     if(choice == 1){
       return "Total Lateness (Number of Flights)";
     } else if (choice == 2){
@@ -282,5 +284,10 @@ class GeneralChart {
       return "Cancellations or Diversions";
     }
     return "";
+  }
+  
+  int getGenCount()
+  {
+      return generalCount[0];
   }
 }

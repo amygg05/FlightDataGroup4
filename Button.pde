@@ -63,6 +63,7 @@ class Button {
 
   void pieButtonPressed(int choice)
   {
+    println("piePressed: " + choice);
     if (mouseX>=x && mouseX <=x+w && mouseY>=y && mouseY <=y+h)
     {
       image(image2, x-2, y-2, w+5, h+5);
@@ -81,6 +82,7 @@ class Button {
         homeBtn.homeButton();
         firstChart = new GeneralChart(data, chosenAirline, choice, readingData);
         firstChart.dataWant();
+        println("genCount0: " + firstChart.getGenCount());
         firstChart.pieDraw();
         piePressed = true;
       }
@@ -146,5 +148,6 @@ class Button {
     piePressed = false;
     barPressed = false;
     linePressed = false;
+    
   }
 }

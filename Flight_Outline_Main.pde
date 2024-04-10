@@ -1,4 +1,4 @@
-import processing.sound.*;                    // Sound library used for audio playback //<>// //<>// //<>//
+import processing.sound.*;                    // Sound library used for audio playback //<>// //<>// //<>// //<>//
 import processing.sound.SoundFile;             // Sound library used for audio playback //<>// //<>// //<>//
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;                    // Swing library used for JOption Pane dialogs
@@ -36,7 +36,9 @@ void setup()
   stroke(10);
   noFill();
   size(800, 800);
-
+  PImage pieImage = loadImage("pieImage.png");
+  PImage barImage = loadImage("barImage.png");
+  PImage lineImage = loadImage("lineImage.png");
   selectionSound = new SoundFile(this, "cloudselection.mp3");
   arrow = loadImage("arrow.png");
   plane = loadImage("bluePlane.png");
@@ -49,9 +51,7 @@ void setup()
   backgroundImage = loadImage("USMAP.jpg");
   planeFlies = new SoundFile(this, "planeTakeOff.mp3");
   goBackButton = new SoundFile(this, "backButtonSound.mp3");
-  PImage pieImage = loadImage("pieImage.png");
-  PImage barImage = loadImage("barImage.png");
-  PImage lineImage = loadImage("lineImage.png");
+
 
 
   cartoonCloudImage = loadImage("cartooncloud.png");
@@ -105,7 +105,8 @@ void draw()
     cloudX2--;
     searchResult = searchButton.getSavedInput();
   } else if (page2) {
-    cloudX=400;cloudX2=100;
+    cloudX=400;
+    cloudX2=100;
     background(backgroundImage);
     image(plane, page2X, page2Y, w, h);
     page2X+=6;
@@ -121,7 +122,7 @@ void draw()
     chosenAirline = searchButton.getSavedInput();
     if (chosenQuery != 0)
     {
-      println("chosenQuery: " + chosenQuery);
+      //println("chosenQuery: " + chosenQuery);
       page2 = false;
       page3 = true;
     }
@@ -142,7 +143,7 @@ void draw()
         barButton.justDraw();
         barButton.barButtonPressed(1);
       }
-      if(!barPressed && !piePressed)
+      if (!barPressed && !piePressed)
       {
         lineButton.justDraw();
         lineButton.lineButtonPressed(1);
@@ -161,7 +162,7 @@ void draw()
         barButton.justDraw();
         barButton.barButtonPressed(2);
       }
-      if(!barPressed && !piePressed)
+      if (!barPressed && !piePressed)
       {
         lineButton.justDraw();
         lineButton.lineButtonPressed(2);
@@ -180,7 +181,7 @@ void draw()
         barButton.justDraw();
         barButton.barButtonPressed(3);
       }
-      if(!barPressed && !piePressed)
+      if (!barPressed && !piePressed)
       {
         lineButton.justDraw();
         lineButton.lineButtonPressed(3);
