@@ -8,7 +8,7 @@ class Button {
   float   movementSpeed = 4;
   SoundFile selected;
 
-  Button(float xpos, float ypos, float wid, float hig, PImage img, PImage img2, SoundFile selection)
+  Button(float xpos, float ypos, float wid, float hig, PImage img, PImage img2, SoundFile selection) //constructior which assigns the position, size, images, and sound for each button
   {
     x = xpos;
     y = ypos;
@@ -19,7 +19,7 @@ class Button {
     selected = selection;
   }
 
-  void draw()
+  void draw()                                                                                         //draws the button and triggers sounds when clicked 
   {
     fill(colour);
     colour = 255;
@@ -56,7 +56,7 @@ class Button {
     }
   }
 
-  float getX()
+  float getX()                                                                                      //returns x position of button for movement
   {
     return this.x;
   }
