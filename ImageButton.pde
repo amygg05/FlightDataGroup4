@@ -1,10 +1,10 @@
 class ImageButton {
-  float x, y, w, h;                                // load coordinates
+  float x, y, w, h;                                                                                            // load coordinates
   float speed = 10;    
-  PImage image; PImage imageHighlighted;           // load button images
-  boolean isMoving=false; boolean backBtnMoves=false; boolean homeBtnPressed=false;               // load boolean variables
-  SoundFile selected;                                  // load sound files
-  ImageButton(float x, float y, PImage image, PImage imageHighlighted, float w, float h, SoundFile selected) {
+  PImage image; PImage imageHighlighted;                                                                      // load button images
+  boolean isMoving=false; boolean backBtnMoves=false; boolean homeBtnPressed=false;                           // load boolean variables
+  SoundFile selected;                                                                                         // load sound files
+  ImageButton(float x, float y, PImage image, PImage imageHighlighted, float w, float h, SoundFile selected) {   //constructor takes in images,coordinates and sound
     this.x = x;
     this.y=y;
     this.w = w;
@@ -52,7 +52,7 @@ class ImageButton {
       if(mousePressed)
       {
         mousePressed=false;
-        selected.play();                                                     // if button pressed, play sound
+        selected.play();                                                     // if home button pressed, play sound
         for (int i = 0; i < 100; i++) {
           homeBtnPressed = true;
         }
