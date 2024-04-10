@@ -30,7 +30,7 @@ class GeneralChart {
         date = dataR.getDate(rowIndex);
         day = date[1];
         String comp = data.getString(rowIndex, 1);
-
+        
         if (airline.equals(comp)) {
           switch (choice) {    //Each case is for a different button --> date/ lateness/ cancellations
 
@@ -124,8 +124,8 @@ class GeneralChart {
         }
       }
     }
-  }
-
+  
+ }
 
 
   void pieDraw()  // Pie chart function - Olivia
