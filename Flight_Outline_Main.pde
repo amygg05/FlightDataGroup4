@@ -1,4 +1,4 @@
-import processing.sound.SoundFile;             // Sound library used for audio playback //<>// //<>// //<>// //<>// //<>// //<>//
+import processing.sound.SoundFile;             // Sound library used for audio playback //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;                    // Swing library used for JOption Pane dialogs
 import java.time.LocalDate;
@@ -51,7 +51,7 @@ void setup()
   PImage pieImage = loadImage("pieImage.png");                                                               // load chart icon images
   PImage barImage = loadImage("barImage.png");
   PImage lineImage = loadImage("lineImage.png");
-  flightTable = loadImage("FlightTable4.png");
+  flightTable = loadImage("FlightTableNoUS.png");
 
   pieButton = new Button(50, 300, 150, 150, pieImage, pieImage, selectionSound);                             // create charts
   barButton = new Button(325, 300, 150, 150, barImage, barImage, selectionSound);
